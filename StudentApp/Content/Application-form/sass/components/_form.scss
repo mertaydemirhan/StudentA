@@ -1,0 +1,82 @@
+@import "../abstracts/mixins";
+
+form {
+    background-color: #f9f9f9;
+    padding: 30px 50px !important;
+    height: 100%;
+    overflow: scroll;
+
+    h2 {
+        font-weight: 400;
+    }
+
+    .subtitle {
+        color: grey;
+        font-style: italic;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 7px;
+        margin-top: 10px;
+    }
+
+    input,
+    select {
+        padding: 5px 10px;
+        margin-bottom: 10px;
+    }
+
+    .required {
+        label {
+            &::after {
+                content: " *";
+                color: $red;
+            }
+        }
+    }
+
+    .required.wrong {
+        input,
+        select {
+            border: 2px solid $red !important;
+        }
+
+        label {
+            color: $red;
+        }
+    }
+
+    .page {
+        display: none;
+    }
+
+    .page.active {
+        display: block;
+    }
+
+    .buttonContainer {
+        @include flex(space-between, center, row-reverse);
+        margin-top: 15px;
+    }
+
+    .form-check-input {
+        cursor: pointer;
+    }
+
+    .languages {
+        display: none;
+
+        .lang {
+            display: none;
+        }
+
+        .lang.active {
+            display: block;
+        }
+    }
+
+    .languages.active {
+        display: block;
+    }
+}

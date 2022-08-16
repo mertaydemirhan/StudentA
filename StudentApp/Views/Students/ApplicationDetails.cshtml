@@ -1,0 +1,696 @@
+﻿@model StudentApp.ObjectModels.Application
+@{
+    ViewBag.Title = "ViewApplication";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+@*
+    <section class="buttonbox">
+        @Html.ActionLink("Export PDF", "DownloadViewAsPDF", "Student", new { users = Html.ViewBag.newStudent, @Class = "btn btn-danger" })
+        @Html.ActionLink("Download Zip", "DownloadAsZip", "Student", new { users = Html.ViewBag.newStudent, @Class = "btn btn-warning" })
+    </section>*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet"
+          href=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" />
+    <style>
+        .row:not(.langs) label {
+            font-weight: 700;
+            font-size: 23px;
+        }
+
+        p {
+            font-size: 17px;
+        }
+
+        .row {
+            margin-top: 10px !important;
+        }
+
+        .title {
+            margin: 30px 0;
+        }
+
+        main {
+            margin-bottom: 50px;
+        }
+
+        .filename img {
+            width: 35px !important;
+        }
+
+        .filename {
+            display: flex;
+            align-items: center;
+        }
+
+            .filename p {
+                margin: 0;
+                margin-right: 5px;
+            }
+    </style>
+</head>
+
+<body>
+    <main class="container pt-4">
+        <h1 class="text-center mb-4">
+            Application Form for Education Abroad
+        </h1>
+
+        <hr />
+
+        <div id="1">
+            <h2 class="title">Personal Information</h2>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Name</label>
+                    <p>@Html.DisplayFor(x => x.Name)</p>
+                </div>
+
+                <div class="col-lg-6">
+                    <label>Surname</label>
+                    <p>@Html.DisplayFor(x => x.Surname)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Gender</label>
+                    <p>@Html.DisplayFor(x => x.Gender)</p>
+                </div>
+
+                <div class="col-lg-6">
+                    <label>Marital Status</label>
+                    <p>@Html.DisplayFor(x => x.maritalStatus)</p>
+                </div>
+            </div>
+
+            <label class="fs-4 mt-3 fw-bold">Address:</label>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Address Line 1</label>
+                    <p>@Html.DisplayFor(x => x.AddressLine1)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Address Line 2</label>
+                    <p>@Html.DisplayFor(x => x.AddressLine2)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>City</label>
+                    <p>@Html.DisplayFor(x => x.City)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>State</label>
+                    <p>@Html.DisplayFor(x => x.State)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Zip</label>
+                    <p>@Html.DisplayFor(x => x.Zip)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Country</label>
+                    <p>@Html.DisplayFor(x => x.Country)</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Date of birth</label>
+                    <p>@Html.DisplayFor(x => x.DateofBirth)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Country of birth</label>
+                    <p>@Html.DisplayFor(x => x.CountryofBirth)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Citizenship(Main)</label>
+                    <p>@Html.DisplayFor(x => x.CitizenshipMain)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Place of birth</label>
+                    <p>@Html.DisplayFor(x => x.PlaceofBirth)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Father name</label>
+                    <p>@Html.DisplayFor(x => x.FatherName)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Father surname</label>
+                    <p>@Html.DisplayFor(x => x.FatherSurname)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Mother name</label>
+                    <p>@Html.DisplayFor(x => x.MotherName)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Mother surname</label>
+                    <p>@Html.DisplayFor(x => x.MotherSurname)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Email address</label>
+                    <p>@ViewBag.Email</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Phone number</label>
+                    <p>@Html.DisplayFor(x => x.PhoneNumber)</p>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div id="2">
+            <h2 class="title">Educational Background</h2>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Intitution name</label>
+                    <p>@Html.DisplayFor(x => x.BgEducation.InstitutionName)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Faculty</label>
+                    <p>@Html.DisplayFor(x => x.BgEducation.Faculty)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Instruction Language</label>
+                    <p>@Html.DisplayFor(x => x.BgEducation.InsturactionLang)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Institution Country</label>
+                    <p>@Html.DisplayFor(x => x.BgEducation.InsCountry)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Study Mode</label>
+                    <p>@Html.DisplayFor(x => x.BgEducation.StudyMode)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Educational Level</label>
+
+                    <p>@Html.DisplayFor(x => x.BgEducation.EducationLevel)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Start date</label>
+                    <p>
+                        @{
+                            string parameterValue1 = null;
+                            if (Model.BgEducation != null && Model.BgEducation.EducationStDate != null)
+                            {
+                                parameterValue1 = Model.BgEducation.EducationStDate.Value.ToShortDateString();
+                                @Html.DisplayFor(x => parameterValue1)
+                            }
+                        }
+
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Completion date</label>
+                    <p>
+                        @{
+                            string parameterValue2 = null;
+                            if (Model.BgEducation != null && Model.BgEducation.EducationCompDate != null)
+                            {
+                                parameterValue2 = Model.BgEducation.EducationCompDate.Value.ToShortDateString();
+                                @Html.DisplayFor(x => parameterValue2)
+                            }
+                        }
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Awarded</label>
+                    <div class="form-check form-switch fs-5">
+                        <input disabled
+                               class="form-check-input"
+                               type="checkbox"
+                               role="switch"
+                               checked="@Model.BgEducation.Awarded.ToString()" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label>Average grade</label>
+                    <p>@Html.DisplayFor(x => x.BgEducation.AvarageGrade)</p>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div id="3">
+            <h2 class="title">Future Education</h2>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Country 1</label>
+                    <p>@Html.DisplayFor(x => x.FtEducation.Country1)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Country 2</label>
+                    <p>@Html.DisplayFor(x => x.FtEducation.Country2)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Field of study</label>
+                    <p>@Html.DisplayFor(x => x.FtEducation.FieldOfStudy)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Educational level</label>
+                    <p>@Html.DisplayFor(x => x.FtEducation.EducationLevel)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Intake</label>
+                    <p>@Html.DisplayFor(x => x.FtEducation.Intake)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Academic year</label>
+                    <p>@Html.DisplayFor(x => x.FtEducation.AcademicYear)</p>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div id="4">
+            <h2 class="title">Work Experience</h2>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Company Name</label>
+                    <p>@Html.DisplayFor(x => x.WorkExp.CompanyName)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Position</label>
+                    <p>@Html.DisplayFor(x => x.WorkExp.Position)</p>
+                </div>
+            </div>
+
+            <div class="row col-lg-12">
+                <label>Job Type</label>
+                <p>@Html.DisplayFor(x => x.WorkExp.JobType)</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Employee address</label>
+                    <p>@Html.DisplayFor(x => x.WorkExp.EmployeeAdress)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Manager name</label>
+                    <p>@Html.DisplayFor(x => x.WorkExp.ManagerName)</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Employee Email</label>
+                    <p>@Html.DisplayFor(x => x.WorkExp.EmployeeMail)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Employee Phone</label>
+                    <p>@Html.DisplayFor(x => x.WorkExp.EmployeePhone)</p>
+                </div>
+            </div>
+
+            <div class="row col-lg-12">
+                <label>Job Description</label>
+                <p>@Html.DisplayFor(x => x.WorkExp.JobDescription)</p>
+            </div>
+        </div>
+
+        <hr />
+
+        <div id="5">
+            <h2 class="title">Language Certificates</h2>
+
+            <div>
+                <p class="mb-1">
+                    Have you ever passed any International Language
+                    Examination?
+                </p>
+                <div class="form-check form-switch fs-5">
+                    <input disabled
+                           class="form-check-input"
+                           type="checkbox"
+                           role="switch"
+                           checked="@Model.LanguageCert.LangCert.ToString()" />
+                </div>
+            </div>
+
+            <div class="row langs" style="margin-top: 30px !important">
+                <div class="col-lg-4">
+                    <div class="">
+                        <label>Certificate Type</label>
+                        <br />
+                        <label class="form-check-label"
+                               for="flexRadioDefault1">
+                            @Model.LanguageCert.CertType.ToString()
+                        </label>
+                        <input class="form-check-input"
+                               style="margin-left:10px !important"
+                               type="radio"
+                               name="flexRadioDefault"
+                               id="flexRadioDefault1"
+                               disabled
+                               checked />
+                    </div>
+
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="row" style="margin-top: 0px !important">
+                        <div class="col-lg-6">
+                            <label>Listening</label>
+                            <p>
+                                @{ switch (Model.LanguageCert.CertType.ToString())
+                                    {
+                                        case "TOEFL IBT":
+                                            <text>@Html.DisplayFor(x => x.LanguageCert.ListeningTOEFL)</text>
+                                            break;
+                                        case "IELTS Academic":
+                                            <text>@Html.TextBoxFor(x => x.LanguageCert.ListeningIELTS)</text>
+                                            break;
+                                        case "Other":
+                                            Html.Label("0");
+                                            break;
+                                        default:
+                                            Html.Label("0");
+                                            break;
+                                    }
+                                }
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Reading</label>
+                            <p>
+                                @{ switch (Model.LanguageCert.CertType.ToString())
+                                    {
+                                        case "TOEFL IBT":
+                                            <text>@Html.DisplayFor(x => x.LanguageCert.ReadingTOEFL)</text>
+                                            break;
+                                        case "IELTS Academic":
+                                            <text>Html.DisplayFor(x => x.LanguageCert.ReadingIELTS)</text>
+                                            break;
+                                        case "Other":
+                                            Html.Label("0");
+                                            break;
+                                        default:
+                                            Html.Label("0");
+                                            break;
+                                    }
+                                }
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>Writing</label>
+                            <p>
+                                @{ switch (Model.LanguageCert.CertType.ToString())
+                                    {
+                                        case "TOEFL IBT":
+                                            <text>@Html.DisplayFor(x => x.LanguageCert.WritingTOEFL)</text>
+                                            break;
+                                        case "IELTS Academic":
+                                            <text>@Html.DisplayFor(x => x.LanguageCert.WritingIELTS)</text>
+                                            break;
+                                        case "Other":
+                                            Html.Label("0");
+                                            break;
+                                        default:
+                                            Html.Label("0");
+                                            break;
+                                    }
+                                }
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Speaking</label>
+                            <p>
+                                @{ switch (Model.LanguageCert.CertType.ToString())
+                                    {
+                                        case "TOEFL IBT":
+                                            <text>@Html.DisplayFor(x => x.LanguageCert.SpeakingTOEFL)</text>
+                                            break;
+                                        case "IELTS Academic":
+                                            <text>@Html.DisplayFor(x => x.LanguageCert.SpeakingIELTS)</text>
+                                            break;
+                                        case "Other":
+                                            Html.Label("0");
+                                            break;
+                                        default:
+                                            Html.Label("0");
+                                            break;
+                                    }
+                                }
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>Overall score</label>
+                            <p>
+                                @{ switch (Model.LanguageCert.CertType.ToString())
+                                    {
+                                        case "TOEFL IBT":
+                                            <text>@Html.DisplayFor(x => x.LanguageCert.OverallScoreTOEFL)</text>
+                                            break;
+                                        case "IELTS Academic":
+                                            <text>@Html.DisplayFor(x => x.LanguageCert.OverallScoreIELTS)</text>
+                                            break;
+                                        case "Other":
+                                            Html.Label("0");
+                                            break;
+                                        default:
+                                            Html.Label("0");
+                                            break;
+                                    }
+                                }
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Date of test</label>
+                            <p>
+                                @{ switch (Model.LanguageCert.CertType.ToString())
+                                    {
+                                        case "TOEFL IBT":
+                                            parameterValue2 = Model.LanguageCert.TestDateTOEFL.Value.ToShortDateString();
+                                            <text>@Html.DisplayFor(x => parameterValue2)</text>
+                                            break;
+                                        case "IELTS Academic":
+                                            parameterValue2 = Model.LanguageCert.TestDateIELTS.Value.ToShortDateString();
+                                            <text>@Html.DisplayFor(x => parameterValue2)</text>
+                                            break;
+                                        case "Other":
+                                            Html.Label(null);
+                                            break;
+                                        default:
+                                            Html.Label(null);
+                                            break;
+                                    }
+                                }
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row col-lg-12">
+                        <label>Certificate number</label>
+                        <p>
+                            @{ switch (Model.LanguageCert.CertType.ToString())
+                                {
+                                    case "TOEFL IBT":
+                                        <text>@Html.DisplayFor(x => x.LanguageCert.CertNoTOEFL)</text>
+                                        break;
+                                    case "IELTS Academic":
+                                        <text>@Html.DisplayFor(x => x.LanguageCert.CertNoIELTS)</text>
+                                        break;
+                                    case "Other":
+                                        Html.Label(null);
+                                        break;
+                                    default:
+                                        Html.Label(null);
+                                        break;
+                                }
+                            }
+                        </p>
+                    </div>
+
+                    <div class="row col-lg-12">
+                        <label>Other relevant information</label>
+                        <p>
+                            @{ switch (Model.LanguageCert.CertType.ToString())
+                                {
+                                    case "TOEFL IBT":
+                                        <text>@Html.DisplayFor(x => x.LanguageCert.CertOtherTOEFL)</text>
+                                        break;
+                                    case "IELTS Academic":
+                                        <text>@Html.DisplayFor(x => x.LanguageCert.CertNoIELTS)</text>
+                                        break;
+                                    case "Other":
+                                        Html.Label(null);
+                                        break;
+                                    default:
+                                        Html.Label(null);
+                                        break;
+                                }
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div id="6" class="documents">
+            <h2 class="title">Submit Documents</h2>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Passport</label>
+                    <div class="filename">
+                        <p>stupidfilename.bmp</p>
+                        <img src="" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label>National ID</label>
+                    <div class="filename">
+                        <p>stupidfilename.doc</p>
+                        <img src="" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Diploma</label>
+                    <div class="filename">
+                        <p>stupidfilename.png</p>
+                        <img src="" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label>Transcript</label>
+                    <div class="filename">
+                        <p>stupidfilename.gif</p>
+                        <img src="" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>CV</label>
+                    <div class="filename">
+                        <p>stupidfilename.jpeg</p>
+                        <img src="" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label>IELTS or TOEFL Certificate</label>
+                    <div class="filename">
+                        <p>stupidfilename.jpg</p>
+                        <img src="" />
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Extra document 1</label>
+                    <div class="filename">
+                        <p>stupidfilename.pdf</p>
+                        <img src="" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label>Extra document 2</label>
+                    <div class="filename">
+                        <p>stupidfilename.png</p>
+                        <img src="" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Extra document 3</label>
+                    <div class="filename">
+                        <p>stupidfilename.bmp</p>
+                        <img src="" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label>Extra document 4</label>
+                    <div class="filename">
+                        <p>stupidfilename.jpg</p>
+                        <img src="" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div style="margin-top:30px">
+            <section class="buttonbox">
+                @Html.ActionLink("Export PDF", "DownloadViewAsPDF", "Student", new { users = Html.ViewBag.StApplication, @Class = "btn btn-danger" })
+                @Html.ActionLink("Download Zip", "DownloadAsZip", "Student", new { users = Html.ViewBag.StApplication, @Class = "btn btn-warning" })
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const filenames = document.querySelectorAll(".filename");
+
+        filenames.forEach((filename) => {
+            let fileExtension =
+                filename.childNodes[1].innerHTML.split(".")[1];
+            let fileSource = '../../Views/Students/img/' + fileExtension + ".png";
+            console.log(fileSource);
+            filename.childNodes[3].src = fileSource;
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

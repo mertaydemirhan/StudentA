@@ -1,0 +1,41 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <link href="~/Content/redirection_page/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="submittedFormContainer">
+        <div class="successContainer">
+            <p>
+                You have submitted your application form. You will be now
+                redirected!
+            </p>
+        </div>
+
+        <div class="redirectContainer">
+            <div class="spinner"></div>
+            <h1>
+                Redirecting in
+                <span style="font-size: 40px">5</span> seconds...
+                </h1>
+        </div>
+    </section>
+</body>
+
+
+</html>
+<script>
+    const timer = setTimeout(() => {
+        window.location.href = "/User/Login";
+    }, 5000);
+</script>

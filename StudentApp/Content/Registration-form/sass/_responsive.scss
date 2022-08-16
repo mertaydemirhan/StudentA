@@ -1,0 +1,41 @@
+@import "./abstracts/mixins";
+
+@media screen and (max-width: 769px) {
+    // * {
+    //     outline: 1px solid red;
+    // }
+
+    .register {
+        @include flex(center, center, column);
+        padding: 0;
+        height: 70rem;
+    }
+
+    .register-form {
+        width: 85% !important;
+    }
+
+    .register-left {
+        width: 100vw;
+        height: 50vh;
+        @include flex(center, center, column);
+    }
+
+    .register-right {
+        width: 100vw;
+        padding-top: 0 !important;
+        border-radius: 0;
+        padding-bottom: 15rem !important;
+
+        ul.nav {
+            position: relative;
+            width: 87%;
+            left: 0;
+            margin: 0 auto 3.5rem auto !important;
+        }
+
+        .register-heading {
+            text-align: center;
+        }
+    }
+}

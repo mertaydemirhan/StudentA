@@ -1,0 +1,48 @@
+@import "abstracts/colors";
+@import "abstracts/mixins";
+
+@import "components/steps";
+@import "components/form";
+@import "components/footer";
+@import "components/navbar";
+
+@import "responsive";
+
+body {
+    font-family: sans-serif;
+}
+
+.main {
+    height: 92vh;
+}
+
+.buttonContainer {
+    .btn {
+        display: none !important;
+    }
+
+    .btn.active {
+        display: block !important;
+    }
+}
+
+.btn {
+    padding: 6px 16px !important;
+    border: 0 !important;
+}
+
+.btn-primary {
+    background-color: $primary !important;
+}
+
+.btn-secondary {
+    background-color: $secondary !important;
+}
+
+.title {
+    margin-bottom: 30px;
+}
+
+input[disabled] {
+    color: grey !important;
+}

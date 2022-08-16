@@ -1,0 +1,48 @@
+﻿@model StudentApp.ObjectModels.Application
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div id="3" class="page">
+    <h2>Future Education</h2>
+    <p class="subtitle">
+        In which country you would like to pursue your
+        education?
+    </p>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label>Country 1</label>
+            @Html.TextBoxFor(m => m.FtEducation.Country1, new { @class = "form-control" })
+        </div>
+
+        <div class="col-lg-6">
+            <label>Country 2</label>
+            @Html.TextBoxFor(m => m.FtEducation.Country2, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label> Field of study</label>
+            @Html.TextBoxFor(m => m.FtEducation.FieldOfStudy, new { @class = "form-control" })
+        </div>
+
+        <div class="col-lg-6">
+            <label>Educational level</label>
+            @Html.DropDownListFor(x => x.FtEducation.EducationLevel, new SelectList(new List<string> { "General Education (9 years)", "Complete Secondary Education (Attestat)", "Complete Professional Education", "International Foundation Programme", "Bachelor's degree", "Pre-Masters", "Master degree", "PhD", "Other" }), new { rel = "0", @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label>Intake</label>
+            @Html.DropDownListFor(x => x.FtEducation.Intake, new SelectList(new List<string> { "Winter", "Spring", "Fall" }), new { rel = "0", @class = "form-select" })
+
+        </div>
+
+        <div class="col-lg-6">
+            <label>Academic year</label>
+            @Html.TextBoxFor(m => m.FtEducation.AcademicYear, new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+<script src="~/Content/Scripts/bootstrap.min.js"></script>

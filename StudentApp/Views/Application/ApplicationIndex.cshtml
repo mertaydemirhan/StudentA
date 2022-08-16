@@ -1,0 +1,576 @@
+﻿@model StudentApp.ObjectModels.Application
+@{
+    ViewBag.Title = "ApplicationIndex";
+    Layout = "~/Views/Dashboard/Index.cshtml";
+}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="~/Content/carousel-18/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/Content/carousel-18/css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="~/Content/carousel-18/css/animate.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/carousel-18/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="~/Content/carousel-18/css/style.css">
+
+    <title>Application</title>
+    <style>
+
+        .wrapper {
+            overflow-x: hidden;
+        }
+
+        .row .exp {
+            font-size: 15px;
+            padding: 30px;
+            font-weight: 400;
+        }
+
+
+        .title {
+            text-align: center;
+        }
+
+        .sidep {
+            font-weight: 500;
+            line-height: 1.5em;
+            font-size: 14px;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            color: rgb(20, 20, 20) !important;
+        }
+
+
+
+        .brand-imagehakan {
+            line-height: .8;
+            margin-left: 1.1rem;
+            margin-right: 0.5rem;
+            margin-top: -3px;
+            max-height: 45px;
+        }
+
+
+
+
+        p {
+            font-size: 15px;
+        }
+
+        .roww p {
+            color: black;
+        }
+
+
+        .roww {
+            display: flex;
+        }
+
+        .tabrow {
+            width: 60%;
+        }
+
+        .roww item {
+            margin-top: 20px;
+        }
+
+        .details {
+            position: absolute;
+            margin-left: 83%;
+        }
+
+            .details input {
+                border: 1px solid grey;
+            }
+    </style>
+</head>
+<body>
+
+
+    <div class="content">
+        <div class="details">
+            <a href="@Url.Action("DetailsButton", "Application", new { Id = Model.ID })" class="btn btn-fill btn-light btn-wd">Details</a>
+
+        </div>
+        <div class="container">
+            <h2 class="my-5 text-center">Application Info</h2>
+
+            <div class="d-flex carousel-nav">
+                <a href="#" class="col active">Personal Details</a>
+
+                <a href="#" class="col">Past Educations</a>
+                <a href="#" class="col">Future Education</a>
+                <a href="#" class="col">Work Experience</a>
+                <a href="#" class="col">Language Exams</a>
+
+            </div>
+
+
+            <div class="owl-carousel owl-1">
+
+                <div class="media-29101 d-md-flex w-100">
+                    <div class="tabrow">
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Name</label>
+                                <p>@Html.DisplayFor(x => x.Name)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Surname</label>
+                                <p>@Html.DisplayFor(x => x.Surname)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Gender</label>
+                                <p>@Html.DisplayFor(x => x.Gender)</p>
+                            </div>
+
+                        </div>
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Marital Status</label>
+                                <p>@Html.DisplayFor(x => x.maritalStatus)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Adress Line 1</label>
+                                <p>@Html.DisplayFor(x => x.AddressLine1)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Adress Line 2</label>
+                                <p>@Html.DisplayFor(x => x.AddressLine2)</p>
+                            </div>
+
+                        </div>
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>City</label>
+                                <p>@Html.DisplayFor(x => x.City)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>State</label>
+                                <p>@Html.DisplayFor(x => x.State)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Zip</label>
+                                <p>@Html.DisplayFor(x => x.Zip)</p>
+                            </div>
+
+                        </div>
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Country</label>
+                                <p>@Html.DisplayFor(x => x.Country)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Date of birth</label>
+                                <p>@Html.DisplayFor(x => x.DateofBirth)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Country of birth</label>
+                                <p>@Html.DisplayFor(x => x.CountryofBirth)</p>
+                            </div>
+
+                        </div>
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Citizenship(Main)</label>
+                                <p>@Html.DisplayFor(x => x.CitizenshipMain)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Email address</label>
+                                <p>@Html.DisplayFor(x => x.Email)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Phone Number</label>
+                                <p>@Html.DisplayFor(x => x.PhoneNumber)</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div> <!-- .item -->
+
+                <div class="media-29101 d-md-flex w-100">
+                    <div class="tabrow">
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Intitution Name</label>
+                                <p>@Html.DisplayFor(x => x.BgEducation1.InstitutionName)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Faculty</label>
+                                <p>@Html.DisplayFor(x => x.BgEducation1.Faculty)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Instruction Language</label>
+                                <p>@Html.DisplayFor(x => x.BgEducation1.InsturactionLang)</p>
+                            </div>
+
+                        </div>
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Institution Country</label>
+                                <p>@Html.DisplayFor(x => x.BgEducation1.InsCountry)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Educational Level</label>
+                                <p>@Html.DisplayFor(x => x.BgEducation1.EducationLevel)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Average Grade</label>
+                                <p>@Html.DisplayFor(x => x.BgEducation1.AvarageGrade)</p>
+                            </div>
+
+                        </div>
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Start Date</label>
+                                <p>
+                                    @{
+                                        string parameterValue1 = null;
+                                        if (Model.BgEducation1 != null && Model.BgEducation1.EducationStDate != null)
+                                        {
+                                            parameterValue1 = Model.BgEducation1.EducationStDate.Value.ToShortDateString();
+                                            @Html.DisplayFor(x => parameterValue1)
+                                        }
+                                                                }
+                                                            </p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Completion Date</label>
+                                <p>
+                                    @{
+                                        string parameterValue2 = null;
+                                        if (Model.BgEducation1 != null && Model.BgEducation1.EducationCompDate != null)
+                                        {
+                                            parameterValue2 = Model.BgEducation1.EducationCompDate.Value.ToShortDateString();
+                                            @Html.DisplayFor(x => parameterValue2)
+                                        }
+                                    }
+                                </p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Awarded</label>
+                                <p>@{ if (Model.BgEducation1.Awarded) { Html.Label("YES"); } else { Html.Label("NO"); } }</p>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div> <!-- .item -->
+
+                <div class="media-29101 d-md-flex w-100">
+                    <div class="tabrow">
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Country 1</label>
+                                <p>@Html.DisplayFor(x => x.FtEducation.Country1)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Country 2</label>
+                                <p>@Html.DisplayFor(x => x.FtEducation.Country2)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Field of Study</label>
+                                <p>@Html.DisplayFor(x => x.FtEducation.FieldOfStudy)</p>
+                            </div>
+
+                        </div>
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Educational level</label>
+                                <p>@Html.DisplayFor(x => x.FtEducation.EducationLevel)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Intake</label>
+                                <p>@Html.DisplayFor(x => x.FtEducation.Intake)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Academic year</label>
+                                <p>@Html.DisplayFor(x => x.FtEducation.AcademicYear)</p>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div> <!-- .item -->
+                <div class="media-29101 d-md-flex w-100">
+                    <div class="tabrow">
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Company Name</label>
+                                <p>@Html.DisplayFor(x => x.WorkExp.CompanyName)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Position</label>
+                                <p>@Html.DisplayFor(x => x.WorkExp.Position)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Job Type</label>
+                                <p>@Html.DisplayFor(x => x.WorkExp.JobType)</p>
+                            </div>
+
+                        </div>
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Manager name</label>
+                                <p>@Html.DisplayFor(x => x.WorkExp.ManagerName)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Employee Email</label>
+                                <p>@Html.DisplayFor(x => x.WorkExp.EmployeeMail)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Job Description</label>
+                                <p>@Html.DisplayFor(x => x.WorkExp.JobDescription)</p>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div> <!-- .item -->
+                <div class="media-29101 d-md-flex w-100">
+                    <div class="tabrow">
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Certificate Type</label>
+                                <p>@Html.DisplayFor(x => x.LanguageCert.CertType)</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Listening</label>
+                                <p>
+                                    @{ if (Model.LanguageCert.CertType != null)
+                                        {
+                                            switch (Model.LanguageCert.CertType.ToString())
+                                            {
+                                                case "TOEFL IBT":
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.ListeningTOEFL)</text>
+                                                    break;
+                                                case "IELTS Academic":
+                                                    <text>@Html.TextBoxFor(x => x.LanguageCert.ListeningIELTS)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label("0");
+                                                    break;
+                                                default:
+                                                    Html.Label("0");
+                                                    break;
+                                            }
+                                        }
+                                        else
+                                        {<text>Certificate information doesn't  exist</text>}
+                                    }
+                                </p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Reading</label>
+                                <p>
+                                    @{ if (Model.LanguageCert.CertType != null)
+                                        {
+                                            switch (Model.LanguageCert.CertType.ToString())
+                                            {
+                                                case "TOEFL IBT":
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.ReadingTOEFL)</text>
+                                                    break;
+                                                case "IELTS Academic":
+                                                    <text>Html.DisplayFor(x => x.LanguageCert.ReadingIELTS)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label("0");
+                                                    break;
+                                                default:
+                                                    Html.Label("0");
+                                                    break;
+                                            }
+                                        }
+                                        else
+                                        {<text>Certificate information doesn't  exist</text>}
+
+                                    }
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Writing</label>
+                                <p>
+                                    @{ if (Model.LanguageCert.CertType != null)
+                                        {
+                                            switch (Model.LanguageCert.CertType.ToString())
+                                            {
+                                                case "TOEFL IBT":
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.WritingTOEFL)</text>
+                                                    break;
+                                                case "IELTS Academic":
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.WritingIELTS)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label("0");
+                                                    break;
+                                                default:
+                                                    Html.Label("0");
+                                                    break;
+                                            }
+                                        }
+                                        else
+                                        {<text>Certificate information doesn't  exist</text>}
+
+                                    }
+                                </p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Speaking</label>
+                                <p>
+                                    @{
+                                        if (Model.LanguageCert.CertType != null)
+                                        {
+                                            switch (Model.LanguageCert.CertType.ToString())
+                                            {
+                                                case "TOEFL IBT":
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.SpeakingTOEFL)</text>
+                                                    break;
+                                                case "IELTS Academic":
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.SpeakingIELTS)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label("0");
+                                                    break;
+                                                default:
+                                                    Html.Label("0");
+                                                    break;
+                                            }
+                                        }
+                                        else
+                                        { <text>Certificate information doesn't  exist</text>}
+
+                                    }
+                                </p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Overall score</label>
+                                <p>
+                                    @{
+                                        if (Model.LanguageCert.CertType != null)
+                                        {
+                                            switch (Model.LanguageCert.CertType.ToString())
+                                            {
+                                                case "TOEFL IBT":
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.OverallScoreTOEFL)</text>
+                                                    break;
+                                                case "IELTS Academic":
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.OverallScoreIELTS)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label("0");
+                                                    break;
+                                                default:
+                                                    Html.Label("0");
+                                                    break;
+                                            }
+                                        }
+                                        else
+                                        {<text>Certificate information doesn't  exist</text>}
+
+                                    }
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="roww">
+                            <div class="col-lg-8">
+                                <label>Date of Test</label>
+                                <p>
+                                    @{
+                                        if (Model.LanguageCert.CertType != null)
+                                        {
+                                            switch (Model.LanguageCert.CertType.ToString())
+                                            {
+                                                case "TOEFL IBT":
+                                                    parameterValue2 = Model.LanguageCert.TestDateTOEFL.Value.ToShortDateString();
+                                                    <text>@Html.DisplayFor(x => parameterValue2)</text>
+                                                    break;
+                                                case "IELTS Academic":
+                                                    parameterValue2 = Model.LanguageCert.TestDateIELTS.Value.ToShortDateString();
+                                                    <text>@Html.DisplayFor(x => parameterValue2)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label(null);
+                                                    break;
+                                                default:
+                                                    Html.Label(null);
+                                                    break;
+                                            }
+                                        }
+                                        else
+                                        { <text>Certificate information doesn't  exist</text>}
+
+                                    }
+                                </p>
+                            </div>
+                            <div class="col-lg-8">
+                                <label>Certificate number</label>
+                                <p>
+                                    @{
+                                        if (Model.LanguageCert.CertType != null)
+                                        {
+                                            switch (Model.LanguageCert.CertType.ToString())
+                                            {
+                                                case "TOEFL IBT":
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.CertNoTOEFL)</text>
+                                                    break;
+                                                case "IELTS Academic":
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.CertNoIELTS)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label(null);
+                                                    break;
+                                                default:
+                                                    Html.Label(null);
+                                                    break;
+                                            }
+                                        }
+                                        else
+                                        { <text>Certificate information doesn't  exist</text>}
+
+                                    }
+                                </p>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div> <!-- .item -->
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="~/Content/carousel-18/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/carousel-18/js/popper.min.js"></script>
+    <script src="~/Content/carousel-18/js/bootstrap.min.js"></script>
+    <script src="~/Content/carousel-18/js/owl.carousel.min.js"></script>
+    <script src="~/Content/carousel-18/js/main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,224 @@
+﻿@model StudentApp.Models.Entity.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="~/Content/Registration-form/css/style.css" rel="stylesheet" />
+    <title>Authentication Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" />
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script type="text/javascript"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="register">
+        <div class="col-md-3 register-left">
+            <img class="img-fluid" src="~/Content/Registration-form/img/logo.png" alt="" />
+            <h3>Welcome to Studenta</h3>
+            <p>
+                Easiest way for education.
+            </p>
+
+            <a href="/" class="btn btn-outline-light">Back to main</a>
+
+        </div>
+
+        <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified"
+                id="myTab"
+                role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link "
+                       id="home-tab"
+                       href="/User/Login"
+                       aria-controls="home"
+                       aria-selected="true">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active"
+                       id="profile-tab"
+                       href="/User/Register">Sign up</a>
+                </li>
+            </ul>
+
+
+            <!-- Signup -->
+            <div class="tab-pane fade show active"
+                 id="signup"
+                 role="tabpanel"
+                 aria-labelledby="profile-tab">
+                <h3 class="register-heading">Sign up</h3>
+
+                @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+                {
+                    if (ViewBag.Message != null)
+                    {
+                        <script type="text/javascript">
+                                    window.onload = function () {
+                                        swal({
+                                            title: "Signed Up!",
+                                            text: "@ViewBag.Message",
+                                            closeOnClickOutside: false,
+                                            icon: "success",
+                                            button: "OK",
+                                        }).then(() => {
+                                            swal({
+                                                text: "Redirection...",
+                                                closeOnClickOutside: false,
+                                                buttons: false,
+                                            });
+                                        }).then(() => {
+                                            setTimeout(function () {
+                                                window.location.href = "/User/Login";
+                                            }, 1000);
+                                        });
+
+                                    };
+                        </script>
+                    }
+                }
+
+
+                else
+                {
+                    <div class="register-form">
+                        <form method="post">
+
+                            @Html.AntiForgeryToken()
+                            <div class="form-group first">
+                                <input name="Name" type="text" class="form-control" id="name" placeholder="First Name" />
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <input name="Surname" placeholder="Surname" type="text" class="form-control" id="surname">
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <input name="Email" placeholder="Email" type="email" class="form-control" id="email">
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <input name="Password" placeholder="Password" type="password" class="form-control" id="password">
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                            <div class="form-group mb-3 last">
+                                <input name="ConfirmPassword" placeholder="Confirm Password" type="password" class="form-control" id="confirm_password">
+                            </div>
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                            @Html.ValidationMessage("PasswordsDoNotMatch", new { @class = "text-danger" })
+                            @*<div class="d-flex mb-5 align-items-center">
+            <label class="control control--checkbox mb-3 mb-sm-0">
+                <span class="caption">Agree our <a href="#">Terms and Conditions</a></span>
+                <input type="checkbox" required />
+                <div class="control__indicator"></div>
+            </label>
+        </div>*@
+
+                            <button type="submit" class="btn btn-primary btn-md mr-3"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
+                            @*<a style="color:gray" href="/User/Login">Already have an account?</a>*@
+                        </form>
+                    </div>
+                }
+
+                @if (ViewBag.Message != null)
+                {
+                    <script type="text/javascript">
+                                     window.onload = function () {
+                                     swal({
+                                     title: "Error occured!",
+                                     text: @ViewBag.Message,
+                                     icon: "error",
+                                     button: "OK",
+                                        })
+                                    };
+                    </script>
+                }
+
+
+
+                @*<div class="row register-form">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="First Name *"
+                               value="" />
+
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Last Name *"
+                               value="" />
+
+                        <input type="email"
+                               class="form-control"
+                               placeholder="Email *"
+                               value="" />
+
+                        <input type="password"
+                               maxlength="10"
+                               minlength="10"
+                               class="form-control"
+                               placeholder="Password *"
+                               value="" />
+                        <input type="password"
+                               maxlength="10"
+                               minlength="10"
+                               class="form-control"
+                               placeholder="Confirm Password *"
+                               value="" />
+
+                        <div class="btnContainer">
+                            <button class="btn btn-primary submit"
+                                    type="submit">
+                                Sign up
+                            </button>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+@*<script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        };
+    </script>*@
+
+<!--@*<script type="text/javascript">
+        var i = 0;
+        //$(document).click(function () {
+        //    ShowCurrentTime();
+        //})
+        function ShowCurrentTime() {
+            var dt = new Date();
+            document.getElementById("lblTime").innerHTML = 5 - i + " Seconds";
+            i++;
+            if (i == 5) {
+                setTimeout("location.href='http://www.aspdotnet-suresh.com'", 0);
+            }
+            window.setTimeout("ShowCurrentTime()", 1000);
+        }
+    </script>*@-->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+

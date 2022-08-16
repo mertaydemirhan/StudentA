@@ -1,0 +1,129 @@
+﻿@*@model StudentApp.ObjectModels.Application*@
+@model IEnumerable<StudentApp.Models.UploadedFiles>
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<table class="table" id="UploadTable2">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(m => m.FileType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.FileName)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <span style="font-weight:bold; color:tomato; "> @Html.DisplayFor(modelItem => item.FileType)</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileName)
+                </td>
+                <td>
+                    <input type="button" id="filedelete" name="@item.Id" value="Delete" title="@item.FileName" style="margin-top: 10px;" class="btn btn-danger">
+                    @*<button id="filedelete" title="@item.FileName" class="btn btn-danger" name="@item.Id">Delete</button>*@
+                    <a href="@Url.Action("FullScreen", "Application", new { Id = item.Id })" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
+                    <a href="@Url.Action("Download", "Application", new { Id = item.Id })" class="btn btn-success"><span class="fa fa-download"></span> Download</a>
+                </td>
+
+            </tr>
+        }
+    }
+    @if (Model.ToList().Count == 0)
+    {
+        <tr>
+            <td>
+                <span style="font-weight:bold; color:tomato; "> There is No File</span>
+            </td>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                &nbsp;
+            </td>
+
+        </tr>
+    }
+
+</table>
+<script>
+
+
+    $(document).ready(function () {
+        $("#filedelete").on('click', function () {
+            console.log("test");
+            var filename = this.title;
+            $.ajax({
+                type: 'GET',
+                url: '/Application/UploadFileDelete',
+                data: { id: parseInt(this.name) },
+                success: function (result) {
+                    event.preventDefault();
+                    alert(filename + " Deleted");
+                    ReviewFiles();
+                }
+            });
+        });
+    });
+  
+
+
+
+    function ReviewFiles() {
+      var url = '@Url.Action("UploadFileReturn","Application")';
+        var notifications = $("#UploadTable");
+        setInterval(function () {
+            notifications.load(url);
+        }, 300);
+    }
+
+
+
+                    /**  FİLE PROCESS **/
+    function fileform(e) {
+        var file = document.getElementById(e.target.id).files[0];
+        var ext = file.name.split(".");
+        ext = ext[ext.length - 1].toLowerCase();
+        var fileExtension = ['jpg', 'gif', 'pdf', 'png', 'jpeg', 'bmp', 'doc', 'docx'];
+        if (fileExtension.lastIndexOf(ext) == -1) {
+            alert("Wrong extension type. for " + e.target.id + " File extension must be " + fileExtension);
+            document.getElementById(e.target.id).value = null;
+            ReviewFiles();
+        }
+        else {
+            var fd = new FormData();
+            fd.append("files", file);
+            fd.append("id", e.target.id);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/Application/FileUpload", false,);
+            xhr.send(fd);
+            console.log(document.getElementById(e.target.id).value);
+            xhr.addEventListener("load", transferComplete(xhr.responseText));
+            ReviewFiles();
+        }
+
+    };
+
+    function transferComplete(evt) {
+        if (evt) {  // File Check Function   -- Size and Type control
+            var obj = $.parseJSON(evt);
+            if (obj["Message"]!= null) {
+                alert(obj["id"] + " " + obj["Message"]);
+                document.getElementById(obj["id"]).value = null;
+            }
+
+        }
+    }
+
+
+
+</script>
+
+<script src="~/Content/Scripts/bootstrap.min.js"></script>

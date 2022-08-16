@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studenta</title>
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="~/Content/Application-form/css/style.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"></script>
+    <link rel="icon" href="favicon.ico" />
+
+</head>
+<body onload="pagerefresh()">
+    <nav>
+        <div class="px-5 navContainer container-fluid d-flex align-items-center justify-content-between"
+             style="padding: 10px 0">
+            <a href="#" class="logo d-flex align-items-center gap-2">
+
+                <img src="~/Content/Registration-form/img/logo.png"  />
+                <p class="fw-semibold">Student Application</p>
+            </a>
+
+            <div class="user">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           href="#"
+                           data-bs-toggle="dropdown">
+                            <span>Welcome: </span>
+                            <span class="name"> @ViewBag.d1 @ViewBag.d2</span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#">Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Website</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Contact</a>
+                            </li>
+                            <hr class="my-1" />
+                            <li>
+                                <a class="dropdown-item" href="/User/Logout">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="main row">
+            <div class="stepsContainer col-md-3">
+                <h3 class="title" style="margin-left: 1em">
+                    Application Checklist
+                </h3>
+                <ul class="links">
+                    <li id="1" class="active">Student Information</li>
+                    <li id="2">Educational Background</li>
+                    <li id="3">Future Education</li>
+                    <li id="4">Work Experience</li>
+                    <li id="5">Language Certificates</li>
+                    <li id="6">Submit Documents</li>
+                </ul>
+
+                <div class="downContainer">
+
+
+                    <div class="iconGuide">
+                        <h4>Icon Guide</h4>
+                        <p>
+                            Please complete as many fields as possible to
+                            assist with processing your application
+                        </p>
+                        <ul>
+                            <li>
+                                <img class="blue-circle"
+                                     src="~/Content/Application-form/img/guide-active.png" />
+                                <p>Active page</p>
+                            </li>
+                            <li>
+
+                                <img src="~/Content/Application-form/img/guide-correct.png" />
+                                <p>
+                                    Outstanding information required for
+                                    mandatory fields
+                                </p>
+                            </li>
+                            <li>
+
+                                <img src="~/Content/Application-form/img/guide-wrong.png" />
+                                <p>
+                                    All mandatory information has been
+                                    provided
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            @RenderBody()
+
+        </div>
+
+        <script src="~/Content/Application-form/js/script.js"></script>
+
+
+</body>
+</html>

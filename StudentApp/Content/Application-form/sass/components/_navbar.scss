@@ -1,0 +1,30 @@
+@import "../abstracts/mixins";
+
+nav {
+    border-bottom: 1px solid $secondary;
+
+    .navContainer {
+        padding: 0;
+
+        a.logo {
+            color: black;
+            text-decoration: none;
+
+            img {
+                width: 40px;
+            }
+        }
+
+        .user {
+            color: $secondary;
+
+            span:not(.name) {
+                font-weight: 500;
+            }
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+}

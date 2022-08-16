@@ -1,0 +1,419 @@
+﻿@model StudentApp.ObjectModels.Application
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+@using (Html.BeginForm("UpdateApplication", "Application", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "col-md-9", @style = "margin-bottom:50px" }))
+{
+    <h3 class="title text-center">Personal Details</h3>
+    <div id="1" class="page active">
+        <h2>Student Information</h2>
+        <div>
+            <label>ID:</label><br />
+            @Html.TextBoxFor(x => x.ID, new { @id = "id", @class = "form-control", @style = "width:100px", @readonly = "readonly" })
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Name</label>
+                @*@Html.TextBoxFor(x => x.Name, new { @class = "form-control" })*@
+                @Html.TextBoxFor(x => x.Name, new {@class="form-control"})
+            </div>
+
+            <div class="col-lg-6 required">
+                <label>Surname</label>
+                @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Gender</label>
+                @Html.DropDownListFor(x => x.Gender, new SelectList(new List<string> { "Female", "Male" }), new { rel = "1", @class = "form-select" })
+            </div>
+
+            <div class="col-lg-6">
+                <label>Marital Status</label>
+                @Html.DropDownListFor(x => x.maritalStatus, new SelectList(new List<string> { "Single", "Married", "Divorced", "Engaged" }), new { rel = "1", @class = "form-select" })
+
+            </div>
+        </div>
+
+        <label>Address</label>
+        <div>
+            @Html.TextBoxFor(x => x.AddressLine1, new { @class = "form-control", placeholder = "Address Line 1", style = "margin-bottom:15px" })
+            @Html.TextBoxFor(x => x.AddressLine2, new { @class = "form-control", placeholder = "Address Line 2" })
+
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.TextBoxFor(x => x.City, new { @class = "form-control", placeholder = "City" })
+
+                </div>
+
+                <div class="col-lg-6">
+                    @Html.TextBoxFor(x => x.State, new { @class = "form-control", placeholder = "State" })
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.TextBoxFor(x => x.Zip, new { @class = "form-control", placeholder = "Zip" })
+
+                </div>
+                <div class="col-lg-6">
+                    @Html.TextBoxFor(x => x.Country, new { @class = "form-control", placeholder = "Country" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Date of birth</label>
+                @Html.TextBoxFor(m => m.DateofBirth, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", @type = "datetime-local" })
+            </div>
+
+            <div class="col-lg-6">
+                <label>Country of birth</label>
+                @Html.TextBoxFor(x => x.CountryofBirth, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Citizenship(Main)</label>
+                @Html.TextBoxFor(x => x.CitizenshipMain, new { @class = "form-control" })
+            </div>
+
+            <div class="col-lg-6">
+                <label>Place of birth</label>
+                @Html.TextBoxFor(x => x.PlaceofBirth, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <label>Father name and surname</label>
+        <div class="row">
+            <div class="col-lg-6">
+                @Html.TextBoxFor(x => x.FatherName, new { @class = "form-control" })
+            </div>
+
+            <div class="col-lg-6">
+                @Html.TextBoxFor(x => x.FatherSurname, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <label>Mother name and surname</label>
+        <div class="row">
+            <div class="col-lg-6">
+                @Html.TextBoxFor(x => x.MotherName, new { @class = "form-control" })
+            </div>
+
+            <div class="col-lg-6">
+                @Html.TextBoxFor(x => x.MotherSurname, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Email address</label>
+                <input value="@User.Identity.Name" readonly type="email" class="form-control">
+
+                <p class="form-text">
+                    We'll never share your contact info with
+                    anyone else.
+                </p>
+            </div>
+
+            <div class="col-lg-6">
+                <label>Phone number</label>
+                @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <hr />
+
+        <h2>Passport And ID Details</h2>
+        <label>Passport number</label>
+        @Html.TextBoxFor(x => x.PassaportNumber, new { @class = "form-control" })
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Passport start date</label>
+                @Html.TextBoxFor(m => m.PassStartDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", @type = "datetime-local" })
+            </div>
+            <div class="col-lg-6">
+                <label>Passport expiry date</label>
+                @Html.TextBoxFor(m => m.PassExpireDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", @type = "datetime-local" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Issuing Country</label>
+                @Html.TextBoxFor(x => x.IssuingCountry, new { @class = "form-control" })
+            </div>
+            <div class="col-lg-6">
+                <label>Issuing Authority</label>
+                @Html.TextBoxFor(x => x.IssuingAuthority, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <label>National ID number</label>
+        @Html.TextBoxFor(x => x.NationalId, new { @class = "form-control" })
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>ID start date</label>
+                @Html.TextBoxFor(m => m.IdStartDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", @type = "datetime-local" })
+            </div>
+            <div class="col-lg-6">
+                <label>ID expiry date</label>
+                @Html.TextBoxFor(m => m.IdExpireDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", @type = "datetime-local" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Issuing Country</label>
+                @Html.TextBoxFor(x => x.IssuingCountry, new { @class = "form-control" })
+            </div>
+            <div class="col-lg-6">
+                <label>Issuing Authority</label>
+                @Html.TextBoxFor(x => x.IssuingAuthority, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <label>Country of Citizenship</label>
+            @Html.TextBoxFor(x => x.CountryCitizenship, new { @class = "form-control" })
+        </div>
+    </div>
+    // background education Partial View will comes..... Progress
+    <div>
+        @{ 
+            //   Html.RenderPartial("BackgroundEducation");
+            Html.RenderAction("BgEducationRecords", "Application");   }
+    </div>
+            // Future Education Partial View will comes... Progress   
+    <div>
+        @{ Html.RenderPartial("FutureEducation");}      
+    </div>
+            // Work Experience Partial View will comes.. Progress
+    <div>
+        @{ Html.RenderPartial("WorkExperience");}
+    </div>
+            // Language Certificates Partial View will comes... Progress
+    <div>
+        @{ Html.RenderPartial("LanguageCertificates");
+
+
+
+}
+    </div>
+
+
+<form id="UploadFiles">
+        <div id="6" class="page">
+            <div id="Submitform">
+                <h2>Submit Documents</h2>
+                <p class="subtitle">
+                    Please upload any other documents that are required
+                    for the application.
+                    * File size must be less than 2 MB
+                </p>
+
+                <div class="row justify-content-md-around">
+                    <div class="col-lg-5">
+                        <input type="file" id="passport" onchange="fileform(event)" class="custom-file-input" style="display:none">
+                        <label for="passport" class="custom-file-label text-truncate form-control">Choose Passport File...</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="NationalID" style="display:none">
+                        <label for="NationalID" class="custom-file-label text-truncate form-control">Choose NationalID File...</label>
+
+                    </div>
+                </div>
+
+                <div class="row justify-content-md-around">
+                    <div class="col-lg-5">
+                        <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="Diploma" style="display:none">
+                        <label for="Diploma" class="custom-file-label text-truncate form-control">Choose Diploma File...</label>
+
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="Transcript" style="display:none">
+                        <label for="Transcript" class="custom-file-label text-truncate form-control">Choose Transcript File...</label>
+
+                    </div>
+                </div>
+
+                <div class="row justify-content-md-around">
+                    <div class="col-lg-5">
+                        <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="CV" style="display:none">
+                        <label for="CV" class="custom-file-label text-truncate form-control">Choose CV File...</label>
+
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="IELTSorToeflCertificate" style="display:none">
+                        <label for="IELTSorToeflCertificate" class="custom-file-label text-truncate form-control">Choose Certificate File...</label>
+
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row justify-content-md-around">
+                    <div class="col-lg-5">
+                        <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="Extradocument1" style="display:none">
+                        <label for="Extradocument1" class="custom-file-label text-truncate form-control">Choose Extra Document...</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="Extradocument2" style="display:none">
+                        <label for="Extradocument2" class="custom-file-label text-truncate form-control">Choose Extra Document...</label>
+                    </div>
+                </div>
+
+                <div class="row justify-content-md-around">
+                    <div class="col-lg-5">
+                        <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="Extradocument3" style="display:none">
+                        <label class="custom-file-label text-truncate form-control">Choose Extra Document...</label>
+
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="Extradocument4" style="display:none">
+                        <label for="Extradocument4" class="custom-file-label text-truncate form-control">Choose Extra Document...</label>
+
+                    </div>
+                </div>
+                <div id="UploadTable" class="UploadTable">
+                    @*@{Html.RenderPartial("UploadFileTable",Model.UploadedFiles);}*@
+                    @{ Html.RenderAction("UploadFileReturn", "Application");}
+                </div>
+
+            </div>
+        </div>
+        <div class="buttonContainer">
+            <button class="btn btn-primary active" id="next">
+                Next
+            </button>
+            <button type="submit" class="btn btn-success" id="submit">
+                Submit
+            </button>
+
+            <h1></h1>
+            <button class="btn btn-secondary" id="back">
+                Back
+            </button>
+        </div>
+    </form>
+
+ }
+
+
+
+<script>
+ 
+
+    function pagerefresh() {
+        if ($('#langBtn').is(':checked')) {
+
+            $('.languages').css('display', 'block');
+
+            switch ($('#test :selected').text()) {
+                case "IELTS Academic":
+                    $('.ielts').css('display', 'block');
+                    $('.toefl').css('display', 'none');
+                    $('.other').css('display', 'none');
+                    break;
+                case "TOEFL IBT":
+                    $('.toefl').css('display', 'block');
+                    $('.other').css('display', 'none');
+                    $('.ielts').css('display', 'none');
+                    break;
+                case "Other":
+                    $('.other').css('display', 'block');
+                    $('.ielts').css('display', 'none');
+                    $('.toefl').css('display', 'none');
+                    break;
+            }
+        }
+        else {
+            $('.languages').css('display', 'none');
+
+        }
+    };
+
+
+
+    document.getElementById('test').addEventListener('change', function () {
+        console.log(this.value);
+        var style1 = this.value == "IELTS Academic" ? 'block' : 'none';
+            document.getElementById('hidden_div').style.display = style1;
+
+        var style2 = this.value == "TOEFL IBT" ? 'block' : 'none';
+        document.getElementById('hidden_div_toefl').style.display = style2;
+
+        var style3 = this.value == "Other" ? 'block' : 'none';
+        document.getElementById('hidden_div_otherinfo').style.display = style3;
+    });
+
+
+
+    function checkboxTrigger(e) {
+        pagerefresh();
+
+        //Language Certificate Checkbox trigger event update database
+        var langcert = {
+            Checkbox: e.target.checked,
+            appId: document.getElementById("id").value,
+            ChkSeperator: 1
+        };
+
+        $.ajax({
+            url: "/Application/CheckboxControl",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            cache: 'false',
+            dataType: "json",
+            data: JSON.stringify(langcert),
+            success: function (data) { }
+        });
+    };
+
+    // AWARDED Checkbox  process
+    $('#ChkAwarded').change(function () {
+        var isChecked = $(this).is(':checked');
+        if (isChecked) {
+            var ChkAwarded = {
+                Checkbox: true,
+                appId: document.getElementById("id").value,
+                ChkSeperator: 2
+            };
+        }
+        else {
+            var ChkAwarded = {
+                Checkbox: false,
+                appId: document.getElementById("id").value,
+                ChkSeperator: 2
+            };
+        }
+        $.ajax({
+            url: "/Application/CheckboxControl",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            cache: 'false',
+            dataType: "json",
+            data: JSON.stringify(ChkAwarded),
+            success: function (data) {
+                //console.log(JSON.stringify(chkAwarded));
+            }
+        });
+
+    });
+
+</script>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@*<script src="/Content/Templates/multisteps-form/select-country/dist/js/bootstrap-select-country.min.js"></script>*@
+

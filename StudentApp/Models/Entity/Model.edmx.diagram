@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a7e231687a1a49ca956157f16e1693b5" Name="Diagram1">
+        <EntityTypeShape EntityType="StudentAppModel.Application" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentAppModel.BgEducation" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentAppModel.FtEducation" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentAppModel.LanguageCert" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentAppModel.LocalUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentAppModel.sysdiagram" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentAppModel.Upload" Width="1.5" PointX="5.25" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentAppModel.User" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentAppModel.WorkExp" Width="1.5" PointX="5.25" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentAppModel.Admin" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="StudentAppModel.FK_Applications_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentAppModel.FK_BgEducation_Applications" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentAppModel.FK_FtEducation_Applications" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentAppModel.FK_LanguageCert_Applications" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentAppModel.FK_Upload_Applications" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentAppModel.FK_WorkExp_Applications" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

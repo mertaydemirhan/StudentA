@@ -1,0 +1,55 @@
+﻿@model StudentApp.ObjectModels.Application
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div id="4" class="page">
+    <h2>Work Experience</h2>
+    <p class="subtitle">
+        If you have relevant work experience, please provide
+        details
+    </p>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label> Company Name</label>
+            @Html.TextBoxFor(m => m.WorkExp.CompanyName, new { @class = "form-control" })
+        </div>
+
+        <div class="col-lg-6">
+            <label>Position</label>
+            @Html.TextBoxFor(m => m.WorkExp.Position, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <label>Job Type</label>
+    @Html.DropDownListFor(x => x.WorkExp.JobType, new SelectList(new List<string>
+        { "Full-Time", "Part-Time" }), new { rel = "0", @class = "form-select" })
+
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label>Employee address</label>
+            @Html.TextBoxFor(m => m.WorkExp.EmployeeAdress, new { @class = "form-control" })
+        </div>
+
+        <div class="col-lg-6">
+            <label>Manager name</label>
+            @Html.TextBoxFor(m => m.WorkExp.ManagerName, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label>Employee Email</label>
+            @Html.TextBoxFor(m => m.WorkExp.EmployeeMail, new { @class = "form-control " })
+        </div>
+
+        <div class="col-lg-6">
+            <label>Employee Phone</label>
+            @Html.TextBoxFor(m => m.WorkExp.EmployeePhone, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <label>Job Description</label>
+    @Html.TextAreaFor(m => m.WorkExp.JobDescription, new { @class = "form-control" })
+</div>
+<script src="~/Content/Scripts/bootstrap.min.js"></script>

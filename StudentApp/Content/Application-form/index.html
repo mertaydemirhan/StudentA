@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Application form</title>
+        <link rel="stylesheet" href="./css/style.css" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="icon" href="favicon.ico" />
+    </head>
+    <body>
+        <nav>
+            <div
+                class="px-5 navContainer container-fluid d-flex align-items-center justify-content-between"
+                style="padding: 10px 0"
+            >
+                <a href="#" class="logo d-flex align-items-center gap-2">
+                    <img src="./img/logo.png" alt="" />
+                    <p class="fw-semibold">Student Application</p>
+                </a>
+
+                <div class="user">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                data-bs-toggle="dropdown"
+                            >
+                                <span>Welcome: </span>
+                                <span class="name">Rahman Gadiyev</span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#"
+                                        >Profile</a
+                                    >
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#"
+                                        >Website</a
+                                    >
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#"
+                                        >Contact</a
+                                    >
+                                </li>
+                                <hr class="my-1" />
+                                <li>
+                                    <a class="dropdown-item" href="#">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="main row">
+                <div class="stepsContainer col-md-3">
+                    <h3 class="title" style="margin-left: 1em">
+                        Application Checklist
+                    </h3>
+                    <ul class="links">
+                        <li id="1" class="active">Student Information</li>
+                        <li id="2">Educational Background</li>
+                        <li id="3">Future Education</li>
+                        <li id="4">Work Experience</li>
+                        <li id="5">Language Certificates</li>
+                        <li id="6">Submit Documents</li>
+                    </ul>
+
+                    <div class="downContainer">
+                        <button class="btn btn-primary save">
+                            Save and Logout
+                        </button>
+
+                        <div class="iconGuide">
+                            <h4>Icon Guide</h4>
+                            <p>
+                                Please complete as many fields as possible to
+                                assist with processing your application
+                            </p>
+                            <ul>
+                                <li>
+                                    <img
+                                        class="blue-circle"
+                                        src="./img/guide-active.png"
+                                    />
+                                    <p>Active page</p>
+                                </li>
+                                <li>
+                                    <img src="./img/guide-correct.png" />
+                                    <p>
+                                        Outstanding information required for
+                                        mandatory fields
+                                    </p>
+                                </li>
+                                <li>
+                                    <img src="./img/guide-wrong.png" />
+                                    <p>
+                                        All mandatory information has been
+                                        provided
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="col-md-9">
+                    <h3 class="title text-center">Personal Details</h3>
+                    <div id="1" class="page active">
+                        <h2>Student Information</h2>
+
+                        <div>
+                            <label>ID:</label><br />
+                            <input type="text" disabled style="width: 100px" />
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Name</label>
+                                <input class="form-control" type="text" />
+                            </div>
+
+                            <div class="col-lg-6 required">
+                                <label>Surname</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Gender</label>
+                                <select class="form-select">
+                                    <option selected>Select</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Marital Status</label>
+                                <select class="form-select">
+                                    <option selected>Select</option>
+                                    <option>Single</option>
+                                    <option>Married</option>
+                                    <option>Divorced</option>
+                                    <option>Engaged</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <label>Address</label>
+                        <div>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Address Line 1"
+                            />
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Address Line 2"
+                            />
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="City"
+                                    />
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="State"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Zip"
+                                    />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Country"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Date of birth</label>
+                                <input type="date" class="form-control" />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Country of birth</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Citizenship(Main)</label>
+                                <input type="text" class="form-control" />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Place of birth</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <label>Father name and surname</label>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <label>Mother name and surname</label>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Email address</label>
+                                <input
+                                    disabled
+                                    type="text"
+                                    class="form-control"
+                                    style="margin-bottom: 5px"
+                                />
+                                <p class="form-text">
+                                    We'll never share your contact info with
+                                    anyone else.
+                                </p>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Phone number</label>
+                                <input type="number" class="form-control" />
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <h2>Passport And ID Details</h2>
+                        <label>Passport number</label>
+                        <input class="form-control" type="number" />
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Passport start date</label>
+                                <input type="date" class="form-control" />
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Passport expiry date</label>
+                                <input type="date" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Issuing Country</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Issuing Authority</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <label>National ID number</label>
+                        <input type="text" class="form-control" />
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>ID start date</label>
+                                <input type="date" class="form-control" />
+                            </div>
+                            <div class="col-lg-6">
+                                <label>ID expiry date</label>
+                                <input type="date" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Issuing Country</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Issuing Authority</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>Country of Citizenship</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div id="2" class="page">
+                        <h2>Educational Background</h2>
+                        <p class="subtitle">
+                            Please provide your relevant education
+                            qualifications
+                        </p>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Institution name</label>
+                                <input class="form-control" type="text" />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Faculty</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Instruction Language</label>
+                                <input class="form-control" type="text" />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Institution Country</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Study Mode</label>
+                                <select class="form-select">
+                                    <option selected>Select</option>
+                                    <option>Full-Time</option>
+                                    <option>Part-Time</option>
+                                    <option>Online</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Educational Level</label>
+                                <select class="form-select">
+                                    <option selected>Select</option>
+                                    <option>General Education (9 years)</option>
+                                    <option>
+                                        Complete Secondary Education (Attestat)
+                                    </option>
+                                    <option>
+                                        Complete Professional Education
+                                    </option>
+                                    <option>
+                                        International Foundation Programme
+                                    </option>
+                                    <option>Bachelor's degree</option>
+                                    <option>Pre-Masters</option>
+                                    <option>Master degree</option>
+                                    <option>PhD</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Start date</label>
+                                <input type="date" class="form-control" />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Completion date</label>
+                                <input type="date" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Awarded</label>
+                                <div class="form-check form-switch fs-5">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        role="switch"
+                                        id="flexSwitchCheckDefault"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Average grade</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="3" class="page">
+                        <h2>Future Education</h2>
+                        <p class="subtitle">
+                            In which country you would like to pursue your
+                            education?
+                        </p>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Country 1</label>
+                                <input class="form-control" type="text" />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Country 2</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label> Field of study</label>
+                                <input class="form-control" type="text" />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Educational level</label>
+                                <select class="form-select">
+                                    <option selected>Select</option>
+                                    <option>General Education (9 years)</option>
+                                    <option>
+                                        Complete Secondary Education (Attestat)
+                                    </option>
+                                    <option>
+                                        Complete Professional Education
+                                    </option>
+                                    <option>
+                                        International Foundation Programme
+                                    </option>
+                                    <option>Bachelor's degree</option>
+                                    <option>Pre-Masters</option>
+                                    <option>Master degree</option>
+                                    <option>PhD</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Intake</label>
+                                <select class="form-select">
+                                    <option selected>Select</option>
+                                    <option>Winter</option>
+                                    <option>Spring</option>
+                                    <option>Fall</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Academic year</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="4" class="page">
+                        <h2>Work Experience</h2>
+                        <p class="subtitle">
+                            If you have relevant work experience, please provide
+                            details
+                        </p>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label> Company Name</label>
+                                <input class="form-control" type="text" />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Position</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                        </div>
+
+                        <label>Job Type</label>
+                        <select class="form-select">
+                            <option selected>Select</option>
+                            <option>Full-Time</option>
+                            <option>Part-Time</option>
+                        </select>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Employee address</label>
+                                <input class="form-control" type="text" />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Manager name</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Employee Email</label>
+                                <input class="form-control" type="text" />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Employee Phone</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                        </div>
+
+                        <label>Job Description</label>
+                        <textarea rows="5" class="form-control"></textarea>
+                    </div>
+                    <div id="5" class="page">
+                        <h2>Language Certificates</h2>
+
+                        <label
+                            >Have you ever passed any International Language
+                            Examination?</label
+                        >
+                        <div class="form-check form-switch fs-4 mb-3">
+                            <input
+                                class="lang-checkbox form-check-input"
+                                type="checkbox"
+                                role="switch"
+                            />
+                        </div>
+
+                        <div class="languages">
+                            <div>
+                                <label>If yes, which one?</label>
+                                <select class="lang-dropdown form-select">
+                                    <option selected>Select</option>
+                                    <option id="ielts">IELTS Academic</option>
+                                    <option id="toefl">TOEFL IBT</option>
+                                    <option id="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="lang ielts">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>Listening</label>
+                                        <select class="form-select">
+                                            <option selected>Select</option>
+                                            <option>1.0</option>
+                                            <option>1.5</option>
+                                            <option>2.0</option>
+                                            <option>2.5</option>
+                                            <option>3.0</option>
+                                            <option>3.5</option>
+                                            <option>4.0</option>
+                                            <option>4.5</option>
+                                            <option>5.0</option>
+                                            <option>5.5</option>
+                                            <option>6.0</option>
+                                            <option>6.5</option>
+                                            <option>7.0</option>
+                                            <option>7.5</option>
+                                            <option>8.0</option>
+                                            <option>8.5</option>
+                                            <option>9.0</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Reading</label>
+                                        <select class="form-select">
+                                            <option selected>Select</option>
+                                            <option>1.0</option>
+                                            <option>1.5</option>
+                                            <option>2.0</option>
+                                            <option>2.5</option>
+                                            <option>3.0</option>
+                                            <option>3.5</option>
+                                            <option>4.0</option>
+                                            <option>4.5</option>
+                                            <option>5.0</option>
+                                            <option>5.5</option>
+                                            <option>6.0</option>
+                                            <option>6.5</option>
+                                            <option>7.0</option>
+                                            <option>7.5</option>
+                                            <option>8.0</option>
+                                            <option>8.5</option>
+                                            <option>9.0</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>Writing</label>
+                                        <select class="form-select">
+                                            <option selected>Select</option>
+                                            <option>1.0</option>
+                                            <option>1.5</option>
+                                            <option>2.0</option>
+                                            <option>2.5</option>
+                                            <option>3.0</option>
+                                            <option>3.5</option>
+                                            <option>4.0</option>
+                                            <option>4.5</option>
+                                            <option>5.0</option>
+                                            <option>5.5</option>
+                                            <option>6.0</option>
+                                            <option>6.5</option>
+                                            <option>7.0</option>
+                                            <option>7.5</option>
+                                            <option>8.0</option>
+                                            <option>8.5</option>
+                                            <option>9.0</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Speaking</label>
+                                        <select class="form-select">
+                                            <option selected>Select</option>
+                                            <option>1.0</option>
+                                            <option>1.5</option>
+                                            <option>2.0</option>
+                                            <option>2.5</option>
+                                            <option>3.0</option>
+                                            <option>3.5</option>
+                                            <option>4.0</option>
+                                            <option>4.5</option>
+                                            <option>5.0</option>
+                                            <option>5.5</option>
+                                            <option>6.0</option>
+                                            <option>6.5</option>
+                                            <option>7.0</option>
+                                            <option>7.5</option>
+                                            <option>8.0</option>
+                                            <option>8.5</option>
+                                            <option>9.0</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>Overall score</label>
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                        />
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Date of test</label>
+                                        <input
+                                            class="form-control"
+                                            type="date"
+                                        />
+                                    </div>
+                                </div>
+
+                                <label>Certificate number</label>
+                                <input class="form-control" type="number" />
+
+                                <label>Other relevant information</label>
+                                <textarea
+                                    class="form-control"
+                                    rows="5"
+                                ></textarea>
+                            </div>
+                            <div class="lang toefl">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>Listening</label>
+                                        <select class="form-select">
+                                            <option selected>Select</option>
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                            <option>15</option>
+                                            <option>16</option>
+                                            <option>17</option>
+                                            <option>18</option>
+                                            <option>19</option>
+                                            <option>20</option>
+                                            <option>21</option>
+                                            <option>22</option>
+                                            <option>23</option>
+                                            <option>24</option>
+                                            <option>25</option>
+                                            <option>26</option>
+                                            <option>27</option>
+                                            <option>28</option>
+                                            <option>29</option>
+                                            <option>30</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Reading</label>
+                                        <select class="form-select">
+                                            <option selected>Select</option>
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                            <option>15</option>
+                                            <option>16</option>
+                                            <option>17</option>
+                                            <option>18</option>
+                                            <option>19</option>
+                                            <option>20</option>
+                                            <option>21</option>
+                                            <option>22</option>
+                                            <option>23</option>
+                                            <option>24</option>
+                                            <option>25</option>
+                                            <option>26</option>
+                                            <option>27</option>
+                                            <option>28</option>
+                                            <option>29</option>
+                                            <option>30</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>Writing</label>
+                                        <select class="form-select">
+                                            <option selected>Select</option>
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                            <option>15</option>
+                                            <option>16</option>
+                                            <option>17</option>
+                                            <option>18</option>
+                                            <option>19</option>
+                                            <option>20</option>
+                                            <option>21</option>
+                                            <option>22</option>
+                                            <option>23</option>
+                                            <option>24</option>
+                                            <option>25</option>
+                                            <option>26</option>
+                                            <option>27</option>
+                                            <option>28</option>
+                                            <option>29</option>
+                                            <option>30</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Speaking</label>
+                                        <select class="form-select">
+                                            <option selected>Select</option>
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                            <option>15</option>
+                                            <option>16</option>
+                                            <option>17</option>
+                                            <option>18</option>
+                                            <option>19</option>
+                                            <option>20</option>
+                                            <option>21</option>
+                                            <option>22</option>
+                                            <option>23</option>
+                                            <option>24</option>
+                                            <option>25</option>
+                                            <option>26</option>
+                                            <option>27</option>
+                                            <option>28</option>
+                                            <option>29</option>
+                                            <option>30</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>Overall score</label>
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                        />
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Date of test</label>
+                                        <input
+                                            class="form-control"
+                                            type="date"
+                                        />
+                                    </div>
+                                </div>
+
+                                <label>Certificate number</label>
+                                <input class="form-control" type="number" />
+
+                                <label>Other relevant information</label>
+                                <textarea
+                                    class="form-control"
+                                    rows="5"
+                                ></textarea>
+                            </div>
+                            <div class="lang other">
+                                <label>Other relevant information</label>
+                                <textarea
+                                    class="form-control"
+                                    rows="5"
+                                ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="6" class="page">
+                        <h2>Submit Documents</h2>
+                        <p class="subtitle">
+                            Please upload any other documents that are required
+                            for the application.
+                        </p>
+
+                        <div class="row justify-content-md-around">
+                            <div class="col-lg-5">
+                                <label>Passport</label>
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    id="formFile"
+                                />
+                            </div>
+                            <div class="col-lg-5">
+                                <label>National ID</label>
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    id="formFile"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-md-around">
+                            <div class="col-lg-5">
+                                <label>Diploma</label>
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    id="formFile"
+                                />
+                            </div>
+                            <div class="col-lg-5">
+                                <label>Transcript</label>
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    id="formFile"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-md-around">
+                            <div class="col-lg-5">
+                                <label>CV</label>
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    id="formFile"
+                                />
+                            </div>
+                            <div class="col-lg-5">
+                                <label>IELTS or TOEFL Certificate</label>
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    id="formFile"
+                                />
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="row justify-content-md-around">
+                            <div class="col-lg-5">
+                                <label>Extra document 1</label>
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    id="formFile"
+                                />
+                            </div>
+                            <div class="col-lg-5">
+                                <label>Extra document 2</label>
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    id="formFile"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-md-around">
+                            <div class="col-lg-5">
+                                <label>Extra document 3</label>
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    id="formFile"
+                                />
+                            </div>
+                            <div class="col-lg-5">
+                                <label>Extra document 4</label>
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    id="formFile"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="buttonContainer">
+                        <button class="btn btn-primary active" id="next">
+                            Next
+                        </button>
+                        <button class="btn btn-success" id="submit">
+                            Submit
+                        </button>
+                        <button class="btn btn-secondary" id="back">
+                            Back
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    
+
+        <script src="./js/script.js"></script>
+    </body>
+</html>

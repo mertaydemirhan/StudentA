@@ -1,0 +1,22 @@
+@media screen and (max-width: 768px) {
+  .stepsContainer {
+    margin-bottom: 30px;
+    overflow: visible;
+  }
+
+  form {
+    overflow: visible;
+  }
+
+  nav {
+    .navContainer {
+      @include flex(flex-start !important, flex-start !important, column);
+      max-width: 100%;
+    }
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+  }
+}

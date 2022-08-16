@@ -1,0 +1,772 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StudentAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentApp.dbo.Admin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Mail" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="IsPowered" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsPowered" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="150" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressLine1" Type="nvarchar(max)" />
+          <Property Name="AddressLine2" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateofBirth" Type="date" />
+          <Property Name="CountryofBirth" Type="nvarchar" MaxLength="50" />
+          <Property Name="CitizenshipMain" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlaceofBirth" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherSurname" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MotherSurname" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="maritalStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="PassaportNumber" Type="varchar" MaxLength="50" />
+          <Property Name="PassStartDate" Type="date" />
+          <Property Name="PassExpireDate" Type="date" />
+          <Property Name="IssuingCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="IssuingAuthority" Type="nvarchar" MaxLength="100" />
+          <Property Name="NationalId" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdStartDate" Type="date" />
+          <Property Name="IdExpireDate" Type="date" />
+          <Property Name="CountryCitizenship" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="500" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="BgEducation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstitutionName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Faculty" Type="nvarchar" MaxLength="200" />
+          <Property Name="InsturactionLang" Type="nvarchar" MaxLength="50" />
+          <Property Name="InsCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudyMode" Type="nvarchar" MaxLength="20" />
+          <Property Name="EducationLevel" Type="nvarchar" MaxLength="50" />
+          <Property Name="EducationStDate" Type="date" />
+          <Property Name="EducationCompDate" Type="date" />
+          <Property Name="AvarageGrade" Type="float" />
+          <Property Name="Awarded" Type="bit" Nullable="false" />
+          <Property Name="AppID" Type="int" />
+        </EntityType>
+        <EntityType Name="FtEducation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country2" Type="nvarchar" MaxLength="50" />
+          <Property Name="FieldOfStudy" Type="nvarchar" MaxLength="200" />
+          <Property Name="EducationLevel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Intake" Type="nvarchar" MaxLength="10" />
+          <Property Name="AcademicYear" Type="int" />
+          <Property Name="AppId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LanguageCert">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LangCert" Type="bit" />
+          <Property Name="CertType" Type="varchar" MaxLength="15" />
+          <Property Name="CertNoIELTS" Type="varchar" MaxLength="40" />
+          <Property Name="CertOtherIELTS" Type="nvarchar" MaxLength="300" />
+          <Property Name="OverallScoreIELTS" Type="nvarchar" MaxLength="5" />
+          <Property Name="TestDateIELTS" Type="date" />
+          <Property Name="ListeningIELTS" Type="float" />
+          <Property Name="ReadingIELTS" Type="float" />
+          <Property Name="WritingIELTS" Type="float" />
+          <Property Name="SpeakingIELTS" Type="float" />
+          <Property Name="ListeningTOEFL" Type="int" />
+          <Property Name="ReadingTOEFL" Type="int" />
+          <Property Name="WritingTOEFL" Type="int" />
+          <Property Name="SpeakingTOEFL" Type="int" />
+          <Property Name="AppId" Type="int" />
+          <Property Name="OverallScoreTOEFL" Type="nvarchar" MaxLength="5" />
+          <Property Name="TestDateTOEFL" Type="date" />
+          <Property Name="CertNoTOEFL" Type="varchar" MaxLength="40" />
+          <Property Name="CertOtherTOEFL" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="LocalUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="100" />
+          <Property Name="No" Type="nvarchar" MaxLength="20" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypeOf" Type="smallint" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Upload">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileType" Type="varchar" MaxLength="50" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="AppId" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="254" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsEmailVerified" Type="bit" Nullable="false" />
+          <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ConfirmPassword" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="WorkExp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Position" Type="nvarchar" MaxLength="100" />
+          <Property Name="JobType" Type="nvarchar" MaxLength="20" />
+          <Property Name="EmployeeAdress" Type="nvarchar(max)" />
+          <Property Name="ManagerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeeMail" Type="varchar" MaxLength="254" />
+          <Property Name="EmployeePhone" Type="varchar" MaxLength="25" />
+          <Property Name="JobDescription" Type="nvarchar(max)" />
+          <Property Name="AppId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Applications_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Applications">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BgEducation_Applications">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="0..1" />
+          <End Role="BgEducation" Type="Self.BgEducation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BgEducation">
+              <PropertyRef Name="AppID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FtEducation_Applications">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="FtEducation" Type="Self.FtEducation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FtEducation">
+              <PropertyRef Name="AppId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LanguageCert_Applications">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="0..1" />
+          <End Role="LanguageCert" Type="Self.LanguageCert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LanguageCert">
+              <PropertyRef Name="AppId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Upload_Applications">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="Upload" Type="Self.Upload" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Upload">
+              <PropertyRef Name="AppId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkExp_Applications">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="0..1" />
+          <End Role="WorkExp" Type="Self.WorkExp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkExp">
+              <PropertyRef Name="AppId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StudentAppModelStoreContainer">
+          <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BgEducation" EntityType="Self.BgEducation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FtEducation" EntityType="Self.FtEducation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LanguageCert" EntityType="Self.LanguageCert" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocalUser" EntityType="Self.LocalUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Upload" EntityType="Self.Upload" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkExp" EntityType="Self.WorkExp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admin" EntityType="Self.Admin" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Admin].[ID] AS [ID], 
+    [Admin].[Mail] AS [Mail], 
+    [Admin].[Password] AS [Password], 
+    [Admin].[IsPowered] AS [IsPowered]
+    FROM [dbo].[Admin] AS [Admin]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Applications_Users" Association="Self.FK_Applications_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Applications" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BgEducation_Applications" Association="Self.FK_BgEducation_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="BgEducation" EntitySet="BgEducation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FtEducation_Applications" Association="Self.FK_FtEducation_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="FtEducation" EntitySet="FtEducation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LanguageCert_Applications" Association="Self.FK_LanguageCert_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="LanguageCert" EntitySet="LanguageCert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Upload_Applications" Association="Self.FK_Upload_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Upload" EntitySet="Upload" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkExp_Applications" Association="Self.FK_WorkExp_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="WorkExp" EntitySet="WorkExp" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StudentAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="CountryofBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CitizenshipMain" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceofBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MotherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MotherSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="maritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassaportNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PassStartDate" Type="DateTime" Precision="0" />
+          <Property Name="PassExpireDate" Type="DateTime" Precision="0" />
+          <Property Name="IssuingCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IssuingAuthority" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NationalId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdStartDate" Type="DateTime" Precision="0" />
+          <Property Name="IdExpireDate" Type="DateTime" Precision="0" />
+          <Property Name="CountryCitizenship" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Applications_Users" FromRole="Applications" ToRole="Users" />
+          <NavigationProperty Name="BgEducations" Relationship="Self.FK_BgEducation_Applications" FromRole="Applications" ToRole="BgEducation" />
+          <NavigationProperty Name="FtEducations" Relationship="Self.FK_FtEducation_Applications" FromRole="Applications" ToRole="FtEducation" />
+          <NavigationProperty Name="LanguageCerts" Relationship="Self.FK_LanguageCert_Applications" FromRole="Applications" ToRole="LanguageCert" />
+          <NavigationProperty Name="Uploads" Relationship="Self.FK_Upload_Applications" FromRole="Applications" ToRole="Upload" />
+          <NavigationProperty Name="WorkExps" Relationship="Self.FK_WorkExp_Applications" FromRole="Applications" ToRole="WorkExp" />
+        </EntityType>
+        <EntityType Name="BgEducation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstitutionName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Faculty" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="InsturactionLang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InsCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudyMode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EducationLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EducationStDate" Type="DateTime" Precision="0" />
+          <Property Name="EducationCompDate" Type="DateTime" Precision="0" />
+          <Property Name="AvarageGrade" Type="Double" />
+          <Property Name="Awarded" Type="Boolean" Nullable="false" />
+          <Property Name="AppID" Type="Int32" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_BgEducation_Applications" FromRole="BgEducation" ToRole="Applications" />
+        </EntityType>
+        <EntityType Name="FtEducation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FieldOfStudy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EducationLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Intake" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AcademicYear" Type="Int32" />
+          <Property Name="AppId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_FtEducation_Applications" FromRole="FtEducation" ToRole="Applications" />
+        </EntityType>
+        <EntityType Name="LanguageCert">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LangCert" Type="Boolean" />
+          <Property Name="CertType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CertNoIELTS" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="CertOtherIELTS" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="OverallScoreIELTS" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TestDateIELTS" Type="DateTime" Precision="0" />
+          <Property Name="ListeningIELTS" Type="Double" />
+          <Property Name="ReadingIELTS" Type="Double" />
+          <Property Name="WritingIELTS" Type="Double" />
+          <Property Name="SpeakingIELTS" Type="Double" />
+          <Property Name="ListeningTOEFL" Type="Int32" />
+          <Property Name="ReadingTOEFL" Type="Int32" />
+          <Property Name="WritingTOEFL" Type="Int32" />
+          <Property Name="SpeakingTOEFL" Type="Int32" />
+          <Property Name="AppId" Type="Int32" />
+          <Property Name="OverallScoreTOEFL" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TestDateTOEFL" Type="DateTime" Precision="0" />
+          <Property Name="CertNoTOEFL" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="CertOtherTOEFL" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_LanguageCert_Applications" FromRole="LanguageCert" ToRole="Applications" />
+        </EntityType>
+        <EntityType Name="LocalUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="No" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeOf" Type="Int16" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Upload">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AppId" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_Upload_Applications" FromRole="Upload" ToRole="Applications" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="254" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsEmailVerified" Type="Boolean" Nullable="false" />
+          <Property Name="ActivationCode" Type="Guid" Nullable="false" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_Users" FromRole="Users" ToRole="Applications" />
+        </EntityType>
+        <EntityType Name="WorkExp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="JobType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeAdress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeMail" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeePhone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="JobDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AppId" Type="Int32" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_WorkExp_Applications" FromRole="WorkExp" ToRole="Applications" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Mail" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="IsPowered" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsPowered" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Applications_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Applications" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Applications">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BgEducation_Applications">
+          <End Role="Applications" Type="Self.Application" Multiplicity="0..1" />
+          <End Role="BgEducation" Type="Self.BgEducation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BgEducation">
+              <PropertyRef Name="AppID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FtEducation_Applications">
+          <End Role="Applications" Type="Self.Application" Multiplicity="1" />
+          <End Role="FtEducation" Type="Self.FtEducation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FtEducation">
+              <PropertyRef Name="AppId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LanguageCert_Applications">
+          <End Role="Applications" Type="Self.Application" Multiplicity="0..1" />
+          <End Role="LanguageCert" Type="Self.LanguageCert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LanguageCert">
+              <PropertyRef Name="AppId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Upload_Applications">
+          <End Role="Applications" Type="Self.Application" Multiplicity="1" />
+          <End Role="Upload" Type="Self.Upload" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Upload">
+              <PropertyRef Name="AppId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkExp_Applications">
+          <End Role="Applications" Type="Self.Application" Multiplicity="0..1" />
+          <End Role="WorkExp" Type="Self.WorkExp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkExp">
+              <PropertyRef Name="AppId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StudentAppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Applications" EntityType="Self.Application" />
+          <EntitySet Name="BgEducations" EntityType="Self.BgEducation" />
+          <EntitySet Name="FtEducations" EntityType="Self.FtEducation" />
+          <EntitySet Name="LanguageCerts" EntityType="Self.LanguageCert" />
+          <EntitySet Name="LocalUsers" EntityType="Self.LocalUser" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Uploads" EntityType="Self.Upload" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="WorkExps" EntityType="Self.WorkExp" />
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <AssociationSet Name="FK_Applications_Users" Association="Self.FK_Applications_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Applications" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BgEducation_Applications" Association="Self.FK_BgEducation_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="BgEducation" EntitySet="BgEducations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FtEducation_Applications" Association="Self.FK_FtEducation_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="FtEducation" EntitySet="FtEducations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LanguageCert_Applications" Association="Self.FK_LanguageCert_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="LanguageCert" EntitySet="LanguageCerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Upload_Applications" Association="Self.FK_Upload_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Upload" EntitySet="Uploads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkExp_Applications" Association="Self.FK_WorkExp_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="WorkExp" EntitySet="WorkExps" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StudentAppModelStoreContainer" CdmEntityContainer="StudentAppEntities">
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="StudentAppModel.Application">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="CountryofBirth" ColumnName="CountryofBirth" />
+                <ScalarProperty Name="CitizenshipMain" ColumnName="CitizenshipMain" />
+                <ScalarProperty Name="PlaceofBirth" ColumnName="PlaceofBirth" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="FatherSurname" ColumnName="FatherSurname" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="MotherSurname" ColumnName="MotherSurname" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="maritalStatus" ColumnName="maritalStatus" />
+                <ScalarProperty Name="PassaportNumber" ColumnName="PassaportNumber" />
+                <ScalarProperty Name="PassStartDate" ColumnName="PassStartDate" />
+                <ScalarProperty Name="PassExpireDate" ColumnName="PassExpireDate" />
+                <ScalarProperty Name="IssuingCountry" ColumnName="IssuingCountry" />
+                <ScalarProperty Name="IssuingAuthority" ColumnName="IssuingAuthority" />
+                <ScalarProperty Name="NationalId" ColumnName="NationalId" />
+                <ScalarProperty Name="IdStartDate" ColumnName="IdStartDate" />
+                <ScalarProperty Name="IdExpireDate" ColumnName="IdExpireDate" />
+                <ScalarProperty Name="CountryCitizenship" ColumnName="CountryCitizenship" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BgEducations">
+            <EntityTypeMapping TypeName="StudentAppModel.BgEducation">
+              <MappingFragment StoreEntitySet="BgEducation">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="InstitutionName" ColumnName="InstitutionName" />
+                <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+                <ScalarProperty Name="InsturactionLang" ColumnName="InsturactionLang" />
+                <ScalarProperty Name="InsCountry" ColumnName="InsCountry" />
+                <ScalarProperty Name="StudyMode" ColumnName="StudyMode" />
+                <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
+                <ScalarProperty Name="EducationStDate" ColumnName="EducationStDate" />
+                <ScalarProperty Name="EducationCompDate" ColumnName="EducationCompDate" />
+                <ScalarProperty Name="AvarageGrade" ColumnName="AvarageGrade" />
+                <ScalarProperty Name="Awarded" ColumnName="Awarded" />
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FtEducations">
+            <EntityTypeMapping TypeName="StudentAppModel.FtEducation">
+              <MappingFragment StoreEntitySet="FtEducation">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Country1" ColumnName="Country1" />
+                <ScalarProperty Name="Country2" ColumnName="Country2" />
+                <ScalarProperty Name="FieldOfStudy" ColumnName="FieldOfStudy" />
+                <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
+                <ScalarProperty Name="Intake" ColumnName="Intake" />
+                <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
+                <ScalarProperty Name="AppId" ColumnName="AppId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LanguageCerts">
+            <EntityTypeMapping TypeName="StudentAppModel.LanguageCert">
+              <MappingFragment StoreEntitySet="LanguageCert">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LangCert" ColumnName="LangCert" />
+                <ScalarProperty Name="CertType" ColumnName="CertType" />
+                <ScalarProperty Name="CertNoIELTS" ColumnName="CertNoIELTS" />
+                <ScalarProperty Name="CertOtherIELTS" ColumnName="CertOtherIELTS" />
+                <ScalarProperty Name="OverallScoreIELTS" ColumnName="OverallScoreIELTS" />
+                <ScalarProperty Name="TestDateIELTS" ColumnName="TestDateIELTS" />
+                <ScalarProperty Name="ListeningIELTS" ColumnName="ListeningIELTS" />
+                <ScalarProperty Name="ReadingIELTS" ColumnName="ReadingIELTS" />
+                <ScalarProperty Name="WritingIELTS" ColumnName="WritingIELTS" />
+                <ScalarProperty Name="SpeakingIELTS" ColumnName="SpeakingIELTS" />
+                <ScalarProperty Name="ListeningTOEFL" ColumnName="ListeningTOEFL" />
+                <ScalarProperty Name="ReadingTOEFL" ColumnName="ReadingTOEFL" />
+                <ScalarProperty Name="WritingTOEFL" ColumnName="WritingTOEFL" />
+                <ScalarProperty Name="SpeakingTOEFL" ColumnName="SpeakingTOEFL" />
+                <ScalarProperty Name="AppId" ColumnName="AppId" />
+                <ScalarProperty Name="OverallScoreTOEFL" ColumnName="OverallScoreTOEFL" />
+                <ScalarProperty Name="TestDateTOEFL" ColumnName="TestDateTOEFL" />
+                <ScalarProperty Name="CertNoTOEFL" ColumnName="CertNoTOEFL" />
+                <ScalarProperty Name="CertOtherTOEFL" ColumnName="CertOtherTOEFL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocalUsers">
+            <EntityTypeMapping TypeName="StudentAppModel.LocalUser">
+              <MappingFragment StoreEntitySet="LocalUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="TypeOf" ColumnName="TypeOf" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="StudentAppModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uploads">
+            <EntityTypeMapping TypeName="StudentAppModel.Upload">
+              <MappingFragment StoreEntitySet="Upload">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="AppId" ColumnName="AppId" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="StudentAppModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkExps">
+            <EntityTypeMapping TypeName="StudentAppModel.WorkExp">
+              <MappingFragment StoreEntitySet="WorkExp">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="JobType" ColumnName="JobType" />
+                <ScalarProperty Name="EmployeeAdress" ColumnName="EmployeeAdress" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="EmployeeMail" ColumnName="EmployeeMail" />
+                <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="AppId" ColumnName="AppId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="StudentAppModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsPowered" ColumnName="IsPowered" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

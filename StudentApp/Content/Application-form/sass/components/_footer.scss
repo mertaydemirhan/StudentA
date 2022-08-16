@@ -1,0 +1,13 @@
+footer {
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    @include flex(space-between, center);
+    background-color: $primary;
+    color: white;
+    padding: 8px 20px;
+
+    p {
+        margin: 0;
+    }
+}

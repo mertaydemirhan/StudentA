@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.spinner {
+    border: 5px solid transparent;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    border-top-color: #4ba155;
+    animation: 1s spin ease infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.successContainer {
+    text-align: center;
+    background-color: #4ba155;
+    color: white;
+    padding: 1.3em 4em;
+    font-size: 24px;
+    border-radius: 50px;
+    line-height: 2em;
+    box-shadow: 0 3px 10px black;
+    margin-bottom: 5em;
+}
+
+.successContainer span {
+    font-size: 40px;
+}
+
+.submittedFormContainer {
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.submittedFormContainer h1 {
+    font-size: 30px;
+}
+
+.redirectContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}

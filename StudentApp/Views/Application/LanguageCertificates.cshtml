@@ -1,0 +1,131 @@
+﻿@model StudentApp.ObjectModels.Application
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div id="5" class="page">
+    <h2>Language Certificates</h2>
+
+    <label>
+        Have you ever passed any International Language
+        Examination?
+    </label>
+    <div class="form-check form-switch fs-4 mb-3">
+        <input class="lang-checkbox form-check-input"
+               type="checkbox"
+               role="switch"
+               id="langBtn"
+               onchange="checkboxTrigger(event)"
+               @*checked="@Model.LanguageCert.LangCert"*@ />
+
+    </div>
+
+    <div class="languages">
+        <div>
+            <label>If yes, which one?</label>
+            @Html.DropDownListFor(xm => xm.LanguageCert.CertType, new SelectList(new List<string> { "Select", "IELTS Academic", "TOEFL IBT", "Other" }), new { @name = "language", @id = "test", @class = "lang-dropdown form-select" })
+
+        </div>
+
+        <div class="lang ielts" id="hidden_div">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Listening</label>
+                    @Html.DropDownListFor(x => x.LanguageCert.ListeningIELTS, new SelectList(new List<double> { 0, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0 }), new { name = "listeningIelts", id = "listeningIelts", @class = "form-select" })
+
+                </div>
+
+                <div class="col-lg-6">
+                    <label>Reading</label>
+                    @Html.DropDownListFor(x => x.LanguageCert.ReadingIELTS, new SelectList(new List<double> { 0, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0 }), new { name = "ReadingIelts", id = "ReadingIelts", @class = "form-select" })
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Writing</label>
+                    @Html.DropDownListFor(x => x.LanguageCert.WritingIELTS, new SelectList(new List<double> { 0, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0 }), new { name = "WritingIelts", id = "WritingIelts", @class = "form-select" })
+                </div>
+
+                <div class="col-lg-6">
+                    <label>Speaking</label>
+                    @Html.DropDownListFor(x => x.LanguageCert.SpeakingIELTS, new SelectList(new List<double> { 0, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0 }), new { name = "SpeakingIelts", id = "SpeakingIelts", @class = "form-select" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Overall score</label>
+                    @Html.TextBoxFor(m => m.LanguageCert.OverallScoreIELTS, new { id = "OverallScoreIelts", name = "OverallScoreIelts", @class = "form-control" })
+
+                </div>
+
+                <div class="col-lg-6">
+                    <label>Date of test</label>
+                    @Html.TextBoxFor(m => m.LanguageCert.TestDateIELTS, "{0:yyyy-MM-ddThh:mm:ss}", new { id = "dateofTestIelts", name = "dateofTestIelts", @class = "form-control", type = "datetime-local" })
+                </div>
+            </div>
+
+            <label>Certificate number</label>
+            @Html.TextBoxFor(m => m.LanguageCert.CertNoIELTS, new { id = "CertificatenumberIelts", name = "CertificatenumberIelts", @class = "form-control" })
+
+            <label>Other relevant information</label>
+            @Html.TextAreaFor(m => m.LanguageCert.CertOtherIELTS, new { id = "otherInfoToefl", name = "otherInfoToefl", @Class = "form-control" })
+
+        </div>
+        <div class="lang toefl" id="hidden_div_toefl">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Listening</label>
+                    @Html.DropDownListFor(x => x.LanguageCert.ListeningTOEFL, new SelectList(new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 }), new { id = "listeningToefl", name = "listeningToefl", @class = "form-control" })
+                </div>
+
+                <div class="col-lg-6">
+                    <label>Reading</label>
+                    @Html.DropDownListFor(x => x.LanguageCert.ReadingTOEFL, new SelectList(new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 }), new { id = "ReadingToefl", name = "ReadingToefl", @class = "form-control" })
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Writing</label>
+                    @Html.DropDownListFor(x => x.LanguageCert.WritingTOEFL, new SelectList(new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 }), new { id = "WritingToefl", name = "WritingToefl", @class = "form-control" })
+
+                </div>
+
+                <div class="col-lg-6">
+                    <label>Speaking</label>
+                    @Html.DropDownListFor(x => x.LanguageCert.SpeakingTOEFL, new SelectList(new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 }), new { id = "SpeakingToefl", name = "SpeakingToefl", @class = "form-control" })
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Overall score</label>
+                    @Html.TextBoxFor(m => m.LanguageCert.OverallScoreTOEFL, new { id = "OverallScoreToefl", name = "OverallScoreToefl", @class = "form-control" })
+
+                </div>
+
+                <div class="col-lg-6">
+                    <label>Date of test</label>
+                    @Html.TextBoxFor(m => m.LanguageCert.TestDateTOEFL, "{0:yyyy-MM-ddThh:mm:ss}", new { id = "dateofTestToefl", name = "dateofTestToefl", @class = "form-control", type = "datetime-local" })
+
+                </div>
+            </div>
+
+            <label>Certificate number</label>
+            @Html.TextBoxFor(m => m.LanguageCert.CertNoTOEFL, new { id = "CertificatenumberToefl", name = "CertificatenumberToefl", @class = "form-control" })
+
+            <label>Other relevant information</label>
+            @Html.TextAreaFor(m => m.LanguageCert.CertOtherTOEFL, new { id = "otherInfoToefl", name = "otherInfoToefl", @class = "form-control" })
+
+        </div>
+        <div class="lang other" id="hidden_div_otherinfo">
+            <label>Other relevant information</label>
+            <textarea class="form-control"
+                      rows="5"></textarea>
+        </div>
+    </div>
+</div>
+<script src="~/Content/Scripts/bootstrap.min.js"></script>
