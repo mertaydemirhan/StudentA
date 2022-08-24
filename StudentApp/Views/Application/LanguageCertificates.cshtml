@@ -128,4 +128,51 @@
         </div>
     </div>
 </div>
+<script>
+
+
+
+    function pagerefresh() {
+        if ($('#langBtn').is(':checked')) {
+
+            $('.languages').css('display', 'block');
+
+            switch ($('#test :selected').text()) {
+                case "IELTS Academic":
+                    $('.ielts').css('display', 'block');
+                    $('.toefl').css('display', 'none');
+                    $('.other').css('display', 'none');
+                    break;
+                case "TOEFL IBT":
+                    $('.toefl').css('display', 'block');
+                    $('.other').css('display', 'none');
+                    $('.ielts').css('display', 'none');
+                    break;
+                case "Other":
+                    $('.other').css('display', 'block');
+                    $('.ielts').css('display', 'none');
+                    $('.toefl').css('display', 'none');
+                    break;
+            }
+        }
+        else {
+            $('.languages').css('display', 'none');
+
+        }
+    };
+
+
+
+    document.getElementById('test').addEventListener('change', function () {
+        console.log(this.value);
+        var style1 = this.value == "IELTS Academic" ? 'block' : 'none';
+        document.getElementById('hidden_div').style.display = style1;
+
+        var style2 = this.value == "TOEFL IBT" ? 'block' : 'none';
+        document.getElementById('hidden_div_toefl').style.display = style2;
+
+        var style3 = this.value == "Other" ? 'block' : 'none';
+        document.getElementById('hidden_div_otherinfo').style.display = style3;
+    });
+</script>
 <script src="~/Content/Scripts/bootstrap.min.js"></script>

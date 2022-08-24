@@ -28,6 +28,8 @@ namespace StudentApp.Models.Entity
         public bool IsEmailVerified { get; set; }
         public System.Guid ActivationCode { get; set; }
         public string ConfirmPassword { get; set; }
+        public string PhoneNumber { get; set; }
+        public string BirthDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Applications { get; set; }

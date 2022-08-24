@@ -23,13 +23,7 @@ namespace StudentApp.Models.Entity
             this.Uploads = new HashSet<Upload>();
             this.WorkExps = new HashSet<WorkExp>();
         }
-
-        public virtual BgEducation BgEducation { get; set; }
-        public virtual FtEducation FtEducation { get; set; }
-        public virtual LanguageCert LanguageCert { get; set; }
-        public virtual WorkExp WorkExp { get; set; }
-        public Upload Upload { get; set; }
-
+    
         public int ID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }

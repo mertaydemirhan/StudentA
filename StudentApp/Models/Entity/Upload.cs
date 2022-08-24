@@ -21,6 +21,5 @@ namespace StudentApp.Models.Entity
         public string FileName { get; set; }
     
         public virtual Application Application { get; set; }
-        public IEnumerable<Upload> Uploads { get; set; }
     }
 }

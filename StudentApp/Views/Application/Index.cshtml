@@ -5,7 +5,7 @@
 @using (Html.BeginForm("UpdateApplication", "Application", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "col-md-9", @style = "margin-bottom:50px" }))
 {
     <h3 class="title text-center">Personal Details</h3>
-    <div id="1" class="page active">
+    <div id="1" class="page active" onload="pagerefresh()">
         <h2>Student Information</h2>
         <div>
             <label>ID:</label><br />
@@ -16,7 +16,7 @@
             <div class="col-lg-6">
                 <label>Name</label>
                 @*@Html.TextBoxFor(x => x.Name, new { @class = "form-control" })*@
-                @Html.TextBoxFor(x => x.Name, new {@class="form-control"})
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
             </div>
 
             <div class="col-lg-6 required">
@@ -189,30 +189,178 @@
         </div>
     </div>
     // background education Partial View will comes..... Progress
-    <div>
-        @{ 
-            //   Html.RenderPartial("BackgroundEducation");
-            Html.RenderAction("BgEducationRecords", "Application");   }
+    <div id="2" class="page">
+        @*id="2" class="page"*@
+        <h2>Educational Background</h2>
+        <p class="subtitle">
+            Please provide your relevant education
+            qualifications
+        </p>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Institution name</label>
+                @*@Html.DisplayFor(x => x.All(), new { @class = "form-control" })*@
+                <input type="text" id="InstitutionName" class="form-control">
+            </div>
+
+            <div class="col-lg-6">
+                <label>Faculty</label>
+                @*@Html.TextBoxFor(x => x.BgEducation.Faculty, new { @class = "form-control" })*@
+                <input type="text" id="Faculty" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Instruction Language</label>
+                @*@Html.TextBoxFor(x => x.BgEducation.InsturactionLang, new { @class = "form-control" })*@
+                <input type="text" id="InsturactionLang" class="form-control">
+            </div>
+
+            <div class="col-lg-6">
+                <label>Institution Country</label>
+                @*@Html.TextBoxFor(x => x.BgEducation.InsCountry, new { @class = "form-control" })*@
+                <input type="text" id="InsCountry" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Study Mode</label>
+                @*@Html.DropDownListFor(x => x.BgEducation.StudyMode, new SelectList(new List<string> { "Full-Time", "Part-Time", "Online" }), new { rel = "0", @class = "form-select" })*@
+                <input type="text" id="StudyMode" class="form-control">
+            </div>
+
+            <div class="col-lg-6">
+                <label>Educational Level</label>
+                @*@Html.DropDownListFor(x => x.BgEducation.EducationLevel, new SelectList(new List<string> { "General Education (9 years)", "Complete Secondary Education (Attestat)", "Complete Professional Education", "International Foundation Programme", "Bachelor's degree", "Pre-Masters", "Master degree", "PhD", "Other" }), new { rel = "0", @class = "form-select" })*@
+                <select name="EducationLevel" id="EducationLevel" class="form-select">
+                    <option value="General Education (9 years)">General Education (9 years)</option>
+                    <option value="Complete Secondary Education (Attestat)">Complete Secondary Education (Attestat)</option>
+                    <option value="Complete Professional Education">Complete Professional Education</option>
+                    <option value="International Foundation Programme">International Foundation Programme</option>
+                    <option value="Bachelor's degree">Bachelor's degree</option>
+                    <option value="Pre-Masters">Pre-Masters</option>
+                    <option value="Master degree">Master degree</option>
+                    <option value="PhD">PhD</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Start date</label>
+                @*@Html.TextBoxFor(m => m.BgEducation.EducationStDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", type = "datetime-local" })*@
+                <input type="date" id="EducationStDate" class="form-control">
+            </div>
+
+            <div class="col-lg-6">
+                <label>Completion date</label>
+                @*@Html.TextBoxFor(m => m.BgEducation.EducationCompDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", type = "datetime-local" })*@
+                <input type="date" id="EducationCompDate" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Awarded</label>
+                <div class="form-check form-switch fs-5">
+                    <input class="form-check-input"
+                           type="checkbox"
+                           role="switch"
+                           id="ChkAwarded" />
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <label>Average grade</label>
+                @*@Html.TextBoxFor(x => x.BgEducation.AvarageGrade, new { @class = "form-control" })*@
+                <input type="text" id="AvarageGrade" class="form-control">
+            </div>
+            @*<input type="button" id="Add" value="Add To List" style="margin-top: 10px;" class="btn btn-success">*@
+            <label id="AddBgEducation" class="btn btn-success">Add To List</label>
+        </div>
+        <div>
+            @{
+                //   Html.RenderPartial("BackgroundEducation");
+                Html.RenderAction("BgEducationRecords", "Application"); }
+        </div>
     </div>
-            // Future Education Partial View will comes... Progress   
+
+    // Future Education Partial View will comes... Progress
     <div>
-        @{ Html.RenderPartial("FutureEducation");}      
+        @{ Html.RenderPartial("FutureEducation");}
     </div>
-            // Work Experience Partial View will comes.. Progress
+    // Work Experience Partial View will comes.. Progress
+<div id="4" class="page">
+    <h2>Work Experience</h2>
+    <p class="subtitle">
+        If you have relevant work experience, please provide
+        details
+    </p>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label> Company Name</label>
+            <input type="text" id="CompanyName" class="form-control">
+        </div>
+
+        <div class="col-lg-6">
+            <label>Position</label>
+            <input type="text" id="Position" class="form-control">
+        </div>
+    </div>
+
+    <label>Job Type</label>
+    <select name="JobType" id="JobType" class="form-select">
+        <option value="Full-Time">Full-Time</option>
+        <option value="Part-Time">Part-Time</option>
+
+    </select>
+
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label>Employee address</label>
+            <input type="text" id="EmployeeAdress" class="form-control">
+        </div>
+
+        <div class="col-lg-6">
+            <label>Manager name</label>
+            <input type="text" id="ManagerName" class="form-control">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label>Employee Email</label>
+            <input type="text" id="EmployeeMail" class="form-control">
+        </div>
+
+        <div class="col-lg-6">
+            <label>Employee Phone</label>
+            <input type="text" id="EmployeePhone" class="form-control">
+        </div>
+    </div>
+
+    <label>Job Description</label>
+    <textarea id="JobDescription" class="form-control"></textarea>
+    <label id="AddWorkExps" class="btn btn-success">Add To List</label>
     <div>
-        @{ Html.RenderPartial("WorkExperience");}
+        @{ Html.RenderAction("WorkExperiences", "Application");}
     </div>
-            // Language Certificates Partial View will comes... Progress
+</div>
+
+
+    // Language Certificates Partial View will comes... Progress
     <div>
-        @{ Html.RenderPartial("LanguageCertificates");
-
-
-
-}
+        @{ Html.RenderPartial("LanguageCertificates"); }
     </div>
 
 
-<form id="UploadFiles">
+    <form id="UploadFiles">
         <div id="6" class="page">
             <div id="Submitform">
                 <h2>Submit Documents</h2>
@@ -307,57 +455,60 @@
         </div>
     </form>
 
- }
+}
 
 
 
 <script>
- 
 
-    function pagerefresh() {
-        if ($('#langBtn').is(':checked')) {
+    // Background education  Add button triggered....
 
-            $('.languages').css('display', 'block');
-
-            switch ($('#test :selected').text()) {
-                case "IELTS Academic":
-                    $('.ielts').css('display', 'block');
-                    $('.toefl').css('display', 'none');
-                    $('.other').css('display', 'none');
-                    break;
-                case "TOEFL IBT":
-                    $('.toefl').css('display', 'block');
-                    $('.other').css('display', 'none');
-                    $('.ielts').css('display', 'none');
-                    break;
-                case "Other":
-                    $('.other').css('display', 'block');
-                    $('.ielts').css('display', 'none');
-                    $('.toefl').css('display', 'none');
-                    break;
+    $("#AddBgEducation").on('click', function () {
+        var arr = {
+            InstitutionName: $('#InstitutionName').val(),
+            Faculty: $('#Faculty').val(),
+            InsturactionLang: $('#InsturactionLang').val(),
+            InsCountry: $('#InsCountry').val(),
+            StudyMode: $('#StudyMode').val(),
+            EducationLevel: $('#EducationLevel').val(),
+            EducationStDate: $('#EducationStDate').val(),
+            EducationCompDate: $('#EducationCompDate').val(),
+            Awarded: $('#ChkAwarded').prop('checked'),
+            AvarageGrade: parseFloat($('#AvarageGrade').val())
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/Application/BgAdd',
+            contentType: "application/json; charset=utf-8",
+            cache: 'false',
+            dataType: "json",
+            data: JSON.stringify(arr),
+            success: function (data) {
+                //location.reload();
+                ResetTextsBg();
+                var url = '@Url.Action("BgEducationRecords", "Application")';
+                var notifications = $("#tbl_BgEducations");
+                setInterval(function () {
+                    notifications.load(url);
+                }, 3000);
             }
-        }
-        else {
-            $('.languages').css('display', 'none');
-
-        }
-    };
-
-
-
-    document.getElementById('test').addEventListener('change', function () {
-        console.log(this.value);
-        var style1 = this.value == "IELTS Academic" ? 'block' : 'none';
-            document.getElementById('hidden_div').style.display = style1;
-
-        var style2 = this.value == "TOEFL IBT" ? 'block' : 'none';
-        document.getElementById('hidden_div_toefl').style.display = style2;
-
-        var style3 = this.value == "Other" ? 'block' : 'none';
-        document.getElementById('hidden_div_otherinfo').style.display = style3;
+        });
     });
 
 
+    // BgEducations Reset textboxs
+    function ResetTextsBg() {
+        document.getElementById('InstitutionName').value = null;
+        document.getElementById('InsturactionLang').value = null;
+        document.getElementById('Faculty').value = null;
+        document.getElementById('InsCountry').value = null;
+        document.getElementById('StudyMode').value = null;
+        document.getElementById('EducationLevel').value = null;
+        document.getElementById('EducationStDate').value = null;
+        document.getElementById('EducationCompDate').value = null;
+        document.getElementById('AvarageGrade').value = null;
+
+    }
 
     function checkboxTrigger(e) {
         pagerefresh();
@@ -410,6 +561,53 @@
         });
 
     });
+
+      $("#AddWorkExps").on('click', function () {
+        var arr = {
+            CompanyName: $('#CompanyName').val(),
+            EmployeeAdress: $('#EmployeeAdress').val(),
+            EmployeeMail: $('#EmployeeMail').val(),
+            EmployeePhone: $('#EmployeePhone').val(),
+            JobDescription: $('#JobDescription').val(),
+            ManagerName: $('#ManagerName').val(),
+            JobType: $('#JobType').val(),
+            Position: $('#Position').val()
+       };
+        alert(JSON.stringify(arr));
+        $.ajax({
+            type: 'POST',
+            url: '/Application/WorkExpAdd',
+            contentType: "application/json; charset=utf-8",
+            cache: 'false',
+            dataType: "json",
+            data: JSON.stringify(arr),
+            success: function (data) {
+                //location.reload();
+                ResetTextsWorkExps();
+                var url = '@Url.Action("WorkExperiences", "Application")';
+                var notifications = $("#tbl_WorkExps");
+                setInterval(function () {
+                    notifications.load(url);
+                }, 3000);
+            }
+        });
+      });
+
+
+    function ResetTextsWorkExps() {
+        document.getElementById('CompanyName').value = null;
+        document.getElementById('EmployeeAdress').value = null;
+        document.getElementById('EmployeeMail').value = null;
+        document.getElementById('EmployeePhone').value = null;
+        document.getElementById('ManagerName').value = null;
+        document.getElementById('JobType').value = null;
+        document.getElementById('Position').value = null;
+        document.getElementById('JobDescription').value = null;
+    }
+
+
+    // Language Certificates PART
+      
 
 </script>
 

@@ -187,34 +187,34 @@
             <div class="row">
                 <div class="col-lg-6">
                     <label>Intitution name</label>
-                    <p>@Html.DisplayFor(x => x.BgEducation.InstitutionName)</p>
+                    <p>@Html.DisplayFor(x => x.BgEducation1.InstitutionName)</p>
                 </div>
                 <div class="col-lg-6">
                     <label>Faculty</label>
-                    <p>@Html.DisplayFor(x => x.BgEducation.Faculty)</p>
+                    <p>@Html.DisplayFor(x => x.BgEducation1.Faculty)</p>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-6">
                     <label>Instruction Language</label>
-                    <p>@Html.DisplayFor(x => x.BgEducation.InsturactionLang)</p>
+                    <p>@Html.DisplayFor(x => x.BgEducation1.InsturactionLang)</p>
                 </div>
                 <div class="col-lg-6">
                     <label>Institution Country</label>
-                    <p>@Html.DisplayFor(x => x.BgEducation.InsCountry)</p>
+                    <p>@Html.DisplayFor(x => x.BgEducation1.InsCountry)</p>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-6">
                     <label>Study Mode</label>
-                    <p>@Html.DisplayFor(x => x.BgEducation.StudyMode)</p>
+                    <p>@Html.DisplayFor(x => x.BgEducation1.StudyMode)</p>
                 </div>
                 <div class="col-lg-6">
                     <label>Educational Level</label>
 
-                    <p>@Html.DisplayFor(x => x.BgEducation.EducationLevel)</p>
+                    <p>@Html.DisplayFor(x => x.BgEducation1.EducationLevel)</p>
                 </div>
             </div>
 
@@ -224,10 +224,22 @@
                     <p>
                         @{
                             string parameterValue1 = null;
-                            if (Model.BgEducation != null && Model.BgEducation.EducationStDate != null)
+                            if (Model.BgEducation1 != null)
                             {
-                                parameterValue1 = Model.BgEducation.EducationStDate.Value.ToShortDateString();
-                                @Html.DisplayFor(x => parameterValue1)
+                                if (Model.BgEducation1.EducationStDate != null)
+                                {
+                                    parameterValue1 = Model.BgEducation1.EducationStDate.Value.ToShortDateString();
+                                    @Html.DisplayFor(x => parameterValue1)
+                                }
+                                else
+                                {
+                                    Html.Label("01/01/1900");
+                                }
+
+                            }
+                            else
+                            {
+                                Html.Label("01/01/1900");
                             }
                         }
 
@@ -237,11 +249,23 @@
                     <label>Completion date</label>
                     <p>
                         @{
-                            string parameterValue2 = null;
-                            if (Model.BgEducation != null && Model.BgEducation.EducationCompDate != null)
+                            string parameterValue3 = null;
+                            if (Model.BgEducation1 != null)
                             {
-                                parameterValue2 = Model.BgEducation.EducationCompDate.Value.ToShortDateString();
-                                @Html.DisplayFor(x => parameterValue2)
+                                if(Model.BgEducation1.EducationCompDate != null)
+                                {
+                                    parameterValue3 = Model.BgEducation1.EducationCompDate.Value.ToShortDateString();
+                                    @Html.DisplayFor(x => parameterValue3);
+                                }
+                                else
+                                {
+                                    Html.Label("01/01/1900");
+                                }
+
+                            }
+                            else
+                            {
+                                Html.Label("01/01/1900");
                             }
                         }
                     </p>
@@ -256,12 +280,12 @@
                                class="form-check-input"
                                type="checkbox"
                                role="switch"
-                               checked="@Model.BgEducation.Awarded.ToString()" />
+                               checked="@Model.BgEducation1.Awarded.ToString()" />
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <label>Average grade</label>
-                    <p>@Html.DisplayFor(x => x.BgEducation.AvarageGrade)</p>
+                    <p>@Html.DisplayFor(x => x.BgEducation1.AvarageGrade)</p>
                 </div>
             </div>
         </div>
@@ -512,7 +536,7 @@
                                 @{ switch (Model.LanguageCert.CertType.ToString())
                                     {
                                         case "TOEFL IBT":
-                                            parameterValue2 = Model.LanguageCert.TestDateTOEFL.Value.ToShortDateString();
+                                            var parameterValue2 = Model.LanguageCert.TestDateTOEFL.Value.ToShortDateString();
                                             <text>@Html.DisplayFor(x => parameterValue2)</text>
                                             break;
                                         case "IELTS Academic":

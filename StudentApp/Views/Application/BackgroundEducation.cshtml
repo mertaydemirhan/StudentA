@@ -3,248 +3,108 @@
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
-<div id="2" class="page">
-    @*id="2" class="page"*@
-    <h2>Educational Background</h2>
-    <p class="subtitle">
-        Please provide your relevant education
-        qualifications
-    </p>
 
-    <div class="row">
-        <div class="col-lg-6">
-            <label>Institution name</label>
-            @*@Html.DisplayFor(x => x.All(), new { @class = "form-control" })*@
-            <input type="text" id="InstitutionName" class="form-control">
-        </div>
+<table class="table" id="tbl_BgEducations" style=" margin-top:10px;">
+    <tr>
+        <th>
+            @Html.Label("InstitutionName", new { @class = "font-weight-bold" })
+        </th>
+        <th>
+            @Html.Label("InsCountry", new { @class = "font-weight-bold" })
+        </th>
+        <th>
+            @Html.Label("Faculty", new { @class = "font-weight-bold" })
+        </th>
+        <th>
+            @Html.Label("AvarageGrade", new { @class = "font-weight-bold" })
+        </th>
+    </tr>
 
-        <div class="col-lg-6">
-            <label>Faculty</label>
-            @*@Html.TextBoxFor(x => x.BgEducation.Faculty, new { @class = "form-control" })*@
-            <input type="text" id="Faculty" class="form-control">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-6">
-            <label>Instruction Language</label>
-            @*@Html.TextBoxFor(x => x.BgEducation.InsturactionLang, new { @class = "form-control" })*@
-            <input type="text" id="InsturactionLang" class="form-control">
-        </div>
-
-        <div class="col-lg-6">
-            <label>Institution Country</label>
-            @*@Html.TextBoxFor(x => x.BgEducation.InsCountry, new { @class = "form-control" })*@
-            <input type="text" id="InsCountry" class="form-control">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-6">
-            <label>Study Mode</label>
-            @*@Html.DropDownListFor(x => x.BgEducation.StudyMode, new SelectList(new List<string> { "Full-Time", "Part-Time", "Online" }), new { rel = "0", @class = "form-select" })*@
-            <input type="text" id="StudyMode" class="form-control">
-        </div>
-
-        <div class="col-lg-6">
-            <label>Educational Level</label>
-            @*@Html.DropDownListFor(x => x.BgEducation.EducationLevel, new SelectList(new List<string> { "General Education (9 years)", "Complete Secondary Education (Attestat)", "Complete Professional Education", "International Foundation Programme", "Bachelor's degree", "Pre-Masters", "Master degree", "PhD", "Other" }), new { rel = "0", @class = "form-select" })*@
-            <select name="EducationLevel" id="EducationLevel" class="form-select">
-                <option value="General Education (9 years)">General Education (9 years)</option>
-                <option value="Complete Secondary Education (Attestat)">Complete Secondary Education (Attestat)</option>
-                <option value="Complete Professional Education">Complete Professional Education</option>
-                <option value="International Foundation Programme">International Foundation Programme</option>
-                <option value="Bachelor's degree">Bachelor's degree</option>
-                <option value="Pre-Masters">Pre-Masters</option>
-                <option value="Master degree">Master degree</option>
-                <option value="PhD">PhD</option>
-                <option value="Other">Other</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-6">
-            <label>Start date</label>
-            @*@Html.TextBoxFor(m => m.BgEducation.EducationStDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", type = "datetime-local" })*@
-            <input type="date" id="EducationStDate" class="form-control">
-        </div>
-
-        <div class="col-lg-6">
-            <label>Completion date</label>
-            @*@Html.TextBoxFor(m => m.BgEducation.EducationCompDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", type = "datetime-local" })*@
-            <input type="date" id="EducationCompDate" class="form-control">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-6">
-            <label>Awarded</label>
-            <div class="form-check form-switch fs-5">
-                <input class="form-check-input"
-                       type="checkbox"
-                       role="switch"
-                       id="ChkAwarded" />
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <label>Average grade</label>
-            @*@Html.TextBoxFor(x => x.BgEducation.AvarageGrade, new { @class = "form-control" })*@
-            <input type="text" id="AvarageGrade" class="form-control">
-        </div>
-        @*<input type="button" id="Add" value="Add To List" style="margin-top: 10px;" class="btn btn-success">*@
-        <label id="Add" class="btn btn-success">Add To List</label>
-    </div>
-
-
-    <table class="table" id="tbl_BgEducations" style=" margin-top:10px;">
-        <tr>
-            <th>
-                @Html.Label("InstitutionName", new { @class = "font-weight-bold" })
-            </th>
-            <th>
-                @Html.Label("InsCountry", new { @class = "font-weight-bold" })
-            </th>
-            <th>
-                @Html.Label("Faculty", new { @class = "font-weight-bold" })
-            </th>
-            <th>
-                @Html.Label("AvarageGrade", new { @class = "font-weight-bold" })
-            </th>
-        </tr>
-
-        @if (Model != null)
-        {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <span style="font-weight:bold; color:tomato; "> @Html.DisplayFor(modelItem => item.InstitutionName)</span>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.InsCountry)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Faculty)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AvarageGrade)
-                    </td>
-                    <td>
-                        <button id="BgDelete" class="btn btn-danger" name="@item.ID" title="@item.InstitutionName">Delete</button>
-                        <a href="@Url.Action("FullScreen", "Application", new { Id = item.ID })" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
-                        <a href="@Url.Action("Download", "Application", new { Id = item.ID })" class="btn btn-success"><span class="fa fa-download"></span> Download</a>
-                    </td>
-
-                </tr>
-            }
-        }
-
-        @if (Model.ToList().Count < 1)
+    @if (Model != null)
+    {
+        foreach (var item in Model)
         {
             <tr>
                 <td>
-                    <span style="font-weight:bold; color:tomato; "> There is No Background education</span>
+                    <span style="font-weight:bold; color:tomato; "> @Html.DisplayFor(modelItem => item.InstitutionName)</span>
                 </td>
                 <td>
-                    &nbsp;
+                    @Html.DisplayFor(modelItem => item.InsCountry)
                 </td>
                 <td>
-                    &nbsp;
+                    @Html.DisplayFor(modelItem => item.Faculty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvarageGrade)
+                </td>
+                <td>
+                    <button id="BgDelete" class="btn btn-danger" name="@item.ID" title="@item.InstitutionName">Delete</button>
+                    @*<a href="@Url.Action("FullScreen", "Application", new { Id = item.ID })" id="ViewScreen" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
+                    <a href="@Url.Action("Download", "Application", new { Id = item.ID })" class="btn btn-success"><span class="fa fa-download"></span> Download</a>*@
+                    <a href="#" id="ViewScreen" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
+                    <a href="#" class="btn btn-success"><span class="fa fa-edit"></span> Edit</a>
                 </td>
 
             </tr>
         }
+    }
 
-    </table>
-</div>
+    @if (Model.ToList().Count < 1)
+    {
+        <tr>
+            <td>
+                <span style="font-weight:bold; color:tomato; "> There is No Background education</span>
+            </td>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                &nbsp;
+            </td>
 
-    <script>
-
-
-        $("button").on('click', function () {
-            var EducationID = parseInt(this.name);
-            var title = this.title;
-            alert(EducationID.toString() + " " + this.title);
-            $.ajax({
-                type: 'GET',
-                url: '/Application/BgDelete',
-                data: { ID: EducationID },
-                success: function (result) {
-                //event.preventDefault();
-                    alert(title + " Deleted");
-                    history.go(0);
-                    //location.reload(); 
-                    @*var url = '@Url.Action("BgEducationRecords", "Application")';
-                    var notifications = $("#tbl_BgEducations");
-                    setInterval(function () {
-                        notifications.load(url);
-                    }, 3000);*@
-                }
-            });
-          });
+        </tr>
+    }
+</table>
 
 
 
-
-        @*document.getElementsByName("BgDelete").on('click', function () {
-            var EducationID = parseInt(this.ID);
-            var title = this.title;
-            alert(this.ID + " " + this.title);
-            $.ajax({
-                type: 'GET',
-                url: '/Application/BgDelete',
-                data: { ID: EducationID },
-                success: function (result) {
-                //event.preventDefault();
-                    alert(title + " Deleted");
-                    var url = '@Url.Action("BgEducationRecords", "Application")';
-                    var notifications = $("#tbl_BgEducations");
-                    setInterval(function () {
-                        notifications.load(url);
-                    }, 3000);
-                }
-            });
-          });*@
+@*test test test test test*@
 
 
-    $("#Add").on('click', function () {
-        var arr = {
-            InstitutionName: $('#InstitutionName').val(),
-            Faculty: $('#Faculty').val(),
-            InsturactionLang: $('#InsturactionLang').val(),
-            InsCountry: $('#InsCountry').val(),
-            StudyMode: $('#StudyMode').val(),
-            EducationLevel: $('#EducationLevel').val(),
-            EducationStDate: $('#EducationStDate').val(),
-            EducationCompDate: $('#EducationCompDate').val(),
-            Awarded: $('#ChkAwarded').prop('checked'),
-            AvarageGrade: parseFloat($('#AvarageGrade').val())
-        };
-        alert(JSON.stringify(arr));
+<script type="text/javascript">
+
+
+
+    $('#BgDelete').on('click', function () {
+        var EducationID = parseInt(this.name);
+        var title = this.title;
         $.ajax({
-            type: 'POST',
-            url: '/Application/BgAdd',
-            contentType: "application/json; charset=utf-8",
-            cache: 'false',
-            dataType: "json",
-            data: JSON.stringify(arr),
-            success: function (data) {
-                alert("Adding Process done...");
-                history.go(0);
-                //location.reload(); 
-                @*var url = '@Url.Action("BgEducationRecords", "Application")';
-                var notifications = $("#tbl_BgEducations");
-                 setInterval(function () {
-                     notifications.load(url);
-                 }, 3000);*@
+            type: 'GET',
+            url: '/Application/BgDelete',
+            data: { ID: EducationID },
+            success: function (result) {
+                ResetTexts();
             }
         });
     });
 
 
+    function ResetTexts() {
+        document.getElementById('InstitutionName').value = null;
+        document.getElementById('Faculty').value = null;
+        document.getElementById('InsCountry').value = null;
+        document.getElementById('StudyMode').value = null;
+        document.getElementById('EducationLevel').value = null;
+        document.getElementById('EducationStDate').value = null;
+        document.getElementById('EducationCompDate').value = null;
+        document.getElementById('AvarageGrade').value = null;
 
-    </script>
+    }
 
-    <script src="~/Content/Scripts/bootstrap.min.js"></script>
+
+
+
+
+</script>
+
+<script src="~/Content/Scripts/bootstrap.min.js"></script>

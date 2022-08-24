@@ -68,8 +68,10 @@ namespace StudentApp.Controllers
                     PhoneNumber = App.PhoneNumber,
                     userId = (int)App.UserId,
                     Zip = App.Zip,
+                    BgEducation1 = bgEducation,
                     WorkExp = workExp,
                     FtEducation = ftEducation
+               
                 };
                 ViewBag.Email = db.Users.Find(application.ID).Email;
                 ViewBag.StApplication = StApplication;
@@ -181,6 +183,7 @@ namespace StudentApp.Controllers
                 PhoneNumber = App.PhoneNumber,
                 userId = (int)App.UserId,
                 Zip = App.Zip,
+                BgEducation1 = bgEducation,
                 WorkExp = workExp,
                 FtEducation = ftEducation
             };
@@ -234,7 +237,7 @@ namespace StudentApp.Controllers
                     .Replace("@@FatherSurname", StApplication.FatherSurname)
                     .Replace("@@MotherName", StApplication.MotherName)
                     .Replace("@@MotherSurname", StApplication.MotherSurname)
-                    .Replace("@@Email", ViewBag.Email)
+                    .Replace("@@Email", StApplication.Email)
                     .Replace("@@PhoneNumber", StApplication.PhoneNumber)
                     .Replace("@@PassaportNumber", StApplication.PassaportNumber.ToString())
                     .Replace("@@PassStartDate", StApplication.PassStartDate.ToString())
@@ -266,7 +269,7 @@ namespace StudentApp.Controllers
                     .Replace("@@JobType", StApplication.WorkExp.JobType)
                     .Replace("@@EmployeeAdress", StApplication.WorkExp.EmployeeAdress)
                     .Replace("@@ManagerName", StApplication.WorkExp.ManagerName)
-                    .Replace("@@EmployeePhone", StApplication.WorkExp.EmployeeMail)
+                    .Replace("@@EmployeePhone", StApplication.WorkExp.EmployeePhone)
                     .Replace("@@EmployeeMail", StApplication.WorkExp.EmployeeMail)
                     .Replace("@@JobDescription", StApplication.WorkExp.JobDescription)
                     .Replace("@@LangCert", StApplication.LanguageCert.LangCert.ToString())
@@ -280,10 +283,10 @@ namespace StudentApp.Controllers
                     .Replace("@@CertOther", langPoints["CertOther"])
                     .Replace("@@TestDate", langPoints["TestDate"]);
 
-                //path = ;
                 fs.Close();
             }
             System.IO.File.WriteAllText(Server.MapPath($"~/Content/{StApplication.ID}_Application.html"), xm);
+
             return new ActionAsPdf($"../Content/{StApplication.ID}_Application.html")
             {
                 FileName = "Application.pdf"

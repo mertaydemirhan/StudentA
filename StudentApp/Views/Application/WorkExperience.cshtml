@@ -1,55 +1,107 @@
-﻿@model StudentApp.ObjectModels.Application
+﻿@model IEnumerable<StudentApp.Models.WorkExperiences>
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<div id="4" class="page">
-    <h2>Work Experience</h2>
-    <p class="subtitle">
-        If you have relevant work experience, please provide
-        details
-    </p>
-
-    <div class="row">
-        <div class="col-lg-6">
-            <label> Company Name</label>
-            @Html.TextBoxFor(m => m.WorkExp.CompanyName, new { @class = "form-control" })
-        </div>
-
-        <div class="col-lg-6">
-            <label>Position</label>
-            @Html.TextBoxFor(m => m.WorkExp.Position, new { @class = "form-control" })
-        </div>
-    </div>
-
-    <label>Job Type</label>
-    @Html.DropDownListFor(x => x.WorkExp.JobType, new SelectList(new List<string>
-        { "Full-Time", "Part-Time" }), new { rel = "0", @class = "form-select" })
 
 
-    <div class="row">
-        <div class="col-lg-6">
-            <label>Employee address</label>
-            @Html.TextBoxFor(m => m.WorkExp.EmployeeAdress, new { @class = "form-control" })
-        </div>
+<table class="table" id="tbl_WorkExps" style=" margin-top:10px;">
+    <tr>
+        <th>
+            @Html.Label("CompanyName", new { @class = "font-weight-bold" })
+        </th>
+        <th>
+            @Html.Label("Position", new { @class = "font-weight-bold" })
+        </th>
+        <th>
+            @Html.Label("ManagerName", new { @class = "font-weight-bold" })
+        </th>
+        <th>
+            @Html.Label("EmployeeMail", new { @class = "font-weight-bold" })
+        </th>
+    </tr>
 
-        <div class="col-lg-6">
-            <label>Manager name</label>
-            @Html.TextBoxFor(m => m.WorkExp.ManagerName, new { @class = "form-control" })
-        </div>
-    </div>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <span style="font-weight:bold; color:tomato; "> @Html.DisplayFor(modelItem => item.CompanyName)</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManagerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeMail)
+                </td>
+                <td>
+                    <button id="WorkExpDelete" class="btn btn-danger" name="@item.ID" title="@item.CompanyName">Delete</button>
+                    @*<a href="@Url.Action("FullScreen", "Application", new { Id = item.ID })" id="ViewScreen" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
+                    <a href="@Url.Action("Download", "Application", new { Id = item.ID })" class="btn btn-success"><span class="fa fa-download"></span> Download</a>*@
+                    <a href="#" id="ViewScreen" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
+                    <a href="#" class="btn btn-success"><span class="fa fa-edit"></span> Edit</a>
+                </td>
 
-    <div class="row">
-        <div class="col-lg-6">
-            <label>Employee Email</label>
-            @Html.TextBoxFor(m => m.WorkExp.EmployeeMail, new { @class = "form-control " })
-        </div>
+            </tr>
+        }
+    }
 
-        <div class="col-lg-6">
-            <label>Employee Phone</label>
-            @Html.TextBoxFor(m => m.WorkExp.EmployeePhone, new { @class = "form-control" })
-        </div>
-    </div>
+    @if (Model.ToList().Count < 1)
+    {
+        <tr>
+            <td>
+                <span style="font-weight:bold; color:tomato; "> There is No Background education</span>
+            </td>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                &nbsp;
+            </td>
 
-    <label>Job Description</label>
-    @Html.TextAreaFor(m => m.WorkExp.JobDescription, new { @class = "form-control" })
-</div>
+        </tr>
+    }
+</table>
+
+
+
+@*test test test test test*@
+
+
+<script type="text/javascript">
+
+
+
+    $('#WorkExpDelete').on('click', function () {
+        var EducationID = parseInt(this.name);
+        var title = this.title;
+        $.ajax({
+            type: 'GET',
+            url: '/Application/WorkExpDelete',
+            data: { ID: EducationID },
+            success: function (result) {
+                //ResetTexts();
+            }
+        });
+    });
+
+
+    function ResetTextsWorkExp() {
+        document.getElementById('CompanyName').value = null;
+        document.getElementById('EmployeeAdress').value = null;
+        document.getElementById('EmployeeMail').value = null;
+        document.getElementById('EmployeePhone').value = null;
+        document.getElementById('ManagerName').value = null;
+        document.getElementById('JobType').value = null;
+        document.getElementById('Position').value = null;
+        document.getElementById('JobDescription').value = null;
+    }
+
+
+
+
+
+</script>
 <script src="~/Content/Scripts/bootstrap.min.js"></script>
