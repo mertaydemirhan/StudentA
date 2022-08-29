@@ -5,6 +5,7 @@
 @using (Html.BeginForm("UpdateApplication", "Application", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "col-md-9", @style = "margin-bottom:50px" }))
 {
     <h3 class="title text-center">Personal Details</h3>
+    @* Student INFORMATION PART*@
     <div id="1" class="page active" onload="pagerefresh()">
         <h2>Student Information</h2>
         <div>
@@ -188,7 +189,7 @@
             @Html.TextBoxFor(x => x.CountryCitizenship, new { @class = "form-control" })
         </div>
     </div>
-    // background education Partial View will comes..... Progress
+    @* Educational Background PART*@
     <div id="2" class="page">
         @*id="2" class="page"*@
         <h2>Educational Background</h2>
@@ -288,78 +289,71 @@
                 Html.RenderAction("BgEducationRecords", "Application"); }
         </div>
     </div>
+    @* Future Education  PART*@
+    <div id="3" class="page"> @{ Html.RenderPartial("FutureEducation");} </div>
+    @* Work Experience PART*@
+    <div id="4" class="page">
+        <h2>Work Experience</h2>
+        <p class="subtitle">
+            If you have relevant work experience, please provide
+            details
+        </p>
 
-    // Future Education Partial View will comes... Progress
-    <div>
-        @{ Html.RenderPartial("FutureEducation");}
-    </div>
-    // Work Experience Partial View will comes.. Progress
-<div id="4" class="page">
-    <h2>Work Experience</h2>
-    <p class="subtitle">
-        If you have relevant work experience, please provide
-        details
-    </p>
+        <div class="row">
+            <div class="col-lg-6">
+                <label> Company Name</label>
+                <input type="text" id="CompanyName" class="form-control">
+            </div>
 
-    <div class="row">
-        <div class="col-lg-6">
-            <label> Company Name</label>
-            <input type="text" id="CompanyName" class="form-control">
+            <div class="col-lg-6">
+                <label>Position</label>
+                <input type="text" id="Position" class="form-control">
+            </div>
         </div>
 
-        <div class="col-lg-6">
-            <label>Position</label>
-            <input type="text" id="Position" class="form-control">
-        </div>
-    </div>
+        <label>Job Type</label>
+        <select name="JobType" id="JobType" class="form-select">
+            <option value="Full-Time">Full-Time</option>
+            <option value="Part-Time">Part-Time</option>
 
-    <label>Job Type</label>
-    <select name="JobType" id="JobType" class="form-select">
-        <option value="Full-Time">Full-Time</option>
-        <option value="Part-Time">Part-Time</option>
-
-    </select>
+        </select>
 
 
-    <div class="row">
-        <div class="col-lg-6">
-            <label>Employee address</label>
-            <input type="text" id="EmployeeAdress" class="form-control">
-        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Employee address</label>
+                <input type="text" id="EmployeeAdress" class="form-control">
+            </div>
 
-        <div class="col-lg-6">
-            <label>Manager name</label>
-            <input type="text" id="ManagerName" class="form-control">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-6">
-            <label>Employee Email</label>
-            <input type="text" id="EmployeeMail" class="form-control">
+            <div class="col-lg-6">
+                <label>Manager name</label>
+                <input type="text" id="ManagerName" class="form-control">
+            </div>
         </div>
 
-        <div class="col-lg-6">
-            <label>Employee Phone</label>
-            <input type="text" id="EmployeePhone" class="form-control">
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Employee Email</label>
+                <input type="text" id="EmployeeMail" class="form-control">
+            </div>
+
+            <div class="col-lg-6">
+                <label>Employee Phone</label>
+                <input type="text" id="EmployeePhone" class="form-control">
+            </div>
         </div>
+
+        <label>Job Description</label>
+        <textarea id="JobDescription" class="form-control"></textarea>
+        <label id="AddWorkExps" class="btn btn-success">Add To List</label>
+        <div>
+            @{ Html.RenderAction("WorkExperiences", "Application");}
+        </div>
+
     </div>
-
-    <label>Job Description</label>
-    <textarea id="JobDescription" class="form-control"></textarea>
-    <label id="AddWorkExps" class="btn btn-success">Add To List</label>
-    <div>
-        @{ Html.RenderAction("WorkExperiences", "Application");}
-    </div>
-</div>
-
-
-    // Language Certificates Partial View will comes... Progress
-    <div>
-        @{ Html.RenderPartial("LanguageCertificates"); }
-    </div>
-
-
+    @* Language Certificates PART*@
+    <div id="5" class="page"> @{ Html.RenderPartial("LanguageCertificates"); }  </div>
+    @* Upload Files PART*@
     <form id="UploadFiles">
         <div id="6" class="page">
             <div id="Submitform">
@@ -453,11 +447,9 @@
                 Back
             </button>
         </div>
+
     </form>
-
 }
-
-
 
 <script>
 
@@ -607,7 +599,7 @@
 
 
     // Language Certificates PART
-      
+
 
 </script>
 
