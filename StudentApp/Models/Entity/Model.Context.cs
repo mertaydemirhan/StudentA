@@ -27,17 +27,17 @@ namespace StudentApp.Models.Entity
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<BgEducation> BgEducations { get; set; }
         public virtual DbSet<FtEducation> FtEducations { get; set; }
         public virtual DbSet<LanguageCert> LanguageCerts { get; set; }
         public virtual DbSet<LocalUser> LocalUsers { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Upload> Uploads { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WorkExp> WorkExps { get; set; }
-        public virtual DbSet<Admin> Admins { get; set; }
-        public virtual DbSet<Message> Messages { get; set; }
     
         public virtual int Application_Del(Nullable<int> appID)
         {

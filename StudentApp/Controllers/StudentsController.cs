@@ -1,14 +1,16 @@
-﻿using NReco.PdfGenerator;
-using Rotativa;
+﻿using Rotativa;
 using StudentApp.Attributes;
+using StudentApp.Models;
 using StudentApp.Models.Entity;
 //using StudentApp.ObjectModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -29,9 +31,10 @@ namespace StudentApp.Controllers
             try
             {
                 var  App = db.Applications.Where(x => x.UserId == application.ID).FirstOrDefault();
-                var bgEducation = db.BgEducations.Where(x => x.AppID == App.ID).FirstOrDefault();
+                var bgEducation = db.BgEducations.Where(x => x.AppID == App.ID).ToList();
+                Session["userID"] = App.UserId;
                 var ftEducation = db.FtEducations.Where(x => x.AppId == App.ID).FirstOrDefault();
-                var workExp = db.WorkExps.Where(x => x.AppId == App.ID).FirstOrDefault();
+                var workExp = db.WorkExps.Where(x => x.AppId == App.ID).ToList();
                 var LangCert = db.LanguageCerts.Where(x => x.AppId == App.ID).FirstOrDefault();
                 var uploaded = db.Uploads.Where(x => x.AppId == App.ID).FirstOrDefault();
                 StApplication = new ObjectModels.Application
@@ -69,6 +72,7 @@ namespace StudentApp.Controllers
                     userId = (int)App.UserId,
                     Zip = App.Zip,
                     BgEducation1 = bgEducation,
+                    Upload1 = uploaded,
                     WorkExp = workExp,
                     FtEducation = ftEducation
                
@@ -144,9 +148,9 @@ namespace StudentApp.Controllers
         {
             int fr = (int)Session["ApplicationID"];
             var App = db.Applications.Where(x => x.ID == fr).FirstOrDefault();
-            var bgEducation = db.BgEducations.Where(x => x.AppID == App.ID).FirstOrDefault();
-            var ftEducation = db.FtEducations.Where(x => x.AppId == App.ID).FirstOrDefault();
-            var workExp = db.WorkExps.Where(x => x.AppId == App.ID).FirstOrDefault();
+            var bgEducation = db.BgEducations.Where(x => x.AppID == App.ID).ToList();
+            var ftEducation = db.FtEducations.Where(x => x.AppId == App.ID).FirstOrDefault() ;
+            var workExp = db.WorkExps.Where(x => x.AppId == App.ID).ToList();
             var LangCert = db.LanguageCerts.Where(x => x.AppId == App.ID).FirstOrDefault();
             var uploaded = db.Uploads.Where(x => x.AppId == App.ID).FirstOrDefault();
             var StApplication = new ObjectModels.Application
@@ -185,6 +189,7 @@ namespace StudentApp.Controllers
                 Zip = App.Zip,
                 BgEducation1 = bgEducation,
                 WorkExp = workExp,
+                Upload1 =uploaded,
                 FtEducation = ftEducation
             };
             string xm = "";
@@ -199,7 +204,7 @@ namespace StudentApp.Controllers
                     langPoints.Add("OverallScore", StApplication.LanguageCert.OverallScoreTOEFL.ToString());
                     langPoints.Add("CertNo", StApplication.LanguageCert.CertNoTOEFL.ToString());
                     langPoints.Add("CertOther", StApplication.LanguageCert.CertOtherTOEFL.ToString());
-                    langPoints.Add("TestDate", StApplication.LanguageCert.TestDateTOEFL.ToString());
+                    langPoints.Add("TestDate", StApplication.LanguageCert.TestDateTOEFL.Value.ToString("dd-MM-yyyy"));
                  break;
                 case "IELTS Academic":
                     langPoints.Add("Listening", StApplication.LanguageCert.ListeningIELTS.ToString());
@@ -209,7 +214,7 @@ namespace StudentApp.Controllers
                     langPoints.Add("OverallScore", StApplication.LanguageCert.OverallScoreIELTS.ToString());
                     langPoints.Add("CertNo", StApplication.LanguageCert.CertNoIELTS.ToString());
                     langPoints.Add("CertOther", StApplication.LanguageCert.CertOtherIELTS.ToString());
-                    langPoints.Add("TestDate", StApplication.LanguageCert.TestDateIELTS.ToString());
+                    langPoints.Add("TestDate", StApplication.LanguageCert.TestDateIELTS.Value.ToString("dd-MM-yyyy"));
                     break;
                 case "Other":
                     break;
@@ -218,6 +223,12 @@ namespace StudentApp.Controllers
             }
             using (var fs = new StreamReader(Server.MapPath("~/Models/PDFTemplate.html")))
             {
+                StringBuilder sbBG = new StringBuilder();
+                StringBuilder sbWE = new StringBuilder();
+                var WEList = workExp.ToList();
+                var bgList = bgEducation.ToList();
+                sbBG.Append(Utils.GetHTMLBG(bgList));
+                sbWE.Append(Utils.GetHTMLWorkExp(WEList));
                 xm = fs.ReadToEnd();
                 xm = xm.Replace("@@Name", StApplication.Name)
                     .Replace("@@Surname", StApplication.Surname)
@@ -229,7 +240,7 @@ namespace StudentApp.Controllers
                     .Replace("@@State", StApplication.State)
                     .Replace("@@Zip", StApplication.Zip)
                     .Replace("@@Country", StApplication.Country)
-                    .Replace("@@DateofBirth", StApplication.DateofBirth.ToString())
+                    .Replace("@@DateofBirth", StApplication.DateofBirth.Value.ToString("dd-MM-yyyy"))
                     .Replace("@@CountryofBirth", StApplication.CountryofBirth)
                     .Replace("@@CitizenshipMain", StApplication.CitizenshipMain)
                     .Replace("@@PlaceofBirth", StApplication.PlaceofBirth)
@@ -240,13 +251,13 @@ namespace StudentApp.Controllers
                     .Replace("@@Email", StApplication.Email)
                     .Replace("@@PhoneNumber", StApplication.PhoneNumber)
                     .Replace("@@PassaportNumber", StApplication.PassaportNumber.ToString())
-                    .Replace("@@PassStartDate", StApplication.PassStartDate.ToString())
-                    .Replace("@@PassExpireDate", StApplication.PassExpireDate.ToString())
+                    .Replace("@@PassStartDate", StApplication.PassStartDate.Value.ToString("dd-MM-yyyy"))
+                    .Replace("@@PassExpireDate", StApplication.PassExpireDate.Value.ToString("dd-MM-yyyy"))
                     .Replace("@@IssuingAuthority", StApplication.IssuingCountry)
                     .Replace("@@IssuingCountry", StApplication.IssuingCountry)
                     .Replace("@@NationalId", StApplication.NationalId)
-                    .Replace("@@IdStartDate", StApplication.IdStartDate.ToString())
-                    .Replace("@@IdExpireDate", StApplication.IdExpireDate.ToString())
+                    .Replace("@@IdStartDate", StApplication.IdStartDate.Value.ToString("dd-MM-yyyy"))
+                    .Replace("@@IdExpireDate", StApplication.IdExpireDate.Value.ToString("dd-MM-yyyy"))
                     .Replace("@@CountryCitizenship", StApplication.CountryCitizenship)
                     .Replace("@@FtCountry1", StApplication.FtEducation.Country1)
                     .Replace("@@FtCountry2", StApplication.FtEducation.Country2)
@@ -254,24 +265,24 @@ namespace StudentApp.Controllers
                     .Replace("@@FtEducationLevel", StApplication.FtEducation.EducationLevel)
                     .Replace("@@Ftintake", StApplication.FtEducation.Intake)
                     .Replace("@@FtAcademicYear", StApplication.FtEducation.AcademicYear.ToString())
-                    .Replace("@@StudyMode", StApplication.BgEducation1.StudyMode)
-                    .Replace("@@InstitutionName", StApplication.BgEducation1.InstitutionName)
-                    .Replace("@@Faculty", StApplication.BgEducation1.Faculty)
-                    .Replace("@@InsturactionLang", StApplication.BgEducation1.InsturactionLang)
-                    .Replace("@@InsCountry", StApplication.BgEducation1.InsCountry)
-                    .Replace("@@BgEducationLevel", StApplication.BgEducation1.EducationLevel)
-                    .Replace("@@EducationStDate", StApplication.BgEducation1.EducationStDate.ToString())
-                    .Replace("@@EducationCompDate", StApplication.BgEducation1.EducationCompDate.ToString())
-                    .Replace("@@Awarded", StApplication.BgEducation1.Awarded.ToString())
-                    .Replace("@@AvarageGrade", StApplication.BgEducation1.AvarageGrade.ToString())
-                    .Replace("@@CompanyName", StApplication.WorkExp.CompanyName)
-                    .Replace("@@Position", StApplication.WorkExp.Position)
-                    .Replace("@@JobType", StApplication.WorkExp.JobType)
-                    .Replace("@@EmployeeAdress", StApplication.WorkExp.EmployeeAdress)
-                    .Replace("@@ManagerName", StApplication.WorkExp.ManagerName)
-                    .Replace("@@EmployeePhone", StApplication.WorkExp.EmployeePhone)
-                    .Replace("@@EmployeeMail", StApplication.WorkExp.EmployeeMail)
-                    .Replace("@@JobDescription", StApplication.WorkExp.JobDescription)
+                    .Replace("@@sbHtmlBG", sbBG.ToString())
+                    //.Replace("@@InstitutionName", StApplication.BgEducation1.InstitutionName)
+                    //.Replace("@@Faculty", StApplication.BgEducation1.Faculty)
+                    //.Replace("@@InsturactionLang", StApplication.BgEducation1.InsturactionLang)
+                    //.Replace("@@InsCountry", StApplication.BgEducation1.InsCountry)
+                    //.Replace("@@BgEducationLevel", StApplication.BgEducation1.EducationLevel)
+                    //.Replace("@@EducationStDate", StApplication.BgEducation1.EducationStDate.ToString())
+                    //.Replace("@@EducationCompDate", StApplication.BgEducation1.EducationCompDate.ToString())
+                    //.Replace("@@Awarded", StApplication.BgEducation1.Awarded.ToString())
+                    //.Replace("@@AvarageGrade", StApplication.BgEducation1.AvarageGrade.ToString())
+                    //.Replace("@@CompanyName", StApplication.WorkExp.CompanyName)
+                    //.Replace("@@Position", StApplication.WorkExp.Position)
+                    //.Replace("@@JobType", StApplication.WorkExp.JobType)
+                    //.Replace("@@EmployeeAdress", StApplication.WorkExp.EmployeeAdress)
+                    //.Replace("@@ManagerName", StApplication.WorkExp.ManagerName)
+                    //.Replace("@@EmployeePhone", StApplication.WorkExp.EmployeePhone)
+                    //.Replace("@@EmployeeMail", StApplication.WorkExp.EmployeeMail)
+                    .Replace("@@sbHtmlWorkExp", sbWE.ToString())
                     .Replace("@@LangCert", StApplication.LanguageCert.LangCert.ToString())
                     .Replace("@@CertType", StApplication.LanguageCert.CertType)
                     .Replace("@@Listening", langPoints["Listening"])
@@ -299,6 +310,67 @@ namespace StudentApp.Controllers
         public ActionResult Download()
         {
             return View();
+        }
+        public PartialViewResult EduBGAdmin()
+        {
+            var userID = (int)Session["userID"];
+            var AppID = db.Applications.Where(X => X.UserId == userID).FirstOrDefault().ID;
+            var BgEducation1 = (from p in db.BgEducations
+                                where p.AppID == AppID
+                                select new BgEducationRecords
+                                {
+                                    ID = p.ID,
+                                    InsCountry = p.InsCountry,
+                                    InstitutionName = p.InstitutionName,
+                                    InsturactionLang = p.InsturactionLang,
+                                    AppID = p.AppID,
+                                    AvarageGrade = p.AvarageGrade,
+                                    Awarded = p.Awarded,
+                                    EducationCompDate = p.EducationCompDate,
+                                    EducationLevel = p.EducationLevel,
+                                    EducationStDate = p.EducationStDate,
+                                    Faculty = p.Faculty,
+                                    StudyMode = p.StudyMode
+                                }).ToList();
+
+            return PartialView("/Views/Students/EduBGAdmin.cshtml", BgEducation1.AsEnumerable());
+        }
+        public PartialViewResult UploadFiles()
+        {
+            var userID = (int)Session["userID"];
+            var AppID = db.Applications.Where(X => X.UserId == userID).FirstOrDefault().ID;
+            var UplaodFiles = (from p in db.Uploads
+                                where p.AppId == AppID
+                                select new UploadedFiles
+                                {
+                                    Id = p.Id,
+                                    File_AppID = p.AppId,
+                                    FileName = p.FileName,
+                                    FileType = p.FileType
+                                }).ToList();
+
+            return PartialView("/Views/Students/UploadFiles.cshtml", UplaodFiles.AsEnumerable());
+        }
+        public PartialViewResult WorkExpAdmin()
+        {
+            var userID = (int)Session["userID"];
+            var AppID = db.Applications.Where(X => X.UserId == userID).FirstOrDefault().ID;
+            var WorkExp = (from p in db.WorkExps
+                           where p.AppId == AppID
+                           select new WorkExperiences
+                           {
+                               ID = p.ID,
+                               CompanyName = p.CompanyName,
+                               AppId = p.AppId,
+                               EmployeeAdress = p.EmployeeAdress,
+                               EmployeeMail = p.EmployeeMail,
+                               EmployeePhone = p.EmployeePhone,
+                               JobDescription = p.JobDescription,
+                               JobType = p.JobType,
+                               ManagerName = p.ManagerName,
+                               Position = p.Position
+                           }).ToList();
+            return PartialView("~/Views/Students/WorkExpAdmin.cshtml", WorkExp.AsEnumerable());
         }
 
 

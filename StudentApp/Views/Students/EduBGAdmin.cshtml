@@ -1,0 +1,74 @@
+﻿@model IEnumerable<StudentApp.Models.BgEducationRecords>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.InstitutionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Faculty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsturactionLang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsCountry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudyMode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EducationLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EducationStDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EducationCompDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AvarageGrade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Awarded)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.InstitutionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Faculty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsturactionLang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsCountry)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudyMode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EducationLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EducationStDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EducationCompDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AvarageGrade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Awarded)
+        </td>
+    </tr>
+}
+
+</table>

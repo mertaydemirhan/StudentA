@@ -46,9 +46,9 @@ namespace StudentApp.ObjectModels
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public Nullable<System.DateTime> IdExpireDate { get; set; }
         public string CountryCitizenship { get; set; }
-        public  Models.Entity.BgEducation BgEducation1 { get; set; }
+        public  List< Models.Entity.BgEducation> BgEducation1 { get; set; }
         public  FtEducation FtEducation { get; set; }
-        public  WorkExp WorkExp { get; set; }
+        public  List<WorkExp> WorkExp { get; set; }
         public  LanguageCert LanguageCert { get; set; }
         public Models.UploadedFiles UploadedFiles { get; set; }
         public Models.Entity.Upload Upload1 { get; set; }

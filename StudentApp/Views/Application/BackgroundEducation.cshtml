@@ -2,8 +2,7 @@
 
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-
-
+s
 <table class="table" id="tbl_BgEducations" style=" margin-top:10px;">
     <tr>
         <th>
@@ -40,8 +39,8 @@
                 <td>
                     <button id="BgDelete" class="btn btn-danger" name="@item.ID" title="@item.InstitutionName">Delete</button>
                     @*<a href="@Url.Action("FullScreen", "Application", new { Id = item.ID })" id="ViewScreen" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
-                    <a href="@Url.Action("Download", "Application", new { Id = item.ID })" class="btn btn-success"><span class="fa fa-download"></span> Download</a>*@
-                    <a href="#" id="ViewScreen" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
+                        <a href="@Url.Action("Download", "Application", new { Id = item.ID })" class="btn btn-success"><span class="fa fa-download"></span> Download</a>*@
+                    <a href="#" id="ViewScreen" class="btn btn-warning" name="@item.ID"><span class="fa fullscreen"></span>View</a>
                     <a href="#" class="btn btn-success"><span class="fa fa-edit"></span> Edit</a>
                 </td>
 
@@ -66,12 +65,34 @@
     }
 </table>
 
+<form id="ViewForm">
 
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    @*test test test test test*@
+</form>
 
-@*test test test test test*@
 
 
 <script type="text/javascript">
+
 
 
 
@@ -88,6 +109,19 @@
         });
     });
 
+
+    $('#ViewScreen').on('click', function () {
+
+        var $form = $('#ViewForm');
+        $.post($form.attr("action"), $form.serialize()).done(function (res) {
+            $mymodal = $("#myModal");
+            //update the modal's body with the response received
+            $mymodal.find("div.modal-body").html(res);
+            // Show the modal
+            $mymodal.modal("show");
+        });
+
+    });
 
     function ResetTexts() {
         document.getElementById('InstitutionName').value = null;

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<StudentApp.Models.WorkExperiences>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeePhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Application.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeAdress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManagerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeMail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeePhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application.Name)
+            </td>
+
+        </tr>
+    }
+
+</table>

@@ -19,7 +19,7 @@ namespace StudentApp.Models.Entity
         public string FilePath { get; set; }
         public int AppId { get; set; }
         public string FileName { get; set; }
-    
+        public IEnumerable<Upload> Uploads { get; set; }
         public virtual Application Application { get; set; }
     }
 }

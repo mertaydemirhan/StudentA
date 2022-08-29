@@ -1,0 +1,67 @@
+﻿@model IEnumerable<StudentApp.Models.Entity.Admin>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DataGrid.cshtml";
+}
+
+<h2>Manage Admins</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mail)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.IsPowered)
+            </th>
+        </tr>
+    </thead>
+
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mail)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.IsPowered)
+            </th>
+        </tr>
+    </tfoot>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Mail)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPowered)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-success" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

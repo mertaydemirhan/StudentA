@@ -183,114 +183,7 @@
 
         <div id="2">
             <h2 class="title">Educational Background</h2>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Intitution name</label>
-                    <p>@Html.DisplayFor(x => x.BgEducation1.InstitutionName)</p>
-                </div>
-                <div class="col-lg-6">
-                    <label>Faculty</label>
-                    <p>@Html.DisplayFor(x => x.BgEducation1.Faculty)</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Instruction Language</label>
-                    <p>@Html.DisplayFor(x => x.BgEducation1.InsturactionLang)</p>
-                </div>
-                <div class="col-lg-6">
-                    <label>Institution Country</label>
-                    <p>@Html.DisplayFor(x => x.BgEducation1.InsCountry)</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Study Mode</label>
-                    <p>@Html.DisplayFor(x => x.BgEducation1.StudyMode)</p>
-                </div>
-                <div class="col-lg-6">
-                    <label>Educational Level</label>
-
-                    <p>@Html.DisplayFor(x => x.BgEducation1.EducationLevel)</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Start date</label>
-                    <p>
-                        @{
-                            string parameterValue1 = null;
-                            if (Model.BgEducation1 != null)
-                            {
-                                if (Model.BgEducation1.EducationStDate != null)
-                                {
-                                    parameterValue1 = Model.BgEducation1.EducationStDate.Value.ToShortDateString();
-                                    @Html.DisplayFor(x => parameterValue1)
-                                }
-                                else
-                                {
-                                    Html.Label("01/01/1900");
-                                }
-
-                            }
-                            else
-                            {
-                                Html.Label("01/01/1900");
-                            }
-                        }
-
-                    </p>
-                </div>
-                <div class="col-lg-6">
-                    <label>Completion date</label>
-                    <p>
-                        @{
-                            string parameterValue3 = null;
-                            if (Model.BgEducation1 != null)
-                            {
-                                if(Model.BgEducation1.EducationCompDate != null)
-                                {
-                                    parameterValue3 = Model.BgEducation1.EducationCompDate.Value.ToShortDateString();
-                                    @Html.DisplayFor(x => parameterValue3);
-                                }
-                                else
-                                {
-                                    Html.Label("01/01/1900");
-                                }
-
-                            }
-                            else
-                            {
-                                Html.Label("01/01/1900");
-                            }
-                        }
-                    </p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Awarded</label>
-                    <div class="form-check form-switch fs-5">
-                        <input disabled
-                               class="form-check-input"
-                               type="checkbox"
-                               role="switch"
-                               checked="@Model.BgEducation1.Awarded.ToString()" />
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <label>Average grade</label>
-                    <p>@Html.DisplayFor(x => x.BgEducation1.AvarageGrade)</p>
-                </div>
-            </div>
-        </div>
-
-        <hr />
+            @{ Html.RenderAction("EduBGAdmin", "Students"); }
 
         <div id="3">
             <h2 class="title">Future Education</h2>
@@ -334,48 +227,50 @@
         <div id="4">
             <h2 class="title">Work Experience</h2>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Company Name</label>
-                    <p>@Html.DisplayFor(x => x.WorkExp.CompanyName)</p>
-                </div>
-                <div class="col-lg-6">
-                    <label>Position</label>
-                    <p>@Html.DisplayFor(x => x.WorkExp.Position)</p>
-                </div>
-            </div>
+            @{Html.RenderAction("WorkExpAdmin", "Students"); }
 
-            <div class="row col-lg-12">
-                <label>Job Type</label>
-                <p>@Html.DisplayFor(x => x.WorkExp.JobType)</p>
+            @*<div class="row">
+            <div class="col-lg-6">
+                <label>Company Name</label>
+                <p>@Html.DisplayFor(x => x.WorkExp.CompanyName)</p>
             </div>
+            <div class="col-lg-6">
+                <label>Position</label>
+                <p>@Html.DisplayFor(x => x.WorkExp.Position)</p>
+            </div>
+        </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Employee address</label>
-                    <p>@Html.DisplayFor(x => x.WorkExp.EmployeeAdress)</p>
-                </div>
-                <div class="col-lg-6">
-                    <label>Manager name</label>
-                    <p>@Html.DisplayFor(x => x.WorkExp.ManagerName)</p>
-                </div>
-            </div>
+        <div class="row col-lg-12">
+            <label>Job Type</label>
+            <p>@Html.DisplayFor(x => x.WorkExp.JobType)</p>
+        </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Employee Email</label>
-                    <p>@Html.DisplayFor(x => x.WorkExp.EmployeeMail)</p>
-                </div>
-                <div class="col-lg-6">
-                    <label>Employee Phone</label>
-                    <p>@Html.DisplayFor(x => x.WorkExp.EmployeePhone)</p>
-                </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Employee address</label>
+                <p>@Html.DisplayFor(x => x.WorkExp.EmployeeAdress)</p>
             </div>
+            <div class="col-lg-6">
+                <label>Manager name</label>
+                <p>@Html.DisplayFor(x => x.WorkExp.ManagerName)</p>
+            </div>
+        </div>
 
-            <div class="row col-lg-12">
-                <label>Job Description</label>
-                <p>@Html.DisplayFor(x => x.WorkExp.JobDescription)</p>
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Employee Email</label>
+                <p>@Html.DisplayFor(x => x.WorkExp.EmployeeMail)</p>
             </div>
+            <div class="col-lg-6">
+                <label>Employee Phone</label>
+                <p>@Html.DisplayFor(x => x.WorkExp.EmployeePhone)</p>
+            </div>
+        </div>
+
+        <div class="row col-lg-12">
+            <label>Job Description</label>
+            <p>@Html.DisplayFor(x => x.WorkExp.JobDescription)</p>
+        </div>*@
         </div>
 
         <hr />
@@ -607,92 +502,93 @@
         <div id="6" class="documents">
             <h2 class="title">Submit Documents</h2>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Passport</label>
-                    <div class="filename">
-                        <p>stupidfilename.bmp</p>
-                        <img src="" />
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <label>National ID</label>
-                    <div class="filename">
-                        <p>stupidfilename.doc</p>
-                        <img src="" />
-                    </div>
+            @{Html.RenderAction("UploadFiles", "Students"); }
+            @*<div class="row">
+            <div class="col-lg-6">
+                <label>Passport</label>
+                <div class="filename">
+                    <p>@{ if(Model.Upload1.FileType=="Passport") { Html.LabelFor(x => x.Upload1.FileName.ToString()); }}</p>
+                    <img src="" />
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Diploma</label>
-                    <div class="filename">
-                        <p>stupidfilename.png</p>
-                        <img src="" />
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <label>Transcript</label>
-                    <div class="filename">
-                        <p>stupidfilename.gif</p>
-                        <img src="" />
-                    </div>
+            <div class="col-lg-6">
+                <label>National ID</label>
+                <div class="filename">
+                    <p>@{ if(Model.Upload1.FileType=="NationalID") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
+                    <img src="" />
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>CV</label>
-                    <div class="filename">
-                        <p>stupidfilename.jpeg</p>
-                        <img src="" />
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <label>IELTS or TOEFL Certificate</label>
-                    <div class="filename">
-                        <p>stupidfilename.jpg</p>
-                        <img src="" />
-                    </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Diploma</label>
+                <div class="filename">
+                    <p>@{ if (Model.Upload1.FileType == "Diploma") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
+                    <img src="" />
                 </div>
             </div>
-
-            <hr />
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Extra document 1</label>
-                    <div class="filename">
-                        <p>stupidfilename.pdf</p>
-                        <img src="" />
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <label>Extra document 2</label>
-                    <div class="filename">
-                        <p>stupidfilename.png</p>
-                        <img src="" />
-                    </div>
+            <div class="col-lg-6">
+                <label>Transcript</label>
+                <div class="filename">
+                    <p>@{ if (Model.Upload1.FileType == "Transcript") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
+                    <img src="" />
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Extra document 3</label>
-                    <div class="filename">
-                        <p>stupidfilename.bmp</p>
-                        <img src="" />
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <label>Extra document 4</label>
-                    <div class="filename">
-                        <p>stupidfilename.jpg</p>
-                        <img src="" />
-                    </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label>CV</label>
+                <div class="filename">
+                    <p>@{ if (Model.Upload1.FileType == "CV") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
+                    <img src="" />
                 </div>
             </div>
+            <div class="col-lg-6">
+                <label>IELTS or TOEFL Certificate</label>
+                <div class="filename">
+                    <p>@{ if (Model.Upload1.FileType == "IELTSorToeflCertificate") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
+                    <img src="" />
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Extra document 1</label>
+                <div class="filename">
+                    <p>@{ if (Model.Upload1.FileType == "Extradocument1") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
+                    <img src="" />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label>Extra document 2</label>
+                <div class="filename">
+                    <p>@{ if (Model.Upload1.FileType == "Extradocument2") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
+                    <img src="" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Extra document 3</label>
+                <div class="filename">
+                    <p>@{ if (Model.Upload1.FileType == "Extradocument3") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
+                    <img src="" />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label>Extra document 4</label>
+                <div class="filename">
+                    <p>@{ if (Model.Upload1.FileType == "Extradocument3") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
+                    <img src="" />
+                </div>
+            </div>
+        </div>*@
 
         </div>
         <div style="margin-top:30px">

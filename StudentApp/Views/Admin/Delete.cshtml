@@ -1,0 +1,50 @@
+﻿@model StudentApp.Models.Entity.Admin
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_DataGrid.cshtml";
+
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Admin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPowered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPowered)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index", new { id = Model.ID }, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

@@ -205,30 +205,30 @@
                         <div class="roww">
                             <div class="col-lg-8">
                                 <label>Intitution Name</label>
-                                <p>@Html.DisplayFor(x => x.BgEducation1.InstitutionName)</p>
+                                <p>@Html.DisplayFor(x => x.BgEducation1[0].InstitutionName)</p>
                             </div>
                             <div class="col-lg-8">
                                 <label>Faculty</label>
-                                <p>@Html.DisplayFor(x => x.BgEducation1.Faculty)</p>
+                                <p>@Html.DisplayFor(x => x.BgEducation1[0].Faculty)</p>
                             </div>
                             <div class="col-lg-8">
                                 <label>Instruction Language</label>
-                                <p>@Html.DisplayFor(x => x.BgEducation1.InsturactionLang)</p>
+                                <p>@Html.DisplayFor(x => x.BgEducation1[0].InsturactionLang)</p>
                             </div>
 
                         </div>
                         <div class="roww">
                             <div class="col-lg-8">
                                 <label>Institution Country</label>
-                                <p>@Html.DisplayFor(x => x.BgEducation1.InsCountry)</p>
+                                <p>@Html.DisplayFor(x => x.BgEducation1[0].InsCountry)</p>
                             </div>
                             <div class="col-lg-8">
                                 <label>Educational Level</label>
-                                <p>@Html.DisplayFor(x => x.BgEducation1.EducationLevel)</p>
+                                <p>@Html.DisplayFor(x => x.BgEducation1[0].EducationLevel)</p>
                             </div>
                             <div class="col-lg-8">
                                 <label>Average Grade</label>
-                                <p>@Html.DisplayFor(x => x.BgEducation1.AvarageGrade)</p>
+                                <p>@Html.DisplayFor(x => x.BgEducation1[0].AvarageGrade)</p>
                             </div>
 
                         </div>
@@ -238,9 +238,9 @@
                                 <p>
                                     @{
                                         string parameterValue1 = null;
-                                        if (Model.BgEducation1 != null && Model.BgEducation1.EducationStDate != null)
+                                        if (Model.BgEducation1 != null && Model.BgEducation1[0].EducationStDate != null)
                                         {
-                                            parameterValue1 = Model.BgEducation1.EducationStDate.Value.ToShortDateString();
+                                            parameterValue1 = Model.BgEducation1[0].EducationStDate.Value.ToShortDateString();
                                             @Html.DisplayFor(x => parameterValue1)
                                         }
                                                                 }
@@ -251,9 +251,9 @@
                                 <p>
                                     @{
                                         string parameterValue2 = null;
-                                        if (Model.BgEducation1 != null && Model.BgEducation1.EducationCompDate != null)
+                                        if (Model.BgEducation1 != null && Model.BgEducation1[0].EducationCompDate != null)
                                         {
-                                            parameterValue2 = Model.BgEducation1.EducationCompDate.Value.ToShortDateString();
+                                            parameterValue2 = Model.BgEducation1[0].EducationCompDate.Value.ToShortDateString();
                                             @Html.DisplayFor(x => parameterValue2)
                                         }
                                     }
@@ -261,7 +261,7 @@
                             </div>
                             <div class="col-lg-8">
                                 <label>Awarded</label>
-                                <p>@{ if (Model.BgEducation1.Awarded) { Html.Label("YES"); } else { Html.Label("NO"); } }</p>
+                                <p>@{ if (Model.BgEducation1[0].Awarded) { Html.Label("YES"); } else { Html.Label("NO"); } }</p>
                             </div>
 
                         </div>

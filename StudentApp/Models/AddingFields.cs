@@ -12,7 +12,7 @@ namespace StudentApp.Models
         public virtual FtEducation FtEducation { get; set; }
         public virtual LanguageCert LanguageCert { get; set; }
         public virtual WorkExp WorkExp { get; set; }
-        public Upload Upload { get;set } 
+        public Upload Upload { get;set; } 
         
         ---- Upload.cs e eklenecekler -----
 

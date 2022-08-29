@@ -9,7 +9,7 @@
     <style>
         .row:not(.langs) label {
             font-weight: 700;
-            font-size: 23px;
+            font-size: 30px;
         }
 
         .langcert {
@@ -36,7 +36,7 @@
         }
 
         p {
-            font-size: 17px;
+            font-size: 26px;
         }
 
 
@@ -77,11 +77,21 @@
         }
 
         .logo {
-            margin-left:350px;
+            margin-left:450px;
             padding-bottom:40px;
         }
         .breakhere {
             page-break-after: always
+        }
+        td {
+            border-bottom: 1px solid #808080;
+        }
+        table {
+            border-collapse: collapse;
+            width:1200px;
+        }
+        label {
+            font-size:30px;
         }
 
     </style>
@@ -155,7 +165,7 @@
             <div class="row">
                 <div class="col-lg-6" id="asd">
                     <label>Date of birth</label>
-                    <p>1.02.2000 00:00:00</p>
+                    <p>01-02-2000</p>
                 </div>
                 <div class="col-lg-6">
                     <label>Country of birth</label>
@@ -212,62 +222,20 @@
             <div id="2">
 
                 <h2 class="title" style="font-weight:600">Educational Background</h2>
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Intitution name</label>
-                        <p>Kings</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Faculty</label>
-                        <p>Engineering</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Instruction Language</label>
-                        <p>English</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Institution Country</label>
-                        <p>KKTC</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Study Mode</label>
-                        <p>Full Time</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Educational Level</label>
-                        <p>International Foundation Programme</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Start date</label>
-                        <p>1.08.2022 00:00:00</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Completion date</label>
-                        <p>30.08.2022 00:00:00</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Awarded</label>
-                        <div class="form-check form-switch fs-5">
-                            <input disabled class="form-check-input" type="checkbox" role="switch" checked="True" />
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Average grade</label>
-                        <p>2,75</p>
-                    </div>
-                </div>
+                <table>
+                    <tr>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Intitution name</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Faculty</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Ins. Language</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Ins. Country</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Study Mode</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Educational Level</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Start date</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Completion date</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Average grade</label></td>
+                    </tr>
+                    <tr><td>Kings</td><td>Engineering</td><td>English</td><td>KKTC</td><td>Full Time</td><td>International Foundation Programme</td><td>01-08-2022</td><td>30-08-2022</td><td>2,75</td></tr><tr><td>Harvard University</td><td>Engineering</td><td>English</td><td>United Kingdom</td><td>Remote</td><td>General Education (9 years)</td><td>01-08-2022</td><td>31-08-2022</td><td>1,76</td></tr><tr><td>Cambridge University</td><td>Biology</td><td>English</td><td>United Kingdom</td><td>Full Time</td><td>General Education (9 years)</td><td>01-08-2022</td><td>23-08-2022</td><td>2,75</td></tr><tr><td>NEU</td><td>Chemical</td><td>English</td><td>KKTC</td><td>Remote</td><td>General Education (9 years)</td><td>01-08-2022</td><td>31-08-2022</td><td>2,55</td></tr><tr><td>Cambridge University</td><td>Engineering</td><td>English</td><td>United Kingdom</td><td>Remote</td><td>Complete Professional Education</td><td>01-08-2022</td><td>30-08-2022</td><td>1,76</td></tr><tr><td>NEU</td><td>Biology</td><td>English</td><td>United Kingdom</td><td>Full Time</td><td>General Education (9 years)</td><td>01-08-2022</td><td>31-08-2022</td><td>222</td></tr>
+                </table>
             </div>
         <P CLASS="breakhere">
             <div id="3">
@@ -308,48 +276,19 @@
         <P CLASS="breakhere">
             <div id="4">
                 <h2 class="title">Work Experience</h2>
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Company Name</label>
-                        <p>57Colleges</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Position</label>
-                        <p>Developer</p>
-                    </div>
-                </div>
-
-                <div class="row col-lg-12" id="asd">
-                    <label>Job Type</label>
-                    <p>Full-Time</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Employee address</label>
-                        <p>BAKIRKÖY</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Manager name</label>
-                        <p>Emin Güliyev</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <label>Employee Email</label>
-                        <p>emin@57colleges.com</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Employee Phone</label>
-                        <p>51341232</p>
-                    </div>
-                </div>
-
-                <div class="row col-lg-12" >
-                    <label>Job Description</label>
-                    <p>Developing</p>
-                </div>
+                <table>
+                    <tr>
+                        <td><label style="font-weight:bold; font-size:14px !important;">Company Name</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Position </label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Job Type </label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Employee Adress </label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Manager Name </label> </td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Employee Mail</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Employee Phone</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Job Description</label></td>
+                    </tr>
+                    <tr><td>57Colleges</td><td>Developer</td><td>Full-Time</td><td>BAKIRKÖY</td><td>Emin Güliyev</td><td>emin@57colleges.com</td><td>51341232</td><td>Developing</td></tr><tr><td>Meta </td><td>Ui developer</td><td>Full-Time</td><td>Nevada</td><td>Mark Zuckerberg</td><td>Mark.Z@facebook.com</td><td>4441411</td><td>Some Ui things</td></tr><tr><td>StudentA</td><td>Fullstack developer</td><td>Full-Time</td><td>BAKIRKÖY</td><td>Emin Güliyev</td><td>emin@57colleges.com</td><td>51399391</td><td>All stuff in Studenta</td></tr>
+                </table>
             </div>
         <P CLASS="breakhere">
             <div id="5">
@@ -364,16 +303,16 @@
                     </div>
                 </div>
 
-                <div class="row langs" style="margin-left:23% ;">
+                <div class="row langs" style="margin-left:23%;">
                     <div class="col-lg-4">
-                        <div class="" style="margin-left:-223px; font-family:sans-serif;">
+                        <div class="" style="font-family: sans-serif; margin-left: -300px;">
                             <label style="font-weight: 600; padding: 20px;  font-size: 22px;">Certificate Type</label>
                             <br /> <br />
-                            <label class="form-check-label" for="flexRadioDefault1" style="margin-left:20px; ">
+                            <label class="form-check-label" for="flexRadioDefault1" style="margin-left:20px;">
                                 TOEFL IBT
                             </label>
-                            <input class="form-check-input" style="margin-left:10px !important" type="radio"
-                                   name="flexRadioDefault" id="flexRadioDefault1" disabled checked />
+                            <!--<input class="form-check-input" style="margin-left:10px !important" type="radio"
+                                   name="flexRadioDefault" id="flexRadioDefault1" disabled checked />-->
                         </div>
 
                     </div>
@@ -407,7 +346,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <label>Date of test</label>
-                                <p>20.07.2022 00:00:00</p>
+                                <p>20-07-2022</p>
                             </div>
                         </div>
 

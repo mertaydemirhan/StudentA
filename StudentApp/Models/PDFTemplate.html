@@ -9,7 +9,7 @@
     <style>
         .row:not(.langs) label {
             font-weight: 700;
-            font-size: 23px;
+            font-size: 30px;
         }
 
         .langcert {
@@ -36,7 +36,7 @@
         }
 
         p {
-            font-size: 17px;
+            font-size: 26px;
         }
 
 
@@ -77,11 +77,21 @@
         }
 
         .logo {
-            margin-left:350px;
+            margin-left:450px;
             padding-bottom:40px;
         }
         .breakhere {
             page-break-after: always
+        }
+        td {
+            border-bottom: 1px solid #808080;
+        }
+        table {
+            border-collapse: collapse;
+            width:1200px;
+        }
+        label {
+            font-size:30px;
         }
 
     </style>
@@ -212,62 +222,20 @@
             <div id="2">
 
                 <h2 class="title" style="font-weight:600">Educational Background</h2>
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Intitution name</label>
-                        <p>@@InstitutionName</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Faculty</label>
-                        <p>@@Faculty</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Instruction Language</label>
-                        <p>@@InsturactionLang</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Institution Country</label>
-                        <p>@@InsCountry</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Study Mode</label>
-                        <p>@@StudyMode</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Educational Level</label>
-                        <p>@@BgEducationLevel</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Start date</label>
-                        <p>@@EducationStDate</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Completion date</label>
-                        <p>@@EducationCompDate</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Awarded</label>
-                        <div class="form-check form-switch fs-5">
-                            <input disabled class="form-check-input" type="checkbox" role="switch" checked="@@Awarded" />
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Average grade</label>
-                        <p>@@AvarageGrade</p>
-                    </div>
-                </div>
+                <table>
+                    <tr>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Intitution name</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Faculty</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Ins. Language</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Ins. Country</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Study Mode</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Educational Level</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Start date</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Completion date</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;">Average grade</label></td>
+                    </tr>
+                    @@sbHtmlBG
+                </table>
             </div>
         <P CLASS="breakhere">
             <div id="3">
@@ -308,48 +276,19 @@
         <P CLASS="breakhere">
             <div id="4">
                 <h2 class="title">Work Experience</h2>
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Company Name</label>
-                        <p>@@CompanyName</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Position</label>
-                        <p>@@Position</p>
-                    </div>
-                </div>
-
-                <div class="row col-lg-12" id="asd">
-                    <label>Job Type</label>
-                    <p>@@JobType</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6" id="asd">
-                        <label>Employee address</label>
-                        <p>@@EmployeeAdress</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Manager name</label>
-                        <p>@@ManagerName</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <label>Employee Email</label>
-                        <p>@@EmployeeMail</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Employee Phone</label>
-                        <p>@@EmployeePhone</p>
-                    </div>
-                </div>
-
-                <div class="row col-lg-12" >
-                    <label>Job Description</label>
-                    <p>@@JobDescription</p>
-                </div>
+                <table>
+                    <tr>
+                        <td><label style="font-weight:bold; font-size:14px !important;">Company Name</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Position </label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Job Type </label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Employee Adress </label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Manager Name </label> </td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Employee Mail</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Employee Phone</label></td>
+                        <td><label style="font-weight: bold; font-size: 14px !important;"> Job Description</label></td>
+                    </tr>
+                    @@sbHtmlWorkExp
+                </table>
             </div>
         <P CLASS="breakhere">
             <div id="5">
@@ -364,16 +303,16 @@
                     </div>
                 </div>
 
-                <div class="row langs" style="margin-left:23% ;">
+                <div class="row langs" style="margin-left:23%;">
                     <div class="col-lg-4">
-                        <div class="" style="margin-left:-223px; font-family:sans-serif;">
+                        <div class="" style="font-family: sans-serif; margin-left: -300px;">
                             <label style="font-weight: 600; padding: 20px;  font-size: 22px;">Certificate Type</label>
                             <br /> <br />
-                            <label class="form-check-label" for="flexRadioDefault1" style="margin-left:20px; ">
+                            <label class="form-check-label" for="flexRadioDefault1" style="margin-left:20px;">
                                 @@CertType
                             </label>
-                            <input class="form-check-input" style="margin-left:10px !important" type="radio"
-                                   name="flexRadioDefault" id="flexRadioDefault1" disabled checked />
+                            <!--<input class="form-check-input" style="margin-left:10px !important" type="radio"
+                                   name="flexRadioDefault" id="flexRadioDefault1" disabled checked />-->
                         </div>
 
                     </div>

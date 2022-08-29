@@ -18,7 +18,7 @@ namespace StudentApp.Models.Entity
         public string Name { get; set; }
         public string Email { get; set; }
         public string Subject { get; set; }
-        public Nullable<int> UserID { get; set; }
         public string Note { get; set; }
+        public Nullable<int> UserID { get; set; }
     }
 }
