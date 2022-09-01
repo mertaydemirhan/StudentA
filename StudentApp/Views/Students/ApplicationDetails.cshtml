@@ -130,7 +130,7 @@
                 </div>
                 <div class="col-lg-6">
                     <label>Country of birth</label>
-                    <p>@Html.DisplayFor(x => x.CountryofBirth)</p>
+                    <p>@Html.DisplayTextFor(x => x.CountryofBirth)</p>
                 </div>
             </div>
 
@@ -593,8 +593,8 @@
         </div>
         <div style="margin-top:30px">
             <section class="buttonbox">
-                @Html.ActionLink("Export PDF", "DownloadViewAsPDF", "Student", new { users = Html.ViewBag.StApplication, @Class = "btn btn-danger" })
-                @Html.ActionLink("Download Zip", "DownloadAsZip", "Student", new { users = Html.ViewBag.StApplication, @Class = "btn btn-warning" })
+                @Html.ActionLink("Application Details PDF", "DownloadViewAsPDF", "Student", new { users = Html.ViewBag.StApplication, @Class = "btn btn-danger" })
+                @Html.ActionLink("Download All Files", "DownloadAsZip", "Student", new { users = Html.ViewBag.StApplication, @Class = "btn btn-warning" })
             </section>
         </div>
     </main>

@@ -30,7 +30,7 @@ namespace StudentApp.Controllers
             var StApplication = new ObjectModels.Application();
             try
             {
-                var  App = db.Applications.Where(x => x.UserId == application.ID).FirstOrDefault();
+                var App = db.Applications.Where(x => x.UserId == application.ID).FirstOrDefault();
                 var bgEducation = db.BgEducations.Where(x => x.AppID == App.ID).ToList();
                 Session["userID"] = App.UserId;
                 var ftEducation = db.FtEducations.Where(x => x.AppId == App.ID).FirstOrDefault();
@@ -75,12 +75,13 @@ namespace StudentApp.Controllers
                     Upload1 = uploaded,
                     WorkExp = workExp,
                     FtEducation = ftEducation
-               
+
                 };
                 ViewBag.Email = db.Users.Find(application.ID).Email;
                 ViewBag.StApplication = StApplication;
                 Session["ApplicationID"] = StApplication.ID;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Response.Write(@"<script language='javascript'>alert('Message: \n" + ex.Message + " .');</script>");
             }
@@ -88,9 +89,10 @@ namespace StudentApp.Controllers
             return View(StApplication);
         }
 
-        public ActionResult DownloadAsZip() {
+        public ActionResult DownloadAsZip()
+        {
             int fr = (int)Session["ApplicationID"];
-             // zip dosyası ismi
+            // zip dosyası ismi
 
             var temp = Server.MapPath($"~/UploadedFiles/") + +fr + @"\";
             var ziptopath = Server.MapPath($"~/UploadedFiles/DownloadZip");
@@ -142,14 +144,30 @@ namespace StudentApp.Controllers
             return null;
         }
 
+        public List<UploadedFiles> ReturnUploadFilesData(int APPID)
+        {
+            var Upload1 = (from p in db.Uploads
+                           where p.AppId == APPID
+                           select new UploadedFiles
+                           {
+                               FilePath = p.FilePath,
+                               FileType = p.FileType,
+                               FileName = p.FileName,
+                               Id = db.Uploads.Where(x => x.AppId == APPID && x.FileType == p.FileType).FirstOrDefault().Id
+                           }).ToList();
 
+
+            return Upload1;
+        }
+
+         
         // [MultipleButton(Argument = "DownloadViewAsPDF", Name = "Action")
         public ActionResult DownloadViewAsPDF()
         {
             int fr = (int)Session["ApplicationID"];
             var App = db.Applications.Where(x => x.ID == fr).FirstOrDefault();
             var bgEducation = db.BgEducations.Where(x => x.AppID == App.ID).ToList();
-            var ftEducation = db.FtEducations.Where(x => x.AppId == App.ID).FirstOrDefault() ;
+            var ftEducation = db.FtEducations.Where(x => x.AppId == App.ID).FirstOrDefault();
             var workExp = db.WorkExps.Where(x => x.AppId == App.ID).ToList();
             var LangCert = db.LanguageCerts.Where(x => x.AppId == App.ID).FirstOrDefault();
             var StApplication = new ObjectModels.Application
@@ -203,7 +221,7 @@ namespace StudentApp.Controllers
                     langPoints.Add("CertNo", StApplication.LanguageCert.CertNoTOEFL.ToString());
                     langPoints.Add("CertOther", StApplication.LanguageCert.CertOtherTOEFL.ToString());
                     langPoints.Add("TestDate", StApplication.LanguageCert.TestDateTOEFL.Value.ToString("dd-MM-yyyy"));
-                 break;
+                    break;
                 case "IELTS Academic":
                     langPoints.Add("Listening", StApplication.LanguageCert.ListeningIELTS.ToString());
                     langPoints.Add("Speaking", StApplication.LanguageCert.SpeakingIELTS.ToString());
@@ -227,32 +245,7 @@ namespace StudentApp.Controllers
                 var bgList = bgEducation.ToList();
                 sbBG.Append(Utils.GetHTMLBG(bgList));
                 sbWE.Append(Utils.GetHTMLWorkExp(WEList));
-                var uploadeds = db.Uploads.Where(x => x.AppId == App.ID);
-                List<Dictionary<string,string>> UploadFilesTB = new List<Dictionary<string, string>>();
-                Dictionary<string,string> UploadFileTB = new Dictionary<string,string>();
-
-                UploadFileTB.Add(
-                    uploadeds.Where(x => x.AppId == App.ID && x.FileType == "passport").FirstOrDefault().FileName,
-                    uploadeds.Where(x => x.AppId == App.ID && x.FileType == "passport").FirstOrDefault().FilePath);
-                //passport.Add();
-                //NationalID.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "NationalID").FirstOrDefault().FileName);
-                //NationalID.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "NationalID").FirstOrDefault().FilePath);
-                //Diploma.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "Diploma").FirstOrDefault().FileName);
-                //Diploma.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "Diploma").FirstOrDefault().FilePath);
-                //Transcript.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "Transcript").FirstOrDefault().FileName);
-                //Transcript.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "Transcript").FirstOrDefault().FilePath);
-                //CV.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "CV").FirstOrDefault().FileName);
-                //CV.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "CV").FirstOrDefault().FilePath);
-                //Certificate.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "Certificate").FirstOrDefault().FileName);
-                //Certificate.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "Certificate").FirstOrDefault().FilePath);
-                //ExtraDocument1.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "ExtraDocument1").FirstOrDefault().FileName);
-                //ExtraDocument1.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "ExtraDocument1").FirstOrDefault().FilePath);
-                //ExtraDocument2.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "ExtraDocument2").FirstOrDefault().FileName);
-                //ExtraDocument2.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "ExtraDocument2").FirstOrDefault().FilePath);
-                //ExtraDocument3.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "ExtraDocument3").FirstOrDefault().FileName);
-                //ExtraDocument3.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "ExtraDocument3").FirstOrDefault().FilePath);
-                //ExtraDocument4.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "ExtraDocument4").FirstOrDefault().FileName);
-                //ExtraDocument4.Add(uploadeds.Where(x => x.AppId == App.ID && x.FileType == "ExtraDocument4").FirstOrDefault().FilePath);
+                var getUploadData = ReturnUploadFilesData((int)App.ID);
 
                 xm = fs.ReadToEnd();
                 xm = xm.Replace("@@Name", StApplication.Name)
@@ -291,6 +284,23 @@ namespace StudentApp.Controllers
                     .Replace("@@Ftintake", StApplication.FtEducation.Intake)
                     .Replace("@@FtAcademicYear", StApplication.FtEducation.AcademicYear.ToString())
                     .Replace("@@sbHtmlBG", sbBG.ToString())
+
+
+
+                    // FİLE TO PDF PART PROGRESS.....
+
+                    .Replace("@@passport", getUploadData.Where(v => v.FileType == "passport").Select(v => v.FileName).FirstOrDefault())
+                    .Replace("@@nationalid", getUploadData.Where(v => v.FileType == "NationalID").Select(v => v.FileName).FirstOrDefault())
+                    .Replace("@@diploma", getUploadData.Where(v => v.FileType == "Diploma").Select(v => v.FileName).FirstOrDefault())
+                    .Replace("@@transcript", getUploadData.Where(v => v.FileType == "Transcript").Select(v => v.FileName).FirstOrDefault())
+                    .Replace("@@cv", getUploadData.Where(v => v.FileType == "CV").Select(v => v.FileName).FirstOrDefault())
+                    .Replace("@@ieltsortoeflcertificate", getUploadData.Where(v => v.FileName == "IELTSorToeflCertificate").Select(v => v.FileName).FirstOrDefault())
+                    .Replace("@@extradocument1", getUploadData.Where(v => v.FileType == "Extradocument1").Select(v => v.FileName).FirstOrDefault())
+                    .Replace("@@extradocument2", getUploadData.Where(v => v.FileType == "Extradocument2").Select(v => v.FileName).FirstOrDefault())
+                    .Replace("@@extradocument3", getUploadData.Where(v => v.FileType == "Extradocument3").Select(v => v.FileName).FirstOrDefault())
+                    .Replace("@@extradocument4", getUploadData.Where(v => v.FileType == "Extradocument4").Select(v => v.FileName).FirstOrDefault())
+
+
                     //.Replace("@@InstitutionName", StApplication.BgEducation1.InstitutionName)
                     //.Replace("@@Faculty", StApplication.BgEducation1.Faculty)
                     //.Replace("@@InsturactionLang", StApplication.BgEducation1.InsturactionLang)
@@ -326,7 +336,7 @@ namespace StudentApp.Controllers
             return new ActionAsPdf($"../Content/{StApplication.ID}_Application.html")
             {
                 FileName = "Application.pdf"
-                    
+
             };
         }
         public PartialViewResult UploadFileReturnAdmin()    // Automatic File table refreshing with this Function
@@ -378,14 +388,14 @@ namespace StudentApp.Controllers
             var userID = (int)Session["userID"];
             var AppID = db.Applications.Where(X => X.UserId == userID).FirstOrDefault().ID;
             var UplaodFiles = (from p in db.Uploads
-                                where p.AppId == AppID
-                                select new UploadedFiles
-                                {
-                                    Id = p.Id,
-                                    File_AppID = p.AppId,
-                                    FileName = p.FileName,
-                                    FileType = p.FileType
-                                }).ToList();
+                               where p.AppId == AppID
+                               select new UploadedFiles
+                               {
+                                   Id = p.Id,
+                                   File_AppID = p.AppId,
+                                   FileName = p.FileName,
+                                   FileType = p.FileType
+                               }).ToList();
 
             return PartialView("/Views/Students/UploadFiles.cshtml", UplaodFiles.AsEnumerable());
         }

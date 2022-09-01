@@ -1,6 +1,134 @@
 ﻿@model IEnumerable<StudentApp.Models.UploadedFiles>
 
 <script src="~/Content/carousel-18/js/jquery-3.3.1.min.js"></script>
+<style>
+    .modelContainer {
+        opacity: 0;
+        pointer-events: none;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .modelContainer, .clickableArea {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+    }
+
+        .modelContainer.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+    .model {
+        position: relative;
+        border-radius: 15px;
+        background-color: white;
+        padding: 25px;
+        min-width: 400px;
+    }
+
+    .buttonBox {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .model .row {
+        margin-bottom: 50px !important;
+    }
+</style>
+
+<div class="modelContainer">
+    <div class="clickableArea" onclick="toggleModel()"></div>
+    <form id="UploadFiles">
+        <div class="model" id="Submitform">
+            <h2>Submit Documents</h2>
+            <p class="subtitle">
+                Please upload any other documents that are required
+                for the application.
+                * File size must be less than 2 MB
+            </p>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <input type="file" id="passport" onchange="fileform(event)" class="custom-file-input" style="display:none">
+                    <label for="passport" class="custom-file-label text-truncate form-control">Choose Passport File...</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="NationalID" style="display:none">
+                    <label for="NationalID" class="custom-file-label text-truncate form-control">Choose NationalID File...</label>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="Diploma" style="display:none">
+                    <label for="Diploma" class="custom-file-label text-truncate form-control">Choose Diploma File...</label>
+
+                </div>
+                <div class="col-lg-6">
+                    <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="Transcript" style="display:none">
+                    <label for="Transcript" class="custom-file-label text-truncate form-control">Choose Transcript File...</label>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="CV" style="display:none">
+                    <label for="CV" class="custom-file-label text-truncate form-control">Choose CV File...</label>
+
+                </div>
+                <div class="col-lg-6">
+                    <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="IELTSorToeflCertificate" style="display:none">
+                    <label for="IELTSorToeflCertificate" class="custom-file-label text-truncate form-control">Choose Certificate File...</label>
+
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="Extradocument1" style="display:none">
+                    <label for="Extradocument1" class="custom-file-label text-truncate form-control">Choose Extra Document...</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="Extradocument2" style="display:none">
+                    <label for="Extradocument2" class="custom-file-label text-truncate form-control">Choose Extra Document...</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="Extradocument3" style="display:none">
+                    <label class="custom-file-label text-truncate form-control">Choose Extra Document...</label>
+
+                </div>
+                <div class="col-lg-6">
+                    <input type="file" onchange="fileform(event)" class="custom-file-input form-control" id="Extradocument4" style="display:none">
+                    <label for="Extradocument4" class="custom-file-label text-truncate form-control">Choose Extra Document...</label>
+
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+
+</div>
+
+
+
+
+
 
 <table class="table" id="UploadTableAdmin">
     <tr>
@@ -23,7 +151,11 @@
                 @Html.DisplayFor(modelItem => item.FileName)
             </td>
             <td>
-                <button id="BgDelete" class="btn btn-danger" name="@item.Id" title="@item.FileName">Delete</button>
+                <a href="@Url.Action("FullScreen", "Application", new { Id = item.Id })" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
+                <button id="FileAdd" class="btn btn-primary" name="@item.Id" title="@item.FileName" onclick="toggleModel()">Add new File</button>
+                <a href="@Url.Action("Download", "Application", new { Id = item.Id })" class="btn btn-success"><span class="fa fa-download"></span> Download</a>
+                <button id="FileDelete" class="btn btn-danger" name="@item.Id" title="@item.FileName">Delete</button>
+
             </td>
         </tr>
     }
@@ -34,7 +166,7 @@
 
     $('Button').on('click', function () {
         var filename = this.title;
-        if (this.id == 'BgDelete') {
+        if (this.id == 'FileDelete') { // if clicked button is Delete button... Do some shit
             $.ajax({
                 type: 'GET',
                 url: '/Application/UploadFileDelete',
@@ -46,7 +178,11 @@
 
                 }
             });
-        }
+        }   // end of Delete
+
+
+
+
 
     });
 
@@ -57,5 +193,49 @@
                     notifications.load(url);
                 }, 3000);
     }
+
+
+    function fileform(e) {
+        var file = document.getElementById(e.target.id).files[0];
+        var ext = file.name.split(".");
+        ext = ext[ext.length - 1].toLowerCase();
+        var fileExtension = ['jpg', 'gif', 'pdf', 'png', 'jpeg', 'bmp', 'doc', 'docx'];
+        if (fileExtension.lastIndexOf(ext) == -1) {
+            alert("Wrong extension type. for " + e.target.id + " File extension must be " + fileExtension);
+            document.getElementById(e.target.id).value = null;
+            RefreshFilesTBL();
+        }
+        else {
+            var fd = new FormData();
+            fd.append("files", file);
+            fd.append("id", e.target.id);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/Application/FileUpload", false,);
+            xhr.send(fd);
+            console.log(document.getElementById(e.target.id).value);
+            xhr.addEventListener("load", transferComplete(xhr.responseText));
+            RefreshFilesTBL();
+        }
+
+    };
+
+    function transferComplete(evt) {
+        if (evt) {  // File Check Function   -- Size and Type control
+            var obj = $.parseJSON(evt);
+            if (obj["Message"] != null) {
+                alert(obj["id"] + " " + obj["Message"]);
+                document.getElementById(obj["id"]).value = null;
+            }
+
+        }
+    }
+
+
+      function toggleModel(id = false) {
+        const modelContainer = document.querySelector(".modelContainer");
+        modelContainer.classList.toggle("active");
+
+      }
+
 
 </script>
