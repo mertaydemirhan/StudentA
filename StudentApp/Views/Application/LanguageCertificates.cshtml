@@ -1,7 +1,7 @@
 ﻿@model StudentApp.ObjectModels.Application
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<div id="5" class="page">
+<div>
     <h2>Language Certificates</h2>
 
     <label>
@@ -129,14 +129,9 @@
     </div>
 </div>
 <script>
-
-
-
     function pagerefresh() {
         if ($('#langBtn').is(':checked')) {
-
             $('.languages').css('display', 'block');
-
             switch ($('#test :selected').text()) {
                 case "IELTS Academic":
                     $('.ielts').css('display', 'block');
@@ -160,8 +155,6 @@
 
         }
     };
-
-
 
     document.getElementById('test').addEventListener('change', function () {
         console.log(this.value);

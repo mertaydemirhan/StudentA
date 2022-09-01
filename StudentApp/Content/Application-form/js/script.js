@@ -8,15 +8,18 @@ const form = document.querySelector("form");
 
 var currentPage = 1;
 
+console.log("hello world");
+
 const changeCurrentPage = (value, link = false) => {
     if (value == "equalize") {
         for (let i = 0; i < pages.length; i++) {
             pages[i].classList.remove("active");
         }
+        
+
         pages.forEach((page) => {
             if (page.id == link.id) {
                 currentPage = parseInt(page.id);
-                console.log(currentPage);
                 page.classList.add("active");
             }
         });

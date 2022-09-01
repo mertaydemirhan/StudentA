@@ -2,7 +2,105 @@
 
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-s
+<style>
+    .modelContainer {
+        opacity: 0;
+        pointer-events: none;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .modelContainer, .clickableArea {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+    }
+
+        .modelContainer.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+    .model {
+        position: relative;
+        border-radius: 15px;
+        background-color: white;
+        padding: 25px;
+        min-width: 400px;
+    }
+
+    .buttonBox {
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+
+<div class="modelContainer">
+    <div class="clickableArea" onclick="toggleModel()"></div>
+
+    <div class="model">
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Institution name</label>
+                <p class="institutionName"></p>
+            </div>
+            <div class="col-lg-6">
+                <label>Faculty</label>
+                <p class="faculty"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Instruction Language</label>
+                <p class="instructionLanguage"></p>
+            </div>
+            <div class="col-lg-6">
+                <label>Institution Country</label>
+                <p class="institutionCountry"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Study Mode</label>
+                <p class="studyMode"></p>
+            </div>
+            <div class="col-lg-6">
+                <label>Educational Level</label>
+                <p class="educationLevel"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Start date</label>
+                <p class="startDate"></p>
+            </div>
+            <div class="col-lg-6">
+                <label>Completion date</label>
+                <p class="completionDate"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Average grade</label>
+                <p class="averageGrade"></p>
+            </div>
+        </div>
+
+        <div class="buttonBox">
+            <button class="btn btn-danger" onclick="toggleModel()">Close</button>
+        </div>
+    </div>
+</div>
+
 <table class="table" id="tbl_BgEducations" style=" margin-top:10px;">
     <tr>
         <th>
@@ -40,8 +138,8 @@ s
                     <button id="BgDelete" class="btn btn-danger" name="@item.ID" title="@item.InstitutionName">Delete</button>
                     @*<a href="@Url.Action("FullScreen", "Application", new { Id = item.ID })" id="ViewScreen" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
                         <a href="@Url.Action("Download", "Application", new { Id = item.ID })" class="btn btn-success"><span class="fa fa-download"></span> Download</a>*@
-                    <a href="#" id="ViewScreen" class="btn btn-warning" name="@item.ID"><span class="fa fullscreen"></span>View</a>
-                    <a href="#" class="btn btn-success"><span class="fa fa-edit"></span> Edit</a>
+                    <a href="#" id="ViewScreen" class="btn btn-warning" name="@item.ID" onclick="toggleModel(@item.ID)"><span class="fa fullscreen"></span>View</a>
+                    @*<a href="#" class="btn btn-success"><span class="fa fa-edit"></span> Edit</a>*@
                 </td>
 
             </tr>
@@ -65,29 +163,6 @@ s
     }
 </table>
 
-<form id="ViewForm">
-
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close"
-                            data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    @*test test test test test*@
-</form>
 
 
 
@@ -95,33 +170,68 @@ s
 
 
 
+      function toggleModel(id = false) {
+        const modelContainer = document.querySelector(".modelContainer");
+        modelContainer.classList.toggle("active");
 
-    $('#BgDelete').on('click', function () {
-        var EducationID = parseInt(this.name);
-        var title = this.title;
-        $.ajax({
-            type: 'GET',
-            url: '/Application/BgDelete',
-            data: { ID: EducationID },
-            success: function (result) {
-                ResetTexts();
-            }
-        });
+        if (id) {
+            @*var model = @Html.Raw(Json.Encode(Model));*@
+            var model = @Html.Raw(Json.Encode(Model));
+            model.forEach(item => {
+                if (item.ID == id) {
+                    const time1 = + item.EducationStDate.replace(/\D/g, "");
+                    const time2 = + item.EducationCompDate.replace(/\D/g, "");
+
+                    console.log(time1, time2);
+
+                    var EducationStDate = new Date(time1).toLocaleString("tr-TR");
+                    var EducationCompDate = new Date(time2).toLocaleString("tr-TR");
+                    document.querySelector(".model .institutionName").innerHTML = item.InstitutionName;
+                    document.querySelector(".model .faculty").innerHTML = item.Faculty;
+                    document.querySelector(".model .instructionLanguage").innerHTML = item.InsturactionLang;
+                    document.querySelector(".model .institutionCountry").innerHTML = item.InsCountry;
+                    document.querySelector(".model .studyMode").innerHTML = item.StudyMode;
+                    document.querySelector(".model .educationLevel").innerHTML = item.EducationLevel;
+                    document.querySelector(".model .startDate").innerHTML = EducationStDate.substr(0,10)
+                    document.querySelector(".model .completionDate").innerHTML = EducationCompDate.substr(0,10);
+                    document.querySelector(".model .averageGrade").innerHTML = item.AvarageGrade;
+
+
+                }
+            })
+        }
+
+
+    }
+
+
+
+    $('Button').on('click', function () {
+        if (this.id == 'BgDelete') {
+            console.log(this.id + " Deleted");
+            var EducationID = parseInt(this.name);
+            var title = this.title;
+            $.ajax({
+                type: 'GET',
+                url: '/Application/BgDelete',
+                data: { ID: EducationID },
+                success: function (result) {
+                    ResetTexts();
+                    alert(EducationID + " Deleted");
+                    RefreshBgEducationTBL();
+                }
+            });
+        }
+
     });
 
-
-    $('#ViewScreen').on('click', function () {
-
-        var $form = $('#ViewForm');
-        $.post($form.attr("action"), $form.serialize()).done(function (res) {
-            $mymodal = $("#myModal");
-            //update the modal's body with the response received
-            $mymodal.find("div.modal-body").html(res);
-            // Show the modal
-            $mymodal.modal("show");
-        });
-
-    });
+        function RefreshBgEducationTBL() {
+        var url = '@Url.Action("BgEducationRecords", "Application")';
+                var notifications = $("#tbl_BgEducations");
+                setInterval(function () {
+                    notifications.load(url);
+                }, 3000);
+    }
 
     function ResetTexts() {
         document.getElementById('InstitutionName').value = null;
@@ -134,8 +244,6 @@ s
         document.getElementById('AvarageGrade').value = null;
 
     }
-
-
 
 
 

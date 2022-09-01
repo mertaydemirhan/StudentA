@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<StudentApp.Models.UploadedFiles>
 
+<script src="~/Content/carousel-18/js/jquery-3.3.1.min.js"></script>
 
-<table class="table">
+<table class="table" id="UploadTableAdmin">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FileType)
@@ -12,18 +13,49 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FileType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FileName)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new {@class="btn btn-primary"})
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                <button id="BgDelete" class="btn btn-danger" name="@item.Id" title="@item.FileName">Delete</button>
+            </td>
+        </tr>
+    }
 
 </table>
+
+<script>
+
+    $('Button').on('click', function () {
+        var filename = this.title;
+        if (this.id == 'BgDelete') {
+            $.ajax({
+                type: 'GET',
+                url: '/Application/UploadFileDelete',
+                data: { id: parseInt(this.name) },
+                success: function (result) {
+                    event.preventDefault();
+                    RefreshFilesTBL();
+                    alert(filename + " Deleted");
+
+                }
+            });
+        }
+
+    });
+
+    function RefreshFilesTBL() {
+        var url = '@Url.Action("UploadFileReturnAdmin", "Students")';
+        var notifications = $("#UploadTableAdmin");
+                setInterval(function () {
+                    notifications.load(url);
+                }, 3000);
+    }
+
+</script>

@@ -44,7 +44,7 @@ namespace StudentApplication.Controllers
                                     StudyMode = p.StudyMode
                                 });
 
-                    return PartialView(@"~/Views/Application/BackgroundEducation.cshtml", BgEducation1.AsEnumerable());
+            return PartialView(@"~/Views/Application/BackgroundEducation.cshtml", BgEducation1.AsEnumerable());
         }
         public JsonResult BgDelete(int ID) // Background Education when delete button was triggered...
         {
@@ -92,12 +92,20 @@ namespace StudentApplication.Controllers
             return Json("", JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public JsonResult EducationView (BgEducationRecords bgEducationInfo)
+        public JsonResult EducationView(BgEducationRecords bgEducationInfo)
         {
-            var bgeducation = db.BgEducations.Where(x => x.ID==bgEducationInfo.ID).ToList();
+            var bgeducation = db.BgEducations.Where(x => x.ID == bgEducationInfo.ID).ToList();
 
             return Json(bgeducation);
         }
+
+        // Future Education PART -------------------------------------------------------------
+        public PartialViewResult FutureEducationView()
+        {
+            return PartialView(@"~/Views/Application/FutureEducation.cshtml");
+        }
+
+
 
         // Work experiences PART ----------------------------------------------------------------------------
         public PartialViewResult WorkExperiences()
@@ -105,20 +113,20 @@ namespace StudentApplication.Controllers
             var userID = (int)Session["userID"];
             var AppID = db.Applications.Where(X => X.UserId == userID).FirstOrDefault().ID;
             var WorkExp = (from p in db.WorkExps
-                                where p.AppId == AppID
-                                select new WorkExperiences
-                                {
-                                    ID = p.ID,
-                                    CompanyName = p.CompanyName,
-                                    AppId = p.AppId,
-                                    EmployeeAdress = p.EmployeeAdress,
-                                    EmployeeMail = p.EmployeeMail,
-                                    EmployeePhone = p.EmployeePhone,
-                                    JobDescription = p.JobDescription,
-                                    JobType = p.JobType,
-                                    ManagerName = p.ManagerName,
-                                    Position = p.Position
-                                });
+                           where p.AppId == AppID
+                           select new WorkExperiences
+                           {
+                               ID = p.ID,
+                               CompanyName = p.CompanyName,
+                               AppId = p.AppId,
+                               EmployeeAdress = p.EmployeeAdress,
+                               EmployeeMail = p.EmployeeMail,
+                               EmployeePhone = p.EmployeePhone,
+                               JobDescription = p.JobDescription,
+                               JobType = p.JobType,
+                               ManagerName = p.ManagerName,
+                               Position = p.Position
+                           });
 
             return PartialView(@"~/Views/Application/WorkExperience.cshtml", WorkExp.AsEnumerable());
         }
@@ -182,11 +190,11 @@ namespace StudentApplication.Controllers
                     System.IO.File.Delete(fullPath);
                 TempData["Message"] = " Your File has been successfully deleted";
             }
-            catch(Exception)
+            catch (Exception)
             {
                 TempData["Message"] = " Encountered an error";
             }
-         
+
 
             return Json(TempData["Message"], JsonRequestBehavior.AllowGet);
         }
@@ -373,7 +381,7 @@ namespace StudentApplication.Controllers
         {
             var userID = Session["UserId"];
             var UserInfo = db.Users.Find((int)userID);
-            return View("~/Views/AboutMe/AboutMe.cshtml",UserInfo);
+            return View("~/Views/AboutMe/AboutMe.cshtml", UserInfo);
         }
         public ActionResult ContactUs()
         {
@@ -478,7 +486,7 @@ namespace StudentApplication.Controllers
                 db.SaveChanges();
                 AppRecordExist = db.Applications.Where(x => x.UserId == (int)userId).FirstOrDefault();
                 //db.BgEducations.Add(new BgEducation{ AppID = AppRecordExist.ID, Awarded = false });
-                db.FtEducations.Add(new FtEducation{ AppId = AppRecordExist.ID });
+                db.FtEducations.Add(new FtEducation { AppId = AppRecordExist.ID });
                 //db.WorkExps.Add(new WorkExp { AppId = AppRecordExist.ID });
                 //db.LanguageCerts.Add(new LanguageCert { AppId = AppRecordExist.ID, LangCert = false });
                 db.SaveChanges();
@@ -497,7 +505,7 @@ namespace StudentApplication.Controllers
                     LanguageCert = db.LanguageCerts.Where(x => x.AppId == appId).FirstOrDefault()
                 };
                 return View("Index", newApplication);
-            } 
+            }
             else    // Application doesn't exist 
             {
                 var newApplication = new StudentApp.ObjectModels.Application // Application değerini tanımlı class'a atıyoruz.
@@ -539,32 +547,32 @@ namespace StudentApplication.Controllers
                     LanguageCert = db.LanguageCerts.Where(x => x.AppId == AppRecordExist.ID).FirstOrDefault()
                 };
                 if (newApplication.BgEducation1 == null) // Application kaydı var fakat bu bilgiler girilmedi ise yapılacakları yaptırıyoruz.
-                { 
+                {
                     db.BgEducations.Add(new BgEducation { AppID = AppRecordExist.ID, Awarded = false });
                     db.SaveChanges();
                     newApplication.BgEducation1 = db.BgEducations.Where(x => x.AppID == AppRecordExist.ID).ToList();
                 }
-                if(newApplication.FtEducation == null) 
-                { 
+                if (newApplication.FtEducation == null)
+                {
                     db.FtEducations.Add(new FtEducation { AppId = AppRecordExist.ID });
                     db.SaveChanges();
                     newApplication.FtEducation = db.FtEducations.Where(x => x.AppId == AppRecordExist.ID).FirstOrDefault();
                 }
-                if(newApplication.WorkExp == null)
-                { 
+                if (newApplication.WorkExp == null)
+                {
                     db.WorkExps.Add(new WorkExp { AppId = AppRecordExist.ID });
                     db.SaveChanges();
                     newApplication.WorkExp = db.WorkExps.Where(x => x.AppId == AppRecordExist.ID).ToList();
                 }
-                if(newApplication.LanguageCert == null)
-                { 
+                if (newApplication.LanguageCert == null)
+                {
                     db.LanguageCerts.Add(new LanguageCert { AppId = AppRecordExist.ID, LangCert = false });
                     db.SaveChanges();
                     newApplication.LanguageCert = db.LanguageCerts.Where(x => x.AppId == AppRecordExist.ID).FirstOrDefault();
                 }
-                return View("ApplicationIndex", newApplication); 
+                return View("ApplicationIndex", newApplication);
             }
-                
+
 
 
         }
@@ -605,8 +613,8 @@ namespace StudentApplication.Controllers
                 Email = application.Email,
                 BgEducation1 = db.BgEducations.Where(x => x.AppID == application.ID).ToList(),
                 FtEducation = db.FtEducations.Where(x => x.AppId == application.ID).FirstOrDefault(),
-                WorkExp     = db.WorkExps.Where(x => x.AppId == application.ID).ToList(),
-                LanguageCert= db.LanguageCerts.Where(x => x.AppId == application.ID).FirstOrDefault()
+                WorkExp = db.WorkExps.Where(x => x.AppId == application.ID).ToList(),
+                LanguageCert = db.LanguageCerts.Where(x => x.AppId == application.ID).FirstOrDefault()
             };
             return View("Index", newApplication);
         }
@@ -676,15 +684,15 @@ namespace StudentApplication.Controllers
 
             //db.WorkExps.Add(new WorkExp
             //{
-            //    AppId=user.ID,
-            //    CompanyName=user.WorkExp.CompanyName,
-            //    Position=user.WorkExp.Position,
-            //    JobType=user.WorkExp.JobType,
-            //    EmployeeAdress=user.WorkExp.EmployeeAdress,
-            //    ManagerName=user.WorkExp.ManagerName,
-            //    EmployeeMail=user.WorkExp.EmployeeMail,
-            //    EmployeePhone=user.WorkExp.EmployeePhone,
-            //    JobDescription=user.WorkExp.JobDescription
+            //    AppId = user.ID,
+            //    CompanyName = user.WorkExp.CompanyName,
+            //    Position = user.WorkExp.Position,
+            //    JobType = user.WorkExp.JobType,
+            //    EmployeeAdress = user.WorkExp.EmployeeAdress,
+            //    ManagerName = user.WorkExp.ManagerName,
+            //    EmployeeMail = user.WorkExp.EmployeeMail,
+            //    EmployeePhone = user.WorkExp.EmployeePhone,
+            //    JobDescription = user.WorkExp.JobDescription
             //});
 
 

@@ -41,7 +41,7 @@
                     @*<a href="@Url.Action("FullScreen", "Application", new { Id = item.ID })" id="ViewScreen" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
                     <a href="@Url.Action("Download", "Application", new { Id = item.ID })" class="btn btn-success"><span class="fa fa-download"></span> Download</a>*@
                     <a href="#" id="ViewScreen" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
-                    <a href="#" class="btn btn-success"><span class="fa fa-edit"></span> Edit</a>
+                    @*<a href="#" class="btn btn-success"><span class="fa fa-edit"></span> Edit</a>*@
                 </td>
 
             </tr>
@@ -74,20 +74,33 @@
 
 
 
-    $('#WorkExpDelete').on('click', function () {
-        var EducationID = parseInt(this.name);
-        var title = this.title;
-        $.ajax({
-            type: 'GET',
-            url: '/Application/WorkExpDelete',
-            data: { ID: EducationID },
-            success: function (result) {
-                //ResetTexts();
-            }
-        });
+    $('Button').on('click', function () {
+
+        // if Clicked button was Delete button.. Do this
+        if (this.id == 'WorkExpDelete') {
+            var EducationID = parseInt(this.name);
+            var title = this.title;
+            $.ajax({
+                type: 'GET',
+                url: '/Application/WorkExpDelete',
+                data: { ID: EducationID },
+                success: function (result) {
+                    ResetTextsWorkExp();
+                    RefreshWorkExp();
+                    alert(title + ' Deleted...');
+                }
+            });
+        };
+
     });
 
-
+        function RefreshWorkExp() {
+        var url = '@Url.Action("WorkExperiences", "Application")';
+        var notifications = $("#tbl_WorkExps");
+        setInterval(function () {
+            notifications.load(url);
+        }, 3000);
+    }
     function ResetTextsWorkExp() {
         document.getElementById('CompanyName').value = null;
         document.getElementById('EmployeeAdress').value = null;
