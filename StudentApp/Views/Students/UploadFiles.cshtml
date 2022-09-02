@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<StudentApp.Models.UploadedFiles>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="~/Content/carousel-18/js/jquery-3.3.1.min.js"></script>
 <style>
     .modelContainer {
@@ -174,7 +175,11 @@
                 success: function (result) {
                     event.preventDefault();
                     RefreshFilesTBL();
-                    alert(filename + " Deleted");
+                    swal(
+                        'Done !',
+                        title + ' Deleted!',
+                        'success'
+                    );
 
                 }
             });
@@ -201,7 +206,12 @@
         ext = ext[ext.length - 1].toLowerCase();
         var fileExtension = ['jpg', 'gif', 'pdf', 'png', 'jpeg', 'bmp', 'doc', 'docx'];
         if (fileExtension.lastIndexOf(ext) == -1) {
-            alert("Wrong extension type. for " + e.target.id + " File extension must be " + fileExtension);
+            event.preventDefault();
+            swal(
+                'Hey ! Be carefull it can be dangerous :)',
+                'Wrong extension type. for ' + e.target.id + ' File extension must be ' + fileExtension,
+                'error'
+            );
             document.getElementById(e.target.id).value = null;
             RefreshFilesTBL();
         }
@@ -223,7 +233,6 @@
         if (evt) {  // File Check Function   -- Size and Type control
             var obj = $.parseJSON(evt);
             if (obj["Message"] != null) {
-                alert(obj["id"] + " " + obj["Message"]);
                 document.getElementById(obj["id"]).value = null;
             }
 

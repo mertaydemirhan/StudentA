@@ -2,6 +2,7 @@
 
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
     .modelContainer {
         opacity: 0;
@@ -217,8 +218,14 @@
                 data: { ID: EducationID },
                 success: function (result) {
                     ResetTexts();
-                    alert(EducationID + " Deleted");
                     RefreshBgEducationTBL();
+                    event.preventDefault();
+                    swal(
+                        'Done !',
+                        title +' Deleted!',
+                        'success'
+                    );
+                    
                 }
             });
         }

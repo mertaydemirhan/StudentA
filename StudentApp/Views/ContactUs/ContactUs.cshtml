@@ -135,24 +135,60 @@
         gtag('config', 'UA-23581568-13');
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
     <script>
 
         function Alertted() {
-                Swal.fire({
-                    title: 'jQuery HTML example',
-                    showClass: {
-                        popup: 'animate__animated animate__fadeInDown'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutUp'
-                    }
-                });
+            Swal.fire({
+                title: 'jQuery HTML example',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            });
         };
 
 
 
         $('#SendButton').on('click', function () {
+            if ($('#name').val() == "") {
+                event.preventDefault();
+                swal(
+                    'Good job mate!',
+                    'Name field cannot be null!',
+                    'error'              
+                );
+                return;
+            }
+            if ($('#email').val() == "") {
+                event.preventDefault();
+                swal(
+                    'Good job mate!',
+                    'E-mail field cannot be null!',
+                    'error'
+                );
+                return;
+            }
+            if ($('#subject').val() == "") {
+                event.preventDefault();
+                swal(
+                    'Good job mate!',
+                    'Subject field cannot be null!',
+                    'error'
+                );
+                return;
+            }
+            if ($('#message').val() == "") {
+                event.preventDefault();
+                swal(
+                    'Good job mate!',
+                    'Message field cannot be null!',
+                    'error'
+                );
+                return;
+            }
             var record = {
                 name: $('#name').val(),
                 email: $('#email').val(),
