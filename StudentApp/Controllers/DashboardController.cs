@@ -15,5 +15,12 @@ namespace StudentApp.Controllers
         {
             return View();
         }
+
+        public ActionResult Logout()
+        {
+            Session["UserInfo"] = null;
+            Session.Abandon();
+            return RedirectToAction("Login", "User");
+        }
     }
 }

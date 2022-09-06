@@ -21,18 +21,32 @@ namespace StudentApp.Controllers
     {
         readonly StudentAppEntities db = new StudentAppEntities();
 
+        //public ActionResult CheckApplication(Application app)
+        //{
+        //    var App = db.Applications.Where(x => x.UserId == app.ID).FirstOrDefault();
+        //    if(App == null)
+        //    {
+        //        return null;
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("ApplicationDetails", app);
+        //    }
+        //}
         public ActionResult Index()
         {
             return View(db.Users.ToList());
         }
         public ActionResult ApplicationDetails(Application application)
         {
+            Session["userID"] = application.ID;
             var StApplication = new ObjectModels.Application();
+            var App = db.Applications.Where(x => x.UserId == application.ID).FirstOrDefault();
+            if (App == null) { return View("~/Views/Shared/notFound.cshtml"); }
             try
             {
-                var App = db.Applications.Where(x => x.UserId == application.ID).FirstOrDefault();
+
                 var bgEducation = db.BgEducations.Where(x => x.AppID == App.ID).ToList();
-                Session["userID"] = App.UserId;
                 var ftEducation = db.FtEducations.Where(x => x.AppId == App.ID).FirstOrDefault();
                 var workExp = db.WorkExps.Where(x => x.AppId == App.ID).ToList();
                 var LangCert = db.LanguageCerts.Where(x => x.AppId == App.ID).FirstOrDefault();
@@ -79,7 +93,7 @@ namespace StudentApp.Controllers
                 };
                 ViewBag.Email = db.Users.Find(application.ID).Email;
                 ViewBag.StApplication = StApplication;
-                Session["ApplicationID"] = StApplication.ID;
+                Session["AppindexAd"] = StApplication.ID;
             }
             catch (Exception ex)
             {
@@ -91,7 +105,7 @@ namespace StudentApp.Controllers
 
         public ActionResult DownloadAsZip()
         {
-            int fr = (int)Session["ApplicationID"];
+            int fr = (int)Session["AppindexAd"];
             // zip dosyası ismi
 
             var temp = Server.MapPath($"~/UploadedFiles/") + +fr + @"\";
@@ -160,11 +174,10 @@ namespace StudentApp.Controllers
             return Upload1;
         }
 
-         
         // [MultipleButton(Argument = "DownloadViewAsPDF", Name = "Action")
         public ActionResult DownloadViewAsPDF()
         {
-            int fr = (int)Session["ApplicationID"];
+            int fr = (int)Session["AppindexAd"];
             var App = db.Applications.Where(x => x.ID == fr).FirstOrDefault();
             var bgEducation = db.BgEducations.Where(x => x.AppID == App.ID).ToList();
             var ftEducation = db.FtEducations.Where(x => x.AppId == App.ID).FirstOrDefault();
@@ -210,6 +223,8 @@ namespace StudentApp.Controllers
             };
             string xm = "";
             var langPoints = new Dictionary<string, string>();
+            if (StApplication.LanguageCert == null) return null;
+            else if (StApplication.LanguageCert.CertType == null) return null;
             switch (StApplication.LanguageCert.CertType.ToString())
             {
                 case "TOEFL IBT":
@@ -246,85 +261,94 @@ namespace StudentApp.Controllers
                 sbBG.Append(Utils.GetHTMLBG(bgList));
                 sbWE.Append(Utils.GetHTMLWorkExp(WEList));
                 var getUploadData = ReturnUploadFilesData((int)App.ID);
+                try
+                {
+                    xm = fs.ReadToEnd();
+                    xm = xm.Replace("@@Name", StApplication.Name)
+                        .Replace("@@Surname", StApplication.Surname)
+                        .Replace("@@Gender", StApplication.Gender)
+                        .Replace("@@maritalStatus", StApplication.maritalStatus)
+                        .Replace("@@AddressLine1", StApplication.AddressLine1)
+                        .Replace("@@AddressLine2", StApplication.AddressLine2)
+                        .Replace("@@City", StApplication.City)
+                        .Replace("@@State", StApplication.State)
+                        .Replace("@@Zip", StApplication.Zip)
+                        .Replace("@@Country", StApplication.Country)
+                        .Replace("@@DateofBirth", StApplication.DateofBirth.Value.ToString("dd-MM-yyyy"))
+                        .Replace("@@CountryofBirth", StApplication.CountryofBirth)
+                        .Replace("@@CitizenshipMain", StApplication.CitizenshipMain)
+                        .Replace("@@PlaceofBirth", StApplication.PlaceofBirth)
+                        .Replace("@@FatherName", StApplication.FatherName)
+                        .Replace("@@FatherSurname", StApplication.FatherSurname)
+                        .Replace("@@MotherName", StApplication.MotherName)
+                        .Replace("@@MotherSurname", StApplication.MotherSurname)
+                        .Replace("@@Email", StApplication.Email)
+                        .Replace("@@PhoneNumber", StApplication.PhoneNumber)
+                        .Replace("@@PassaportNumber", StApplication.PassaportNumber.ToString())
+                        .Replace("@@PassStartDate", StApplication.PassStartDate.Value.ToString("dd-MM-yyyy"))
+                        .Replace("@@PassExpireDate", StApplication.PassExpireDate.Value.ToString("dd-MM-yyyy"))
+                        .Replace("@@IssuingAuthority", StApplication.IssuingCountry)
+                        .Replace("@@IssuingCountry", StApplication.IssuingCountry)
+                        .Replace("@@NationalId", StApplication.NationalId)
+                        .Replace("@@IdStartDate", StApplication.IdStartDate.Value.ToString("dd-MM-yyyy"))
+                        .Replace("@@IdExpireDate", StApplication.IdExpireDate.Value.ToString("dd-MM-yyyy"))
+                        .Replace("@@CountryCitizenship", StApplication.CountryCitizenship)
+                        .Replace("@@FtCountry1", StApplication.FtEducation.Country1)
+                        .Replace("@@FtCountry2", StApplication.FtEducation.Country2)
+                        .Replace("@@FieldOfStudy", StApplication.FtEducation.FieldOfStudy)
+                        .Replace("@@FtEducationLevel", StApplication.FtEducation.EducationLevel)
+                        .Replace("@@Ftintake", StApplication.FtEducation.Intake)
+                        .Replace("@@FtAcademicYear", StApplication.FtEducation.AcademicYear.ToString())
+                        .Replace("@@sbHtmlBG", sbBG.ToString())
+                        // FİLE TO PDF PART PROGRESS.....
+                        .Replace("@@passport", getUploadData.Where(v => v.FileType == "passport").Select(v => v.FileName).FirstOrDefault())
+                        .Replace("@@nationalid", getUploadData.Where(v => v.FileType == "NationalID").Select(v => v.FileName).FirstOrDefault())
+                        .Replace("@@diploma", getUploadData.Where(v => v.FileType == "Diploma").Select(v => v.FileName).FirstOrDefault())
+                        .Replace("@@transcript", getUploadData.Where(v => v.FileType == "Transcript").Select(v => v.FileName).FirstOrDefault())
+                        .Replace("@@cv", getUploadData.Where(v => v.FileType == "CV").Select(v => v.FileName).FirstOrDefault())
+                        .Replace("@@ieltsortoeflcertificate", getUploadData.Where(v => v.FileName == "IELTSorToeflCertificate").Select(v => v.FileName).FirstOrDefault())
+                        .Replace("@@extradocument1", getUploadData.Where(v => v.FileType == "Extradocument1").Select(v => v.FileName).FirstOrDefault())
+                        .Replace("@@extradocument2", getUploadData.Where(v => v.FileType == "Extradocument2").Select(v => v.FileName).FirstOrDefault())
+                        .Replace("@@extradocument3", getUploadData.Where(v => v.FileType == "Extradocument3").Select(v => v.FileName).FirstOrDefault())
+                        .Replace("@@extradocument4", getUploadData.Where(v => v.FileType == "Extradocument4").Select(v => v.FileName).FirstOrDefault())
+                        .Replace("@@sbHtmlWorkExp", sbWE.ToString())
+                        .Replace("@@LangCert", StApplication.LanguageCert.LangCert.ToString())
+                        .Replace("@@CertType", StApplication.LanguageCert.CertType)
+                        .Replace("@@Listening", langPoints["Listening"])
+                        .Replace("@@Speaking", langPoints["Speaking"])
+                        .Replace("@@Writing", langPoints["Writing"])
+                        .Replace("@@Reading", langPoints["Reading"])
+                        .Replace("@@OverallScore", langPoints["OverallScore"])
+                        .Replace("@@CertNo", langPoints["CertNo"])
+                        .Replace("@@CertOther", langPoints["CertOther"])
+                        .Replace("@@TestDate", langPoints["TestDate"]);
 
-                xm = fs.ReadToEnd();
-                xm = xm.Replace("@@Name", StApplication.Name)
-                    .Replace("@@Surname", StApplication.Surname)
-                    .Replace("@@Gender", StApplication.Gender)
-                    .Replace("@@maritalStatus", StApplication.maritalStatus)
-                    .Replace("@@AddressLine1", StApplication.AddressLine1)
-                    .Replace("@@AddressLine2", StApplication.AddressLine2)
-                    .Replace("@@City", StApplication.City)
-                    .Replace("@@State", StApplication.State)
-                    .Replace("@@Zip", StApplication.Zip)
-                    .Replace("@@Country", StApplication.Country)
-                    .Replace("@@DateofBirth", StApplication.DateofBirth.Value.ToString("dd-MM-yyyy"))
-                    .Replace("@@CountryofBirth", StApplication.CountryofBirth)
-                    .Replace("@@CitizenshipMain", StApplication.CitizenshipMain)
-                    .Replace("@@PlaceofBirth", StApplication.PlaceofBirth)
-                    .Replace("@@FatherName", StApplication.FatherName)
-                    .Replace("@@FatherSurname", StApplication.FatherSurname)
-                    .Replace("@@MotherName", StApplication.MotherName)
-                    .Replace("@@MotherSurname", StApplication.MotherSurname)
-                    .Replace("@@Email", StApplication.Email)
-                    .Replace("@@PhoneNumber", StApplication.PhoneNumber)
-                    .Replace("@@PassaportNumber", StApplication.PassaportNumber.ToString())
-                    .Replace("@@PassStartDate", StApplication.PassStartDate.Value.ToString("dd-MM-yyyy"))
-                    .Replace("@@PassExpireDate", StApplication.PassExpireDate.Value.ToString("dd-MM-yyyy"))
-                    .Replace("@@IssuingAuthority", StApplication.IssuingCountry)
-                    .Replace("@@IssuingCountry", StApplication.IssuingCountry)
-                    .Replace("@@NationalId", StApplication.NationalId)
-                    .Replace("@@IdStartDate", StApplication.IdStartDate.Value.ToString("dd-MM-yyyy"))
-                    .Replace("@@IdExpireDate", StApplication.IdExpireDate.Value.ToString("dd-MM-yyyy"))
-                    .Replace("@@CountryCitizenship", StApplication.CountryCitizenship)
-                    .Replace("@@FtCountry1", StApplication.FtEducation.Country1)
-                    .Replace("@@FtCountry2", StApplication.FtEducation.Country2)
-                    .Replace("@@FieldOfStudy", StApplication.FtEducation.FieldOfStudy)
-                    .Replace("@@FtEducationLevel", StApplication.FtEducation.EducationLevel)
-                    .Replace("@@Ftintake", StApplication.FtEducation.Intake)
-                    .Replace("@@FtAcademicYear", StApplication.FtEducation.AcademicYear.ToString())
-                    .Replace("@@sbHtmlBG", sbBG.ToString())
+                    fs.Close();
+                }
+                catch (Exception)
+                {
+                    List<MissingParts> emptytables = new List<MissingParts>();
+                    //if (bgEducation.Count < 1) emptytables[0].name1="Background Educations";
+                    //if (ftEducation == null) emptytables[0].name2 = "Future Education Information";
+                    //if (workExp.Count < 1) emptytables[0].name3 = "Work Experiences";
+                    //if (LangCert == null) emptytables[0].name4 = "Language Certificates";
+                    return View("~/Views/Shared/MissingPage.cshtml");
+                }
 
-
-
-                    // FİLE TO PDF PART PROGRESS.....
-
-                    .Replace("@@passport", getUploadData.Where(v => v.FileType == "passport").Select(v => v.FileName).FirstOrDefault())
-                    .Replace("@@nationalid", getUploadData.Where(v => v.FileType == "NationalID").Select(v => v.FileName).FirstOrDefault())
-                    .Replace("@@diploma", getUploadData.Where(v => v.FileType == "Diploma").Select(v => v.FileName).FirstOrDefault())
-                    .Replace("@@transcript", getUploadData.Where(v => v.FileType == "Transcript").Select(v => v.FileName).FirstOrDefault())
-                    .Replace("@@cv", getUploadData.Where(v => v.FileType == "CV").Select(v => v.FileName).FirstOrDefault())
-                    .Replace("@@ieltsortoeflcertificate", getUploadData.Where(v => v.FileName == "IELTSorToeflCertificate").Select(v => v.FileName).FirstOrDefault())
-                    .Replace("@@extradocument1", getUploadData.Where(v => v.FileType == "Extradocument1").Select(v => v.FileName).FirstOrDefault())
-                    .Replace("@@extradocument2", getUploadData.Where(v => v.FileType == "Extradocument2").Select(v => v.FileName).FirstOrDefault())
-                    .Replace("@@extradocument3", getUploadData.Where(v => v.FileType == "Extradocument3").Select(v => v.FileName).FirstOrDefault())
-                    .Replace("@@extradocument4", getUploadData.Where(v => v.FileType == "Extradocument4").Select(v => v.FileName).FirstOrDefault())
-
-                    .Replace("@@sbHtmlWorkExp", sbWE.ToString())
-                    .Replace("@@LangCert", StApplication.LanguageCert.LangCert.ToString())
-                    .Replace("@@CertType", StApplication.LanguageCert.CertType)
-                    .Replace("@@Listening", langPoints["Listening"])
-                    .Replace("@@Speaking", langPoints["Speaking"])
-                    .Replace("@@Writing", langPoints["Writing"])
-                    .Replace("@@Reading", langPoints["Reading"])
-                    .Replace("@@OverallScore", langPoints["OverallScore"])
-                    .Replace("@@CertNo", langPoints["CertNo"])
-                    .Replace("@@CertOther", langPoints["CertOther"])
-                    .Replace("@@TestDate", langPoints["TestDate"]);
-
-                fs.Close();
             }
             System.IO.File.WriteAllText(Server.MapPath($"~/Content/{StApplication.ID}_Application.html"), xm);
 
             return new ActionAsPdf($"../Content/{StApplication.ID}_Application.html")
             {
-                FileName = "Application.pdf"
+                FileName = "Application.pdf",
+                
+                
 
             };
         }
         public PartialViewResult UploadFileReturnAdmin()    // Automatic File table refreshing with this Function
         {
-            var AppID = (int)Session["ApplicationID"];
+            var AppID = (int)Session["AppindexAd"];
             var Upload1 = (from p in db.Uploads
                            where p.AppId == AppID
                            select new UploadedFiles
@@ -363,6 +387,7 @@ namespace StudentApp.Controllers
                                     Faculty = p.Faculty,
                                     StudyMode = p.StudyMode
                                 }).ToList();
+
 
             return PartialView("/Views/Students/EduBGAdmin.cshtml", BgEducation1.AsEnumerable());
         }

@@ -201,7 +201,9 @@ namespace StudentApplication.Controllers
                     FormsAuthentication.SetAuthCookie(v.Email, false);
                     Session["Mail"] = v.Email.ToString();
                     Session["UserId"] = v.Id;
-                    return RedirectToAction("Welcome", "Welcome");
+                    ViewBag.Name  = v.Name;
+                    ViewBag.Surname = v.Surname;
+                    return RedirectToAction("Welcome", "Welcome"    );
                 }
 
                 else

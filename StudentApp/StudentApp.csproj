@@ -249,6 +249,7 @@
     <Compile Include="Models\Entity\WorkExp.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MissingParts.cs" />
     <Compile Include="Models\ObjectModels\Application.cs" />
     <Compile Include="Models\ObjectModels\BgEducation.cs" />
     <Compile Include="Models\ObjectModels\Upload.cs" />
@@ -7094,7 +7095,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\MissingPage.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Students\ApplicationDetails.cshtml" />
     <Content Include="Views\Students\img\bmp.png" />
     <Content Include="Views\Students\img\doc.png" />
@@ -9634,6 +9636,7 @@
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <None Include="Views\Shared\notFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UploadedFiles\" />

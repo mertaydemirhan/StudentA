@@ -1,6 +1,15 @@
 ﻿@model StudentApp.ObjectModels.Application
 @{ Layout = "~/Views/Shared/_Layout.cshtml"; }
 
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    .stepsContainer {
+        height: 97vh;
+    }
+</style>
 
 @using (Html.BeginForm("UpdateApplication", "Application", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "col-md-9", @style = "margin-bottom:50px" }))
 {
@@ -486,7 +495,6 @@
             dataType: "json",
             data: JSON.stringify(arr),
             success: function (data) {
-                //location.reload();
                 ResetTextsBg();
                 RefreshBgEducationTBL();
             }

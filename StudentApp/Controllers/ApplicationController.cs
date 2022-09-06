@@ -473,7 +473,8 @@ namespace StudentApplication.Controllers
             var userId = Session["UserId"];
             var AppRecordExist = db.Applications.Where(x => x.UserId == (int)userId).FirstOrDefault();
             var userTbl = db.Users.Find(userId);
-
+            ViewBag.Name = userTbl.Name;
+            ViewBag.Surname = userTbl.Surname;
             if (AppRecordExist == null)  // Application exist do 
             {
                 db.Applications.Add(new Application
@@ -566,9 +567,25 @@ namespace StudentApplication.Controllers
                 }
                 if (newApplication.LanguageCert == null)
                 {
-                    db.LanguageCerts.Add(new LanguageCert { AppId = AppRecordExist.ID, LangCert = false });
-                    db.SaveChanges();
-                    newApplication.LanguageCert = db.LanguageCerts.Where(x => x.AppId == AppRecordExist.ID).FirstOrDefault();
+                    newApplication.LanguageCert.AppId = newApplication.ID;
+                    newApplication.LanguageCert.OverallScoreTOEFL = "0";
+                    newApplication.LanguageCert.OverallScoreIELTS = "0";
+                    newApplication.LanguageCert.WritingTOEFL      = 0;
+                    newApplication.LanguageCert.WritingIELTS      = 0;
+                    newApplication.LanguageCert.ReadingIELTS      = 0;
+                    newApplication.LanguageCert.ReadingTOEFL      = 0;
+                    newApplication.LanguageCert.SpeakingTOEFL     = 0;
+                    newApplication.LanguageCert.SpeakingIELTS     = 0;
+                    newApplication.LanguageCert.ListeningIELTS    = 0;
+                    newApplication.LanguageCert.ListeningTOEFL    = 0;
+                    newApplication.LanguageCert.LangCert          = false;
+                    newApplication.LanguageCert.CertNoIELTS       = " Doesn't Exist";
+                    newApplication.LanguageCert.CertNoTOEFL       = " Doesn't Exist";
+                    newApplication.LanguageCert.CertType          = "Other";
+                    newApplication.LanguageCert.CertOtherIELTS    = " Doesn't Exist"; 
+                    newApplication.LanguageCert.CertOtherTOEFL    = " Doesn't Exist";
+                    newApplication.LanguageCert.TestDateIELTS     = DateTime.Now;
+                    newApplication.LanguageCert.TestDateTOEFL     = DateTime.Now;
                 }
                 return View("ApplicationIndex", newApplication);
             }

@@ -115,6 +115,8 @@
           <Property Name="No" Type="nvarchar" MaxLength="20" />
           <Property Name="Mail" Type="nvarchar" MaxLength="50" />
           <Property Name="TypeOf" Type="smallint" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Messages">
           <Key>
@@ -161,6 +163,7 @@
           <Property Name="ConfirmPassword" Type="varchar(max)" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="500" StoreGeneratedPattern="Computed" />
           <Property Name="BirthDate" Type="varchar" MaxLength="500" StoreGeneratedPattern="Computed" />
+          <Property Name="UserImage" Type="image" />
         </EntityType>
         <EntityType Name="WorkExp">
           <Key>
@@ -452,6 +455,8 @@
           <Property Name="No" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TypeOf" Type="Int16" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -500,6 +505,7 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="BirthDate" Type="String" MaxLength="500" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_Users" FromRole="Users" ToRole="Applications" />
+          <Property Name="UserImage" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="WorkExp">
           <Key>
@@ -784,6 +790,8 @@
           <EntitySetMapping Name="LocalUsers">
             <EntityTypeMapping TypeName="StudentAppModel.LocalUser">
               <MappingFragment StoreEntitySet="LocalUser">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -830,6 +838,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="StudentAppModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />

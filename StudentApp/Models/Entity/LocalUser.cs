@@ -20,5 +20,7 @@ namespace StudentApp.Models.Entity
         public string No { get; set; }
         public string Mail { get; set; }
         public Nullable<short> TypeOf { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
     }
 }

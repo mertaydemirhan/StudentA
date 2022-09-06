@@ -55,7 +55,7 @@
                                 <td>@student.PhoneNumber</td>
                                 <td>@student.BirthDate</td>
                                 <td>
-                                    @Html.ActionLink("View Application ", "ApplicationDetails", new { id = student.Id }, new { @class = "btn btn-warning" })
+                                    @Html.ActionLink("View Application ", "ApplicationDetails", new { id = student.Id, name="ViewApplication" }, new { @class = "btn btn-warning" })
                                 </td>
                             </tr>
                         }
@@ -120,6 +120,10 @@
                 "responsive": true,
             });
         });
+
+
+
+
 
     </script>
 </body>

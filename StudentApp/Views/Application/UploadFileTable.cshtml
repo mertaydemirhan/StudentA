@@ -66,8 +66,12 @@
                     data: { id: parseInt(this.name) },
                     success: function (result) {
                         event.preventDefault();
-                        alert(filename + " Deleted");
                         ReviewFiles();
+                        swal(
+                            'Done !',
+                            title + ' Deleted!',
+                            'success'
+                        );
                     }
                 });
             }
