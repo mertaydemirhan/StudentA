@@ -51,6 +51,12 @@
                 margin: 0;
                 margin-right: 5px;
             }
+
+        a.disabled {
+            pointer-events: none;
+            cursor: not-allowed;
+            background-color: grey;
+        }
     </style>
 </head>
 
@@ -634,7 +640,7 @@
         </div>
         <div style="margin-top:30px">
             <section class="buttonbox">
-                @Html.ActionLink("Application Details PDF", "DownloadViewAsPDF", "Student", new { users = Html.ViewBag.StApplication, @Class = "btn btn-danger" })
+                @Html.ActionLink("Application Details PDF", "DownloadViewAsPDF", "Student", new { users = Html.ViewBag.StApplication, id="DownloadPDF", @Class = "btn btn-danger" })
                 @Html.ActionLink("Download All Files", "DownloadAsZip", "Student", new { users = Html.ViewBag.StApplication, @Class = "btn btn-warning" })
             </section>
         </div>
@@ -649,6 +655,15 @@
             let fileSource = '../../Views/Students/img/' + fileExtension + ".png";
             filename.childNodes[3].src = fileSource;
         });
+
+        
+        $('#DownloadPDF').click(function () {
+            this.classList.add("disabled");
+            this.innerHTML = "Downloading...";
+        });
+
+
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
