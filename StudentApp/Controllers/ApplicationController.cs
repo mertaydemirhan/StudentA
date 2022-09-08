@@ -505,6 +505,83 @@ namespace StudentApplication.Controllers
                     WorkExp = db.WorkExps.Where(x => x.AppId == appId).ToList(),
                     LanguageCert = db.LanguageCerts.Where(x => x.AppId == appId).FirstOrDefault()
                 };
+
+
+                if (newApplication.BgEducation1 == null || newApplication.BgEducation1.Count == 0) // if there is a Application but 
+                {
+                    //db.BgEducations.Add(new BgEducation { AppID = AppRecordExist.ID, Awarded = false });
+                    //db.SaveChanges();
+                    //newApplication.BgEducation1 = db.BgEducations.Where(x => x.AppID == AppRecordExist.ID).ToList();
+                    BgEducation bg = new BgEducation();
+                    newApplication.BgEducation1.Add(bg);
+                    newApplication.BgEducation1[0].AppID = AppRecordExist.ID;
+                    newApplication.BgEducation1[0].Faculty = "";
+                    newApplication.BgEducation1[0].InsturactionLang = "";
+                    newApplication.BgEducation1[0].EducationLevel = "";
+                    newApplication.BgEducation1[0].AvarageGrade = 0.0;
+                    newApplication.BgEducation1[0].Awarded = false;
+                    newApplication.BgEducation1[0].EducationCompDate = DateTime.Now;
+                    newApplication.BgEducation1[0].EducationStDate = DateTime.Now;
+                    newApplication.BgEducation1[0].InsCountry = "";
+                    newApplication.BgEducation1[0].InstitutionName = "";
+                    newApplication.BgEducation1[0].StudyMode = "";
+                }
+                if (newApplication.FtEducation == null)
+                {
+                    //db.FtEducations.Add(new FtEducation { AppId = AppRecordExist.ID });
+                    //db.SaveChanges();
+                    //newApplication.FtEducation = db.FtEducations.Where(x => x.AppId == AppRecordExist.ID).FirstOrDefault();
+                    newApplication.FtEducation.AppId = AppRecordExist.ID;
+                    newApplication.FtEducation.Country1 = "";
+                    newApplication.FtEducation.EducationLevel = "";
+                    newApplication.FtEducation.AcademicYear = Convert.ToInt32(DateTime.Now.ToString("yyyy"));
+                    newApplication.FtEducation.Country2 = "";
+                    newApplication.FtEducation.FieldOfStudy = "";
+                    newApplication.FtEducation.Intake = "";
+                }
+                if (newApplication.WorkExp == null || newApplication.WorkExp.Count == 0)
+                {
+                    //db.WorkExps.Add(new WorkExp { AppId = AppRecordExist.ID });
+                    //db.SaveChanges();
+                    //newApplication.WorkExp = db.WorkExps.Where(x => x.AppId == AppRecordExist.ID).ToList();
+                    WorkExp wrExp = new WorkExp();
+                    newApplication.WorkExp.Add(wrExp);
+                    newApplication.WorkExp[0].AppId = AppRecordExist.ID;
+                    newApplication.WorkExp[0].CompanyName = "";
+                    newApplication.WorkExp[0].EmployeeAdress = "";
+                    newApplication.WorkExp[0].EmployeeMail = "";
+                    newApplication.WorkExp[0].EmployeePhone = "";
+                    newApplication.WorkExp[0].JobDescription = "";
+                    newApplication.WorkExp[0].JobType = "";
+                    newApplication.WorkExp[0].ManagerName = "";
+                    newApplication.WorkExp[0].Position = "";
+
+                }
+                if (newApplication.LanguageCert == null)
+                {
+                    newApplication.LanguageCert = new LanguageCert();
+                    newApplication.LanguageCert.AppId = newApplication.ID;
+                    newApplication.LanguageCert.OverallScoreTOEFL = "0";
+                    newApplication.LanguageCert.OverallScoreIELTS = "0";
+                    newApplication.LanguageCert.WritingTOEFL = 0;
+                    newApplication.LanguageCert.WritingIELTS = 0;
+                    newApplication.LanguageCert.ReadingIELTS = 0;
+                    newApplication.LanguageCert.ReadingTOEFL = 0;
+                    newApplication.LanguageCert.SpeakingTOEFL = 0;
+                    newApplication.LanguageCert.SpeakingIELTS = 0;
+                    newApplication.LanguageCert.ListeningIELTS = 0;
+                    newApplication.LanguageCert.ListeningTOEFL = 0;
+                    newApplication.LanguageCert.LangCert = false;
+                    newApplication.LanguageCert.CertNoIELTS = " Doesn't Exist";
+                    newApplication.LanguageCert.CertNoTOEFL = " Doesn't Exist";
+                    newApplication.LanguageCert.CertType = "Other";
+                    newApplication.LanguageCert.CertOtherIELTS = " Doesn't Exist";
+                    newApplication.LanguageCert.CertOtherTOEFL = " Doesn't Exist";
+                    newApplication.LanguageCert.TestDateIELTS = DateTime.Now;
+                    newApplication.LanguageCert.TestDateTOEFL = DateTime.Now;
+                }
+
+
                 return View("Index", newApplication);
             }
             else    // Application doesn't exist 
@@ -547,26 +624,59 @@ namespace StudentApplication.Controllers
                     WorkExp = db.WorkExps.Where(x => x.AppId == AppRecordExist.ID).ToList(),
                     LanguageCert = db.LanguageCerts.Where(x => x.AppId == AppRecordExist.ID).FirstOrDefault()
                 };
-                if (newApplication.BgEducation1 == null) // Application kaydı var fakat bu bilgiler girilmedi ise yapılacakları yaptırıyoruz.
+                if (newApplication.BgEducation1 == null || newApplication.BgEducation1.Count==0) // if there is a Application but 
                 {
-                    db.BgEducations.Add(new BgEducation { AppID = AppRecordExist.ID, Awarded = false });
-                    db.SaveChanges();
-                    newApplication.BgEducation1 = db.BgEducations.Where(x => x.AppID == AppRecordExist.ID).ToList();
+                    //db.BgEducations.Add(new BgEducation { AppID = AppRecordExist.ID, Awarded = false });
+                    //db.SaveChanges();
+                    //newApplication.BgEducation1 = db.BgEducations.Where(x => x.AppID == AppRecordExist.ID).ToList();
+                    BgEducation bg = new BgEducation();
+                    newApplication.BgEducation1.Add(bg);
+                    newApplication.BgEducation1[0].AppID = AppRecordExist.ID;
+                    newApplication.BgEducation1[0].Faculty = "";
+                    newApplication.BgEducation1[0].InsturactionLang = "";
+                    newApplication.BgEducation1[0].EducationLevel = "";
+                    newApplication.BgEducation1[0].AvarageGrade = 0.0;
+                    newApplication.BgEducation1[0].Awarded = false;
+                    newApplication.BgEducation1[0].EducationCompDate = DateTime.Now;
+                    newApplication.BgEducation1[0].EducationStDate = DateTime.Now;
+                    newApplication.BgEducation1[0].InsCountry = "";
+                    newApplication.BgEducation1[0].InstitutionName = "";
+                    newApplication.BgEducation1[0].StudyMode = "";
                 }
                 if (newApplication.FtEducation == null)
                 {
-                    db.FtEducations.Add(new FtEducation { AppId = AppRecordExist.ID });
-                    db.SaveChanges();
-                    newApplication.FtEducation = db.FtEducations.Where(x => x.AppId == AppRecordExist.ID).FirstOrDefault();
+                    //db.FtEducations.Add(new FtEducation { AppId = AppRecordExist.ID });
+                    //db.SaveChanges();
+                    //newApplication.FtEducation = db.FtEducations.Where(x => x.AppId == AppRecordExist.ID).FirstOrDefault();
+                    newApplication.FtEducation.AppId = AppRecordExist.ID;
+                    newApplication.FtEducation.Country1 = "";
+                    newApplication.FtEducation.EducationLevel = "";
+                    newApplication.FtEducation.AcademicYear = Convert.ToInt32(DateTime.Now.ToString("yyyy"));
+                    newApplication.FtEducation.Country2 = "";
+                    newApplication.FtEducation.FieldOfStudy = "";
+                    newApplication.FtEducation.Intake = "";
                 }
-                if (newApplication.WorkExp == null)
+                if (newApplication.WorkExp == null || newApplication.WorkExp.Count==0)
                 {
-                    db.WorkExps.Add(new WorkExp { AppId = AppRecordExist.ID });
-                    db.SaveChanges();
-                    newApplication.WorkExp = db.WorkExps.Where(x => x.AppId == AppRecordExist.ID).ToList();
-                }
+                    //db.WorkExps.Add(new WorkExp { AppId = AppRecordExist.ID });
+                    //db.SaveChanges();
+                    //newApplication.WorkExp = db.WorkExps.Where(x => x.AppId == AppRecordExist.ID).ToList();
+                    WorkExp wrExp = new WorkExp();
+                    newApplication.WorkExp.Add(wrExp);
+                    newApplication.WorkExp[0].AppId = AppRecordExist.ID;
+                    newApplication.WorkExp[0].CompanyName = "";
+                    newApplication.WorkExp[0].EmployeeAdress = "";
+                    newApplication.WorkExp[0].EmployeeMail = "";
+                    newApplication.WorkExp[0].EmployeePhone = "";
+                    newApplication.WorkExp[0].JobDescription = "";
+                    newApplication.WorkExp[0].JobType = "";
+                    newApplication.WorkExp[0].ManagerName = "";
+                    newApplication.WorkExp[0].Position = "";
+                    
+                } 
                 if (newApplication.LanguageCert == null)
                 {
+                    newApplication.LanguageCert = new LanguageCert();
                     newApplication.LanguageCert.AppId = newApplication.ID;
                     newApplication.LanguageCert.OverallScoreTOEFL = "0";
                     newApplication.LanguageCert.OverallScoreIELTS = "0";
