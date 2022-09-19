@@ -28,7 +28,6 @@ namespace StudentApp.Models.Entity
         public virtual LanguageCert LanguageCert { get; set; }
         public virtual WorkExp WorkExp { get; set; }
         public Upload Upload { get; set; }
-
         public int ID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }

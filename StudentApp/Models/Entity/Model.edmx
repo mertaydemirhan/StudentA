@@ -148,6 +148,7 @@
           <Property Name="FilePath" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="AppId" Type="int" Nullable="false" />
           <Property Name="FileName" Type="nvarchar" MaxLength="300" />
+          <Property Name="FileNote" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -489,6 +490,7 @@
           <Property Name="AppId" Type="Int32" Nullable="false" />
           <Property Name="FileName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Application" Relationship="Self.FK_Upload_Applications" FromRole="Upload" ToRole="Applications" />
+          <Property Name="FileNote" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -827,6 +829,7 @@
           <EntitySetMapping Name="Uploads">
             <EntityTypeMapping TypeName="StudentAppModel.Upload">
               <MappingFragment StoreEntitySet="Upload">
+                <ScalarProperty Name="FileNote" ColumnName="FileNote" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FileType" ColumnName="FileType" />
                 <ScalarProperty Name="FilePath" ColumnName="FilePath" />

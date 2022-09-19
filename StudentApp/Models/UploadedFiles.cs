@@ -13,6 +13,7 @@ namespace StudentApp.Models
         public string FilePath { get; set; }
         public int File_AppID { get; set; }
         public string FileName { get; set; }
+        public string FileNote { get; set; }
         public IEnumerable<Upload> Files { get; set; }
     }
 }

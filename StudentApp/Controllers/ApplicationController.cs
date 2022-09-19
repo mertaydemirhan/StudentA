@@ -367,9 +367,19 @@ namespace StudentApplication.Controllers
                                FilePath = p.FilePath,
                                FileType = p.FileType,
                                FileName = p.FileName,
+                               FileNote = p.FileNote,
                                Id = db.Uploads.Where(x => x.AppId == AppID && x.FileType == p.FileType).FirstOrDefault().Id
                            }).ToList();
             return PartialView(@"~/Views/Application/UploadFileTable.cshtml", Upload1.AsEnumerable());
+        }
+
+        public JsonResult UploadFileNote(int id,string text) // File Comment's will insert to database
+        {
+            var userID = (int)Session["UserId"];
+            int AppID = db.Applications.Where(x => x.UserId == userID).FirstOrDefault().ID;
+            db.Uploads.Where(w => w.AppId == AppID && w.Id == id).FirstOrDefault().FileNote = text;
+            db.SaveChanges();
+            return Json("", JsonRequestBehavior.AllowGet);
         }
 
         // Redirect Pages -----------------------------------------------------------------------------------

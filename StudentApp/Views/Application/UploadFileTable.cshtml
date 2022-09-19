@@ -11,6 +11,9 @@
         <th>
             @Html.DisplayNameFor(m => m.FileName)
         </th>
+        <th>
+            @Html.DisplayNameFor(m => m.FileNote)
+        </th>
 
         <th></th>
     </tr>
@@ -26,8 +29,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.FileName)
                 </td>
+                <td><input type="text" contenteditable id="FileNote_@item.Id" name="@item.Id" onchange="Labelchanged(@item.Id)" value="@Html.DisplayFor(modelItem => item.FileNote)"></td>
                 <td>
-                    @*<input type="button" id="filedelete" name="@item.Id" value="Delete" title="@item.FileName" style="margin-top: 10px;" class="btn btn-danger">*@
                     <button id="filedelete" class="btn btn-danger" name="@item.Id" title="@item.FileName">Delete</button>
                     @*<button id="filedelete" title="@item.FileName" class="btn btn-danger" name="@item.Id">Delete</button>*@
                     <a href="@Url.Action("FullScreen", "Application", new { Id = item.Id })" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
@@ -57,7 +60,6 @@
 <script>
 
         $('Button').on('click', function () {
-            console.log('File bla bla bla...');
             var filename = this.title;
             if (this.id == 'filedelete') {
                 $.ajax({
@@ -77,8 +79,29 @@
             }
            
         });
-  
 
+    function Labelchanged(id) {
+        var ElementID = 'FileNote_' + id;
+        var innertxt = document.getElementById(ElementID).value;
+        console.log(innertxt);
+        $.ajax({
+            type: 'GET',
+            url: '/Application/UploadFileNote',
+            data: {
+                Id: parseInt(id),
+                text: innertxt
+            },
+            success: function (result) {
+                event.preventDefault();
+                ReviewFiles();
+                swal(
+                    'Comment Attached !',
+                    'Your file note' + ' added!',
+                    'success'
+                );
+            }
+        });
+    }
 
 
     function ReviewFiles() {
@@ -130,5 +153,29 @@
 
 
 </script>
+<script>
+    const elem = document.querySelector(`span`)
+    let oldValue = elem.innerText
+    elem.onkeydown = (keyboardEvent) => {
+        if (keyboardEvent.key === "Enter") {
+            elem.blur() // set focusout
+        }
+    }
+    elem.onblur = (e) => {
+        const curValue = elem.innerText
+        if (curValue === oldValue) {
+            return
+        }
+        if (curValue.length <= 50) {
+            elem.innerText = oldValue
 
+            // (Optional) Add error message
+            elem.insertAdjacentHTML("beforeend", `<span style="margin-left:5px;color:red">error length=${curValue.length}. Must greater than 50. undo to the previous value.</span>`)
+            const errMsg = elem.querySelector(`span`)
+            setTimeout(() => errMsg.remove(), 3500) // wait 3.5 second, and then remove it.
+            return
+        }
+        oldValue = curValue
+    }
+</script>
 <script src="~/Content/Scripts/bootstrap.min.js"></script>
