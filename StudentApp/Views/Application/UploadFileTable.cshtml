@@ -29,7 +29,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.FileName)
                 </td>
-                <td><input type="text" contenteditable id="FileNote_@item.Id" name="@item.Id" onchange="Labelchanged(@item.Id)" value="@Html.DisplayFor(modelItem => item.FileNote)"></td>
+                <td><input type="text" contenteditable id="FileNote_@item.Id" class="form-control" placeholder="insert @item.FileType Comment" name="@item.Id" onchange="Labelchanged(@item.Id)" value="@Html.DisplayFor(modelItem => item.FileNote)"></td>
                 <td>
                     <button id="filedelete" class="btn btn-danger" name="@item.Id" title="@item.FileName">Delete</button>
                     @*<button id="filedelete" title="@item.FileName" class="btn btn-danger" name="@item.Id">Delete</button>*@

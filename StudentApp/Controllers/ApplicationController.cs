@@ -478,9 +478,10 @@ namespace StudentApplication.Controllers
             };
             return RedirectToAction("Index", "Dashboard");
         }
-        public ActionResult ApplicationIndex()   // Application Index Redirect Part, and some controls
+        public ActionResult ApplicationIndex(int ReceivedUsr)   // Application Index Redirect Part, and some controls
         {
-            var userId = Session["UserId"];
+            int userId = (int)Session["UserId"];
+            if (userId.ToString() == null) userId = ReceivedUsr;
             var AppRecordExist = db.Applications.Where(x => x.UserId == (int)userId).FirstOrDefault();
             var userTbl = db.Users.Find(userId);
             ViewBag.Name = userTbl.Name;
@@ -496,10 +497,7 @@ namespace StudentApplication.Controllers
                 });
                 db.SaveChanges();
                 AppRecordExist = db.Applications.Where(x => x.UserId == (int)userId).FirstOrDefault();
-                //db.BgEducations.Add(new BgEducation{ AppID = AppRecordExist.ID, Awarded = false });
                 db.FtEducations.Add(new FtEducation { AppId = AppRecordExist.ID });
-                //db.WorkExps.Add(new WorkExp { AppId = AppRecordExist.ID });
-                //db.LanguageCerts.Add(new LanguageCert { AppId = AppRecordExist.ID, LangCert = false });
                 db.SaveChanges();
                 var appId = db.Applications.Where((x) => x.UserId == (int)userId).FirstOrDefault().ID;
                 Session["ApplicationID"] = appId;
@@ -519,9 +517,6 @@ namespace StudentApplication.Controllers
 
                 if (newApplication.BgEducation1 == null || newApplication.BgEducation1.Count == 0) // if there is a Application but 
                 {
-                    //db.BgEducations.Add(new BgEducation { AppID = AppRecordExist.ID, Awarded = false });
-                    //db.SaveChanges();
-                    //newApplication.BgEducation1 = db.BgEducations.Where(x => x.AppID == AppRecordExist.ID).ToList();
                     BgEducation bg = new BgEducation();
                     newApplication.BgEducation1.Add(bg);
                     newApplication.BgEducation1[0].AppID = AppRecordExist.ID;
@@ -538,9 +533,6 @@ namespace StudentApplication.Controllers
                 }
                 if (newApplication.FtEducation == null)
                 {
-                    //db.FtEducations.Add(new FtEducation { AppId = AppRecordExist.ID });
-                    //db.SaveChanges();
-                    //newApplication.FtEducation = db.FtEducations.Where(x => x.AppId == AppRecordExist.ID).FirstOrDefault();
                     newApplication.FtEducation.AppId = AppRecordExist.ID;
                     newApplication.FtEducation.Country1 = "";
                     newApplication.FtEducation.EducationLevel = "";
@@ -551,9 +543,6 @@ namespace StudentApplication.Controllers
                 }
                 if (newApplication.WorkExp == null || newApplication.WorkExp.Count == 0)
                 {
-                    //db.WorkExps.Add(new WorkExp { AppId = AppRecordExist.ID });
-                    //db.SaveChanges();
-                    //newApplication.WorkExp = db.WorkExps.Where(x => x.AppId == AppRecordExist.ID).ToList();
                     WorkExp wrExp = new WorkExp();
                     newApplication.WorkExp.Add(wrExp);
                     newApplication.WorkExp[0].AppId = AppRecordExist.ID;
@@ -636,9 +625,6 @@ namespace StudentApplication.Controllers
                 };
                 if (newApplication.BgEducation1 == null || newApplication.BgEducation1.Count==0) // if there is a Application but 
                 {
-                    //db.BgEducations.Add(new BgEducation { AppID = AppRecordExist.ID, Awarded = false });
-                    //db.SaveChanges();
-                    //newApplication.BgEducation1 = db.BgEducations.Where(x => x.AppID == AppRecordExist.ID).ToList();
                     BgEducation bg = new BgEducation();
                     newApplication.BgEducation1.Add(bg);
                     newApplication.BgEducation1[0].AppID = AppRecordExist.ID;
@@ -655,9 +641,6 @@ namespace StudentApplication.Controllers
                 }
                 if (newApplication.FtEducation == null)
                 {
-                    //db.FtEducations.Add(new FtEducation { AppId = AppRecordExist.ID });
-                    //db.SaveChanges();
-                    //newApplication.FtEducation = db.FtEducations.Where(x => x.AppId == AppRecordExist.ID).FirstOrDefault();
                     newApplication.FtEducation.AppId = AppRecordExist.ID;
                     newApplication.FtEducation.Country1 = "";
                     newApplication.FtEducation.EducationLevel = "";
@@ -668,9 +651,6 @@ namespace StudentApplication.Controllers
                 }
                 if (newApplication.WorkExp == null || newApplication.WorkExp.Count==0)
                 {
-                    //db.WorkExps.Add(new WorkExp { AppId = AppRecordExist.ID });
-                    //db.SaveChanges();
-                    //newApplication.WorkExp = db.WorkExps.Where(x => x.AppId == AppRecordExist.ID).ToList();
                     WorkExp wrExp = new WorkExp();
                     newApplication.WorkExp.Add(wrExp);
                     newApplication.WorkExp[0].AppId = AppRecordExist.ID;
@@ -887,7 +867,7 @@ namespace StudentApplication.Controllers
                 var yuklemeYeri = Path.Combine(Server.MapPath("~/UploadedFiles"), dosyaYolu);
                 YuklenecekDosya.SaveAs(yuklemeYeri);
             }
-
+            db.Users.Where(w => w.Id == userUpd.Id).FirstOrDefault().Email = user.Email;
             db.SaveChanges();
             TempData["Message"] = "Your Application has been successfully Submitted.";
 

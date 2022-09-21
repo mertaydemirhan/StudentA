@@ -174,9 +174,8 @@
       function toggleModel(id = false) {
         const modelContainer = document.querySelector(".modelContainer");
         modelContainer.classList.toggle("active");
-
+          debugger;
         if (id) {
-            @*var model = @Html.Raw(Json.Encode(Model));*@
             var model = @Html.Raw(Json.Encode(Model));
             model.forEach(item => {
                 if (item.ID == id) {
@@ -203,7 +202,7 @@
         }
 
 
-    }
+      }
 
 
 
@@ -232,7 +231,7 @@
 
     });
 
-        function RefreshBgEducationTBL() {
+    function RefreshBgEducationTBL() {
         var url = '@Url.Action("BgEducationRecords", "Application")';
                 var notifications = $("#tbl_BgEducations");
                 setInterval(function () {

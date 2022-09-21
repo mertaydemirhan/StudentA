@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<StudentApp.Models.UploadedFiles>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="~/Content/carousel-18/js/jquery-3.3.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <style>
     .modelContainer {
         opacity: 0;
@@ -139,6 +139,10 @@
         <th>
             @Html.DisplayNameFor(model => model.FileName)
         </th>
+        <th>
+            @Html.DisplayNameFor(m => m.FileNote)
+        </th>
+
         <th></th>
     </tr>
 
@@ -151,6 +155,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.FileName)
             </td>
+            <td><input type="text" contenteditable id="FileNote_@item.Id" class="form-control" placeholder="insert @item.FileType Comment" name="@item.Id" onchange="Labelchanged(@item.Id)" value="@Html.DisplayFor(modelItem => item.FileNote)"></td>
             <td>
                 <a href="@Url.Action("FullScreen", "Application", new { Id = item.Id })" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
                 <button id="FileAdd" class="btn btn-primary" name="@item.Id" title="@item.FileName" onclick="toggleModel()">Add new File</button>
@@ -184,12 +189,32 @@
                 }
             });
         }   // end of Delete
-
-
-
-
-
     });
+
+    function Labelchanged(id) {
+        var ElementID = 'FileNote_' + id;
+        var innertxt = document.getElementById(ElementID).value;
+        console.log(innertxt);
+        $.ajax({
+            type: 'GET',
+            url: '/Application/UploadFileNote',
+            data: {
+                Id: parseInt(id),
+                text: innertxt
+            },
+            success: function (result) {
+                event.preventDefault();
+                RefreshFilesTBL();
+                swal(
+                    'Comment Attached !',
+                    'Your file note' + ' added!',
+                    'success'
+                );
+            }
+        });
+    }
+
+
 
     function RefreshFilesTBL() {
         var url = '@Url.Action("UploadFileReturnAdmin", "Students")';
@@ -248,3 +273,5 @@
 
 
 </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Content/Scripts/bootstrap.min.js"></script>

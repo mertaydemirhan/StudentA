@@ -20,19 +20,6 @@ namespace StudentApp.Controllers
     public class StudentsController : Controller
     {
         readonly StudentAppEntities db = new StudentAppEntities();
-
-        //public ActionResult CheckApplication(Application app)
-        //{
-        //    var App = db.Applications.Where(x => x.UserId == app.ID).FirstOrDefault();
-        //    if(App == null)
-        //    {
-        //        return null;
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("ApplicationDetails", app);
-        //    }
-        //}
         public ActionResult Index()
         {
             return View(db.Users.ToList());
@@ -86,7 +73,6 @@ namespace StudentApp.Controllers
                     userId = (int)App.UserId,
                     Zip = App.Zip,
                     BgEducation1 = bgEducation,
-                    Upload1 = uploaded,
                     WorkExp = workExp,
                     FtEducation = ftEducation
 
@@ -103,6 +89,14 @@ namespace StudentApp.Controllers
             return View(StApplication);
         }
 
+        public JsonResult ChangeEmail(string newMail)
+        {
+            var userID = Session["UserID"];
+            db.Applications.Where(W => W.UserId == (int)userID).FirstOrDefault().Email = newMail;
+            db.Users.Where(w => w.Id == (int)userID).FirstOrDefault().Email = newMail;
+            db.SaveChanges();
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
         public ActionResult DownloadAsZip()
         {
             int fr = (int)Session["AppindexAd"];
@@ -356,6 +350,7 @@ namespace StudentApp.Controllers
                                FilePath = p.FilePath,
                                FileType = p.FileType,
                                FileName = p.FileName,
+                               FileNote = p.FileNote,
                                Id = db.Uploads.Where(x => x.AppId == AppID && x.FileType == p.FileType).FirstOrDefault().Id
                            }).ToList();
             return PartialView(@"~/Views/Students/UploadFiles.cshtml", Upload1.AsEnumerable());
@@ -402,6 +397,7 @@ namespace StudentApp.Controllers
                                    Id = p.Id,
                                    File_AppID = p.AppId,
                                    FileName = p.FileName,
+                                   FileNote = p.FileNote,
                                    FileType = p.FileType
                                }).ToList();
 

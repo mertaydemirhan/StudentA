@@ -126,7 +126,8 @@
         <div class="row">
             <div class="col-lg-6">
                 <label>Email address</label>
-                <input value="@User.Identity.Name" readonly type="email" class="form-control">
+                @*<input value="@User.Identity.Name" readonly type="email" class="form-control">*@
+                @Html.TextBoxFor(x => x.Email, new { @class="form-control"})
 
                 <p class="form-text">
                     We'll never share your contact info with

@@ -1,8 +1,98 @@
 ﻿@model IEnumerable<StudentApp.Models.WorkExperiences>
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+@*<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>*@
+<style>
+    .modelContainer_WorkExp {
+        opacity: 0;
+        pointer-events: none;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    .modelContainer_WorkExp, .clickableArea {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+    }
+
+        .modelContainer_WorkExp.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+    .model_WorkExp {
+        position: relative;
+        border-radius: 15px;
+        background-color: white;
+        padding: 25px;
+        min-width: 400px;
+    }
+
+    .buttonBox {
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+
+<div class="modelContainer_WorkExp">
+    <div class="clickableArea" onclick="toggleModel_WorkExp()"></div>
+    <div class="model_WorkExp">
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Company Name</label>
+                <p class="CompanyName"></p>
+            </div>
+            <div class="col-lg-6">
+                <label>Position</label>
+                <p class="Position"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Job Type</label>
+                <p class="JobType"></p>
+            </div>
+            <div class="col-lg-6">
+                <label>Employee Adress</label>
+                <p class="EmployeeAdress"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Manager Name</label>
+                <p class="ManagerName"></p>
+            </div>
+            <div class="col-lg-6">
+                <label>Employee Mail</label>
+                <p class="EmployeeMail"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Employee Phone</label>
+                <p class="EmployeePhone"></p>
+            </div>
+            <div class="col-lg-6">
+                <label>Job Description</label>
+                <p class="JobDescription"></p>
+            </div>
+        </div>
+
+        <div class="buttonBox">
+            <button class="btn btn-danger" onclick="toggleModel_WorkExp()">Close</button>
+        </div>
+    </div>
+</div>
+
 <table class="table" id="tbl_WorkExps" style=" margin-top:10px;">
     <tr>
         <th>
@@ -38,9 +128,8 @@
                 </td>
                 <td>
                     <button id="WorkExpDelete" class="btn btn-danger" name="@item.ID" title="@item.CompanyName">Delete</button>
-                    @*<a href="@Url.Action("FullScreen", "Application", new { Id = item.ID })" id="ViewScreen" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
-                    <a href="@Url.Action("Download", "Application", new { Id = item.ID })" class="btn btn-success"><span class="fa fa-download"></span> Download</a>*@
-                    <a href="#" id="ViewScreen" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
+                    @*<a href="#" id="ViewScreen" class="btn btn-warning" onclick="toggleModel(@item.ID)"><span class="fa fullscreen"></span>View</a>*@
+                    <a href="#" id="ViewScreen" class="btn btn-warning" name="@item.ID" onclick="toggleModel_WorkExp(@item.ID)"><span class="fa fullscreen"></span>View</a>
                     @*<a href="#" class="btn btn-success"><span class="fa fa-edit"></span> Edit</a>*@
                 </td>
 
@@ -66,14 +155,28 @@
 </table>
 
 
-
-@*test test test test test*@
-
-
 <script type="text/javascript">
 
-
-
+    function toggleModel_WorkExp(id = false) {
+        const modelContainer = document.querySelector(".modelContainer_WorkExp");
+        modelContainer.classList.toggle("active");
+        debugger;
+        if (id) {
+            var model = @Html.Raw(Json.Encode(Model));
+            model.forEach(item => {
+                if (item.ID == id) {
+                    document.querySelector(".model_WorkExp .CompanyName").innerHTML = item.CompanyName;
+                    document.querySelector(".model_WorkExp .Position").innerHTML = item.Position;
+                    document.querySelector(".model_WorkExp .JobType").innerHTML = item.JobType;
+                    document.querySelector(".model_WorkExp .EmployeeAdress").innerHTML = item.EmployeeAdress;
+                    document.querySelector(".model_WorkExp .ManagerName").innerHTML = item.ManagerName;
+                    document.querySelector(".model_WorkExp .EmployeeMail").innerHTML = item.EmployeeMail;
+                    document.querySelector(".model_WorkExp .EmployeePhone ").innerHTML = item.EmployeePhone;
+                    document.querySelector(".model_WorkExp .JobDescription").innerHTML = item.JobDescription;
+                }
+            })
+        }
+    };
     $('Button').on('click', function () {
 
         // if Clicked button was Delete button.. Do this
@@ -98,8 +201,7 @@
         };
 
     });
-
-        function RefreshWorkExp() {
+    function RefreshWorkExp() {
         var url = '@Url.Action("WorkExperiences", "Application")';
         var notifications = $("#tbl_WorkExps");
         setInterval(function () {
@@ -116,10 +218,5 @@
         document.getElementById('Position').value = null;
         document.getElementById('JobDescription').value = null;
     }
-
-
-
-
-
 </script>
-<script src="~/Content/Scripts/bootstrap.min.js"></script>
+@*<script src="~/Content/Scripts/bootstrap.min.js"></script>*@

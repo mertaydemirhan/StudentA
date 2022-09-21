@@ -3,17 +3,13 @@
     ViewBag.Title = "ViewApplication";
     Layout = "~/Views/Shared/_LayoutPanel.cshtml";
 }
-@*
-    <section class="buttonbox">
-        @Html.ActionLink("Export PDF", "DownloadViewAsPDF", "Student", new { users = Html.ViewBag.newStudent, @Class = "btn btn-danger" })
-        @Html.ActionLink("Download Zip", "DownloadAsZip", "Student", new { users = Html.ViewBag.newStudent, @Class = "btn btn-warning" })
-    </section>*@
+
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>StudentA - Application Details</title>
     <link rel="stylesheet"
           href=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" />
     <style>
@@ -324,26 +320,28 @@
                         <div class="col-lg-6">
                             <label>Listening</label>
                             <p>
-                                @{if (Model.LanguageCert != null) {
+                                @{if (Model.LanguageCert != null)
+                                    {
                                         if (Model.LanguageCert.CertType != null)
                                         {
                                             switch (Model.LanguageCert.CertType.ToString())
                                             {
                                                 case "TOEFL IBT":
-                                                <text>@Html.DisplayFor(x => x.LanguageCert.ListeningTOEFL)</text>
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.ListeningTOEFL)</text>
                                                     break;
                                                 case "IELTS Academic":
-                                                <text>@Html.TextBoxFor(x => x.LanguageCert.ListeningIELTS)</text>
-                                                        break;
-                                                    case "Other":
-                                                        Html.Label("0");
-                                                        break;
-                                                    default:
-                                                        Html.Label("0");
-                                                        break;
-                                                }
-                                            } }
+                                                    <text>@Html.TextBoxFor(x => x.LanguageCert.ListeningIELTS)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label("0");
+                                                    break;
+                                                default:
+                                                    Html.Label("0");
+                                                    break;
+                                            }
+                                        }
                                     }
+                                }
                             </p>
                         </div>
                         <div class="col-lg-6">
@@ -356,20 +354,21 @@
                                             switch (Model.LanguageCert.CertType.ToString())
                                             {
                                                 case "TOEFL IBT":
-                                                <text>@Html.DisplayFor(x => x.LanguageCert.ReadingTOEFL)</text>
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.ReadingTOEFL)</text>
                                                     break;
                                                 case "IELTS Academic":
-                                                <text>Html.DisplayFor(x => x.LanguageCert.ReadingIELTS)</text>
-                                                        break;
-                                                    case "Other":
-                                                        Html.Label("0");
-                                                        break;
-                                                    default:
-                                                        Html.Label("0");
-                                                        break;
-                                                }
-                                            } }
+                                                    <text>Html.DisplayFor(x => x.LanguageCert.ReadingIELTS)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label("0");
+                                                    break;
+                                                default:
+                                                    Html.Label("0");
+                                                    break;
+                                            }
+                                        }
                                     }
+                                }
                             </p>
                         </div>
                     </div>
@@ -385,20 +384,21 @@
                                             switch (Model.LanguageCert.CertType.ToString())
                                             {
                                                 case "TOEFL IBT":
-                                                <text>@Html.DisplayFor(x => x.LanguageCert.WritingTOEFL)</text>
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.WritingTOEFL)</text>
                                                     break;
                                                 case "IELTS Academic":
-                                                <text>@Html.DisplayFor(x => x.LanguageCert.WritingIELTS)</text>
-                                                        break;
-                                                    case "Other":
-                                                        Html.Label("0");
-                                                        break;
-                                                    default:
-                                                        Html.Label("0");
-                                                        break;
-                                                }
-                                            } }
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.WritingIELTS)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label("0");
+                                                    break;
+                                                default:
+                                                    Html.Label("0");
+                                                    break;
+                                            }
+                                        }
                                     }
+                                }
                             </p>
                         </div>
                         <div class="col-lg-6">
@@ -411,20 +411,21 @@
                                             switch (Model.LanguageCert.CertType.ToString())
                                             {
                                                 case "TOEFL IBT":
-                                                <text>@Html.DisplayFor(x => x.LanguageCert.SpeakingTOEFL)</text>
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.SpeakingTOEFL)</text>
                                                     break;
                                                 case "IELTS Academic":
-                                                <text>@Html.DisplayFor(x => x.LanguageCert.SpeakingIELTS)</text>
-                                                        break;
-                                                    case "Other":
-                                                        Html.Label("0");
-                                                        break;
-                                                    default:
-                                                        Html.Label("0");
-                                                        break;
-                                                }
-                                            } }
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.SpeakingIELTS)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label("0");
+                                                    break;
+                                                default:
+                                                    Html.Label("0");
+                                                    break;
+                                            }
+                                        }
                                     }
+                                }
                             </p>
                         </div>
                     </div>
@@ -440,20 +441,21 @@
                                             switch (Model.LanguageCert.CertType.ToString())
                                             {
                                                 case "TOEFL IBT":
-                                                <text>@Html.DisplayFor(x => x.LanguageCert.OverallScoreTOEFL)</text>
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.OverallScoreTOEFL)</text>
                                                     break;
                                                 case "IELTS Academic":
-                                                <text>@Html.DisplayFor(x => x.LanguageCert.OverallScoreIELTS)</text>
-                                                        break;
-                                                    case "Other":
-                                                        Html.Label("0");
-                                                        break;
-                                                    default:
-                                                        Html.Label("0");
-                                                        break;
-                                                }
-                                            } }
+                                                    <text>@Html.DisplayFor(x => x.LanguageCert.OverallScoreIELTS)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label("0");
+                                                    break;
+                                                default:
+                                                    Html.Label("0");
+                                                    break;
+                                            }
+                                        }
                                     }
+                                }
                             </p>
                         </div>
                         <div class="col-lg-6">
@@ -467,21 +469,22 @@
                                             {
                                                 case "TOEFL IBT":
                                                     var parameterValue2 = Model.LanguageCert.TestDateTOEFL.Value.ToShortDateString();
-                                                <text>@Html.DisplayFor(x => parameterValue2)</text>
+                                                    <text>@Html.DisplayFor(x => parameterValue2)</text>
                                                     break;
                                                 case "IELTS Academic":
                                                     parameterValue2 = Model.LanguageCert.TestDateIELTS.Value.ToShortDateString();
-                                                <text>@Html.DisplayFor(x => parameterValue2)</text>
-                                                        break;
-                                                    case "Other":
-                                                        Html.Label("");
-                                                        break;
-                                                    default:
-                                                        Html.Label("");
-                                                        break;
-                                                }
-                                            } }
+                                                    <text>@Html.DisplayFor(x => parameterValue2)</text>
+                                                    break;
+                                                case "Other":
+                                                    Html.Label("");
+                                                    break;
+                                                default:
+                                                    Html.Label("");
+                                                    break;
+                                            }
+                                        }
                                     }
+                                }
                             </p>
                         </div>
                     </div>
@@ -496,20 +499,22 @@
                                         switch (Model.LanguageCert.CertType.ToString())
                                         {
                                             case "TOEFL IBT":
-                                            <text>@Html.DisplayFor(x => x.LanguageCert.CertNoTOEFL)</text>
+                                                <text>@Html.DisplayFor(x => x.LanguageCert.CertNoTOEFL)</text>
                                                 break;
                                             case "IELTS Academic":
-                                            <text>@Html.DisplayFor(x => x.LanguageCert.CertNoIELTS)</text>
-                                                    break;
-                                                case "Other":
-                                                    Html.Label("");
-                                                    break;
-                                                default:
-                                                    Html.Label("");
-                                                    break;
-                                            }
-                                        } }
+                                                <text>@Html.DisplayFor(x => x.LanguageCert.CertNoIELTS)</text>
+                                                break;
+                                            case "Other":
+                                                Html.Label("");
+
+                                                break;
+                                            default:
+                                                Html.Label("");
+                                                break;
+                                        }
+                                    }
                                 }
+                            }
                         </p>
                     </div>
 
@@ -523,21 +528,21 @@
                                         switch (Model.LanguageCert.CertType.ToString())
                                         {
                                             case "TOEFL IBT":
-                                            <text>@Html.DisplayFor(x => x.LanguageCert.CertOtherTOEFL)</text>
+                                                <text>@Html.DisplayFor(x => x.LanguageCert.CertOtherTOEFL)</text>
                                                 break;
                                             case "IELTS Academic":
-                                            <text>@Html.DisplayFor(x => x.LanguageCert.CertNoIELTS)</text>
-                                                    break;
-                                                case "Other":
-                                                    Html.Label("");
-                                                    break;
-                                                default:
-                                                    Html.Label("");
-                                                    break;
-                                            }
+                                                <text>@Html.DisplayFor(x => x.LanguageCert.CertNoIELTS)</text>
+                                                break;
+                                            case "Other":
+                                                Html.Label("");
+                                                break;
+                                            default:
+                                                Html.Label("");
+                                                break;
                                         }
                                     }
                                 }
+                            }
                         </p>
                     </div>
                 </div>
@@ -550,98 +555,12 @@
             <h2 class="title">Submit Documents</h2>
 
             @{Html.RenderAction("UploadFiles", "Students"); }
-            @*<div class="row">
-                    <div class="col-lg-6">
-                        <label>Passport</label>
-                        <div class="filename">
-                            <p>@{ if(Model.Upload1.FileType=="Passport") { Html.LabelFor(x => x.Upload1.FileName.ToString()); }}</p>
-                            <img src="" />
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>National ID</label>
-                        <div class="filename">
-                            <p>@{ if(Model.Upload1.FileType=="NationalID") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
-                            <img src="" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <label>Diploma</label>
-                        <div class="filename">
-                            <p>@{ if (Model.Upload1.FileType == "Diploma") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
-                            <img src="" />
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Transcript</label>
-                        <div class="filename">
-                            <p>@{ if (Model.Upload1.FileType == "Transcript") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
-                            <img src="" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <label>CV</label>
-                        <div class="filename">
-                            <p>@{ if (Model.Upload1.FileType == "CV") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
-                            <img src="" />
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>IELTS or TOEFL Certificate</label>
-                        <div class="filename">
-                            <p>@{ if (Model.Upload1.FileType == "IELTSorToeflCertificate") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
-                            <img src="" />
-                        </div>
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <label>Extra document 1</label>
-                        <div class="filename">
-                            <p>@{ if (Model.Upload1.FileType == "Extradocument1") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
-                            <img src="" />
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Extra document 2</label>
-                        <div class="filename">
-                            <p>@{ if (Model.Upload1.FileType == "Extradocument2") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
-                            <img src="" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <label>Extra document 3</label>
-                        <div class="filename">
-                            <p>@{ if (Model.Upload1.FileType == "Extradocument3") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
-                            <img src="" />
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Extra document 4</label>
-                        <div class="filename">
-                            <p>@{ if (Model.Upload1.FileType == "Extradocument3") { Html.LabelFor(x => x.Upload1.FileName); }}</p>
-                            <img src="" />
-                        </div>
-                    </div>
-                </div>*@
-
         </div>
         <div style="margin-top:30px">
             <section class="buttonbox">
-                @Html.ActionLink("Application Details PDF", "DownloadViewAsPDF", "Student", new { users = Html.ViewBag.StApplication, id="DownloadPDF", @Class = "btn btn-danger" })
+                @Html.ActionLink("Application Details PDF", "DownloadViewAsPDF", "Student", new { users = Html.ViewBag.StApplication, id = "DownloadPDF", @Class = "btn btn-danger" })
                 @Html.ActionLink("Download All Files", "DownloadAsZip", "Student", new { users = Html.ViewBag.StApplication, @Class = "btn btn-warning" })
+                <a href="@Url.Action("DetailsButton", "Application", new { Id = Model.ID })" class="btn btn-primary">Details</a>
             </section>
         </div>
     </main>
@@ -656,7 +575,7 @@
             filename.childNodes[3].src = fileSource;
         });
 
-        
+
         $('#DownloadPDF').click(function () {
             this.classList.add("disabled");
             this.innerHTML = "Downloading...";
@@ -665,7 +584,6 @@
 
 
     </script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
