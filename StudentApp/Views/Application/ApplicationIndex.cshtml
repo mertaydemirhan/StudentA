@@ -23,6 +23,8 @@
 
         .roww {
             display: flex;
+            margin-left:10%;
+            margin-right:10%;
             justify-content: center;
         }
 
@@ -147,10 +149,10 @@
                 }
     </style>
 </head>
-<body style="margin-top:10vh;">
+<body id="onloadBody" style="margin-top:10vh;" >
     <div class="container-xl">
         <div class="row">
-            <div class="col-lg-10 mx-auto">
+            <div class="col-lg-14 mx-auto">
 
                 <h2>Application Summary</h2>
                 <div class="details" style=" margin-top:4vh; width:80px; margin-left:auto; margin-right:auto;">
@@ -611,4 +613,33 @@
         </div>
     </div>
 </body>
+
 </html>
+<script >
+    function pagerefresh() {
+        if ($('#langBtn').is(':checked')) {
+            $('.languages').css('display', 'block');
+            switch ($('#test :selected').text()) {
+                case "IELTS Academic":
+                    $('.ielts').css('display', 'block');
+                    $('.toefl').css('display', 'none');
+                    $('.other').css('display', 'none');
+                    break;
+                case "TOEFL IBT":
+                    $('.toefl').css('display', 'block');
+                    $('.other').css('display', 'none');
+                    $('.ielts').css('display', 'none');
+                    break;
+                case "Other":
+                    $('.other').css('display', 'block');
+                    $('.ielts').css('display', 'none');
+                    $('.toefl').css('display', 'none');
+                    break;
+            }
+        }
+        else {
+            $('.languages').css('display', 'none');
+
+        }
+    };
+</script>
