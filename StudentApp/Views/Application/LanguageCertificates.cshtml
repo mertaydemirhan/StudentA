@@ -1,4 +1,4 @@
-﻿@model StudentApp.ObjectModels.Application
+@model StudentApp.ObjectModels.Application
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <body onload="pageload()">
@@ -41,6 +41,7 @@
                     </div>
                 </div>
 
+
                 <div class="row">
                     <div class="col-lg-6">
                         <label>Writing</label>
@@ -51,6 +52,11 @@
                         <label>Speaking</label>
                         @Html.DropDownListFor(x => x.LanguageCert.SpeakingIELTS, new SelectList(new List<double> { 0, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0 }), new { name = "SpeakingIelts", id = "SpeakingIelts", @class = "form-select" })
                     </div>
+
+                <div class="col-lg-6">
+                    <label>Date of test</label>
+                    @Html.TextBoxFor(m => m.LanguageCert.TestDateIELTS, "{0:yyyy-MM-dd}", new { id = "dateofTestIelts", name = "dateofTestIelts", @class = "form-control", type = "date" })
+
                 </div>
 
                 <div class="row">
@@ -108,9 +114,15 @@
 
                     </div>
 
+
                     <div class="col-lg-6">
                         <label>Date of test</label>
                         @Html.TextBoxFor(m => m.LanguageCert.TestDateTOEFL, "{0:yyyy-MM-dd}", new { id = "dateofTestToefl", name = "dateofTestToefl", @class = "form-control", type = "date" })
+
+                <div class="col-lg-6">
+                    <label>Date of test</label>
+                    @Html.TextBoxFor(m => m.LanguageCert.TestDateTOEFL, "{0:yyyy-MM-dd}", new { id = "dateofTestToefl", name = "dateofTestToefl", @class = "form-control", type = "date" })
+
 
                     </div>
                 </div>
