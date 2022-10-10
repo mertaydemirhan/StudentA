@@ -478,10 +478,10 @@ namespace StudentApplication.Controllers
             };
             return RedirectToAction("Index", "Dashboard");
         }
-        public ActionResult ApplicationIndex(int ReceivedUsr)   // Application Index Redirect Part, and some controls
+        public ActionResult ApplicationIndex()   // Application Index Redirect Part, and some controls
         {
             int userId = (int)Session["UserId"];
-            if (userId.ToString() == null) userId = ReceivedUsr;
+            //if (userId.ToString() == null) userId = ReceivedUsr.Id;
             var AppRecordExist = db.Applications.Where(x => x.UserId == (int)userId).FirstOrDefault();
             var userTbl = db.Users.Find(userId);
             ViewBag.Name = userTbl.Name;
@@ -867,7 +867,7 @@ namespace StudentApplication.Controllers
                 var yuklemeYeri = Path.Combine(Server.MapPath("~/UploadedFiles"), dosyaYolu);
                 YuklenecekDosya.SaveAs(yuklemeYeri);
             }
-            db.Users.Where(w => w.Id == userUpd.Id).FirstOrDefault().Email = user.Email;
+            db.Users.Where(w => w.Id == userUpd.Id).FirstOrDefault().Email = userUpd.Email;
             db.SaveChanges();
             TempData["Message"] = "Your Application has been successfully Submitted.";
 

@@ -35,7 +35,7 @@
 
 </head>
 
-<body onload="document.body.className += ' loaded';" class="spinhov">
+<body onload="document.body.className += ' loaded';" class="spinhov" style="margin-top:10vh; ">
 
     <!--   Big container   -->
     <div class="container">
@@ -45,8 +45,9 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <!--      Wizard container        -->
                 <div class="wizard-container">
-                    <img src="~/Content/assets/img/logo.png" class="spinhov3D" />
-
+                    <div style="  width: 28%; margin-right: auto; margin-left: auto;">
+                        <img src="~/Content/assets/img/logo.png" class="spinhov3D" />
+                    </div>
                     <div class="card wizard-card" data-color="purple" id="wizard">
                         <form action="" method="">
                             <!--        You can switch " data-color="rose" "  with one of the next bright colors: "blue", "green", "orange", "purple"        -->
@@ -72,17 +73,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="wizard-footer">
-
-                                <div class="continue">
-
-                                    <input type='button' class='btn btn-fill btn-info btn-wd' name='Continue'
-                                           value='Continue' />
-
-
-                                </div>
-
-                            </div>
+                           
                         </form>
                     </div>
                 </div> <!-- wizard container -->
@@ -105,3 +96,4 @@
 
 
 
+</html>

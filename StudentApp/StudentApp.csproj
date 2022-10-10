@@ -4003,6 +4003,7 @@
     <Content Include="Content\assets\css\demo.css" />
     <Content Include="Content\assets\css\material-bootstrap-wizard.css" />
     <Content Include="Content\assets\css\PDFTemplate.css" />
+    <Content Include="Content\assets\img\57logo.ico" />
     <Content Include="Content\assets\img\apple-icon.png" />
     <Content Include="Content\assets\img\default-avatar.png" />
     <Content Include="Content\assets\img\favicon.png" />
@@ -4098,7 +4099,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\HtmlPage2.html" />
     <Content Include="Content\Landing\css\bootstrap.css" />
     <Content Include="Content\Landing\css\main.css" />
     <Content Include="Content\Landing\fonts\fontawesome-5\css\all.css" />
@@ -6430,7 +6430,6 @@
     <Content Include="Content\Templates\tools\plugins\jqvmap\maps\jquery.vmap.usa.districts.js" />
     <Content Include="Content\Templates\tools\plugins\jqvmap\maps\jquery.vmap.usa.js" />
     <Content Include="Content\Templates\tools\plugins\jqvmap\maps\jquery.vmap.world.js" />
-    <Content Include="Content\Templates\tools\plugins\jsgrid\demos\db.js" />
     <Content Include="Content\Templates\tools\plugins\jsgrid\i18n\jsgrid-de.js" />
     <Content Include="Content\Templates\tools\plugins\jsgrid\i18n\jsgrid-es.js" />
     <Content Include="Content\Templates\tools\plugins\jsgrid\i18n\jsgrid-fr.js" />
@@ -7084,6 +7083,7 @@
     <Content Include="Models\Entity\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

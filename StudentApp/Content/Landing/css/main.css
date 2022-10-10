@@ -406,10 +406,10 @@ div#loading img {
   }
 }
 
-@media (min-width: 480px) {
-  .header-btns {
-    margin-right: 15px;
-  }
+@media (min-width: 180px) {
+    .header-btns {
+        margin-right: 15px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -1045,7 +1045,7 @@ div#loading img {
   color: #000 !important;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 180px) {
   .d-xs-inline-flex {
     display: inline-flex !important;
   }
@@ -1449,11 +1449,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 25px;
 }
 
-@media (min-width: 480px) {
-  .section__heading h2 {
-    font-size: 38px;
-    line-height: 48px;
-  }
+@media (min-width: 180px) {
+    .section__heading h2 {
+        font-size: 38px;
+        line-height: 48px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1485,11 +1485,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 30px;
 }
 
-@media (min-width: 480px) {
-  .section__heading-2 h2 {
-    font-size: 38px !important;
-    line-height: 45px;
-  }
+@media (min-width: 180px) {
+    .section__heading-2 h2 {
+        font-size: 38px !important;
+        line-height: 45px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1527,7 +1527,7 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 30px;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 180px) {
   .section__heading-3 h2 {
     font-size: 38px !important;
     line-height: 45px;
@@ -1563,11 +1563,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 35px;
 }
 
-@media (min-width: 480px) {
-  .section-heading-4 h2 {
-    font-size: 38px;
-    line-height: 48px;
-  }
+@media (min-width: 180px) {
+    .section-heading-4 h2 {
+        font-size: 38px;
+        line-height: 48px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1600,11 +1600,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 35px;
 }
 
-@media (min-width: 480px) {
-  .section-heading-5 h2 {
-    font-size: 38px;
-    line-height: 48px;
-  }
+@media (min-width: 180px) {
+    .section-heading-5 h2 {
+        font-size: 38px;
+        line-height: 48px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1637,11 +1637,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 20px;
 }
 
-@media (min-width: 480px) {
-  .section-heading-6 h2 {
-    font-size: 38px;
-    line-height: 48px;
-  }
+@media (min-width: 180px) {
+    .section-heading-6 h2 {
+        font-size: 38px;
+        line-height: 48px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1674,11 +1674,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 35px;
 }
 
-@media (min-width: 480px) {
-  .section-heading-7 h2 {
-    font-size: 38px;
-    line-height: 42px;
-  }
+@media (min-width: 180px) {
+    .section-heading-7 h2 {
+        font-size: 38px;
+        line-height: 42px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1718,11 +1718,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 35px;
 }
 
-@media (min-width: 480px) {
-  .section-heading-8 h2 {
-    font-size: 38px;
-    line-height: 52px;
-  }
+@media (min-width: 180px) {
+    .section-heading-8 h2 {
+        font-size: 38px;
+        line-height: 52px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1764,11 +1764,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 15px;
 }
 
-@media (min-width: 480px) {
-  .section-heading-9 h2 {
-    font-size: 38px;
-    line-height: 46px;
-  }
+@media (min-width: 180px) {
+    .section-heading-9 h2 {
+        font-size: 38px;
+        line-height: 46px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1800,11 +1800,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 25px;
 }
 
-@media (min-width: 480px) {
-  .section-heading-10 h2 {
-    font-size: 38px;
-    line-height: 48px;
-  }
+@media (min-width: 180px) {
+    .section-heading-10 h2 {
+        font-size: 38px;
+        line-height: 48px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1836,11 +1836,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 25px;
 }
 
-@media (min-width: 480px) {
-  .section-heading-11 h2 {
-    font-size: 38px;
-    line-height: 50px;
-  }
+@media (min-width: 180px) {
+    .section-heading-11 h2 {
+        font-size: 38px;
+        line-height: 50px;
+    }
 }
 
 .section-heading-11 p {
@@ -1875,11 +1875,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 25px;
 }
 
-@media (min-width: 480px) {
-  .section-heading-12 h2 {
-    font-size: 38px;
-    line-height: 50px;
-  }
+@media (min-width: 180px) {
+    .section-heading-12 h2 {
+        font-size: 38px;
+        line-height: 50px;
+    }
 }
 
 .section-heading-12 p {
@@ -1902,11 +1902,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 15px;
 }
 
-@media (min-width: 480px) {
-  .section-heading-13 h2 {
-    font-size: 42px;
-    line-height: 52px;
-  }
+@media (min-width: 180px) {
+    .section-heading-13 h2 {
+        font-size: 42px;
+        line-height: 52px;
+    }
 }
 
 .section-heading-13 p {
@@ -1929,11 +1929,11 @@ li.sub-menu--item.nav-item-has-children i {
   margin-bottom: 15px;
 }
 
-@media (min-width: 480px) {
-  .section-heading-14 h2 {
-    font-size: 38px;
-    line-height: 44px;
-  }
+@media (min-width: 180px) {
+    .section-heading-14 h2 {
+        font-size: 38px;
+        line-height: 44px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1992,10 +1992,11 @@ li.sub-menu--item.nav-item-has-children i {
   padding-bottom: 60px;
 }
 
-@media (min-width: 480px) {
-  .hero-area-l11 {
-    padding-top: 115px;
-  }
+@media (min-width: 180px
+) {
+    .hero-area-l11 {
+        padding-top: 115px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -2812,22 +2813,22 @@ a {
   }
 }
 
-@media (min-width: 480px) {
-  .d-xs-flex {
-    display: flex;
-  }
+@media (min-width: 180px) {
+    .d-xs-flex {
+        display: flex;
+    }
 }
 
-@media (min-width: 480px) {
-  .text-xs-start {
-    text-align: start !important;
-  }
+@media (min-width: 180px) {
+    .text-xs-start {
+        text-align: start !important;
+    }
 }
 
-@media (min-width: 480px) {
-  .text-xs-center {
-    text-align: center;
-  }
+@media (min-width: 180px) {
+    .text-xs-center {
+        text-align: center;
+    }
 }
 
 .btn-style-01:before {

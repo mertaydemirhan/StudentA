@@ -1968,7 +1968,8 @@ main {
 .spinhov3D {
     margin-bottom: 20px;
     margin-top: 10px;
-    margin-left: 32%;
+    width:100%;
+    height:auto;
     animation-name: spin3D2;
     animation-duration: 2s;
     animation-iteration-count: 1;

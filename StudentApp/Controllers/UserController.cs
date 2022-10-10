@@ -38,7 +38,7 @@ namespace StudentApplication.Controllers
         {
             bool Status = false;
             string Message;
-
+            try { 
             //Model validation
             if (ModelState.IsValid)
             {
@@ -80,13 +80,19 @@ namespace StudentApplication.Controllers
                 Message = "Registration successfully done. Account activation link " +
                          "has been sent to your Email: " + user.Email;
                 Status = true;
+
                 //ModelState.Clear();
             }
             else
             {
                 Message = "Something went wrong, please try again.";
             }
+            }
+            catch
+            {
+                Message = "Something went wrong, please try again.";
 
+            }
             ViewBag.Status = Status;
             ViewBag.Message = Message;
 

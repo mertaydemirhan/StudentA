@@ -1,15 +1,6 @@
 ﻿@model StudentApp.ObjectModels.Application
 @{ Layout = "~/Views/Shared/_Layout.cshtml"; }
 
-<style>
-    body {
-        overflow: hidden;
-    }
-
-    .stepsContainer {
-        height: 97vh;
-    }
-</style>
 
 @using (Html.BeginForm("UpdateApplication", "Application", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "col-md-9", @style = "margin-bottom:50px" }))
 {
@@ -126,8 +117,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <label>Email address</label>
-                @*<input value="@User.Identity.Name" readonly type="email" class="form-control">*@
-                @Html.TextBoxFor(x => x.Email, new { @class="form-control"})
+                <input value="@User.Identity.Name" readonly type="email" class="form-control">
 
                 <p class="form-text">
                     We'll never share your contact info with
@@ -496,6 +486,7 @@
             dataType: "json",
             data: JSON.stringify(arr),
             success: function (data) {
+                //location.reload();
                 ResetTextsBg();
                 RefreshBgEducationTBL();
             }

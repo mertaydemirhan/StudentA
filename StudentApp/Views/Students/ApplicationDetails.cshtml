@@ -61,7 +61,13 @@
         <h1 class="text-center mb-4">
             Application Form for Education Abroad
         </h1>
-
+        <div style="margin-top:30px">
+            <section class="buttonbox">
+                @Html.ActionLink("Application Details PDF", "DownloadViewAsPDF", "Student", new { users = Html.ViewBag.StApplication, id = "DownloadPDF", @Class = "btn btn-danger" })
+                @Html.ActionLink("Download All Files", "DownloadAsZip", "Student", new { users = Html.ViewBag.StApplication, @Class = "btn btn-warning" })
+                <a href="@Url.Action("DetailsButton", "Application", new { Id = Model.ID })" class="btn btn-primary">Details</a>
+            </section>
+        </div>
         <hr />
 
         <div id="1">
@@ -233,47 +239,47 @@
             @{Html.RenderAction("WorkExpAdmin", "Students"); }
 
             @*<div class="row">
-                    <div class="col-lg-6">
-                        <label>Company Name</label>
-                        <p>@Html.DisplayFor(x => x.WorkExp.CompanyName)</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Position</label>
-                        <p>@Html.DisplayFor(x => x.WorkExp.Position)</p>
-                    </div>
+                <div class="col-lg-6">
+                    <label>Company Name</label>
+                    <p>@Html.DisplayFor(x => x.WorkExp.CompanyName)</p>
                 </div>
-
-                <div class="row col-lg-12">
-                    <label>Job Type</label>
-                    <p>@Html.DisplayFor(x => x.WorkExp.JobType)</p>
+                <div class="col-lg-6">
+                    <label>Position</label>
+                    <p>@Html.DisplayFor(x => x.WorkExp.Position)</p>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-lg-6">
-                        <label>Employee address</label>
-                        <p>@Html.DisplayFor(x => x.WorkExp.EmployeeAdress)</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Manager name</label>
-                        <p>@Html.DisplayFor(x => x.WorkExp.ManagerName)</p>
-                    </div>
+            <div class="row col-lg-12">
+                <label>Job Type</label>
+                <p>@Html.DisplayFor(x => x.WorkExp.JobType)</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Employee address</label>
+                    <p>@Html.DisplayFor(x => x.WorkExp.EmployeeAdress)</p>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <label>Employee Email</label>
-                        <p>@Html.DisplayFor(x => x.WorkExp.EmployeeMail)</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Employee Phone</label>
-                        <p>@Html.DisplayFor(x => x.WorkExp.EmployeePhone)</p>
-                    </div>
+                <div class="col-lg-6">
+                    <label>Manager name</label>
+                    <p>@Html.DisplayFor(x => x.WorkExp.ManagerName)</p>
                 </div>
+            </div>
 
-                <div class="row col-lg-12">
-                    <label>Job Description</label>
-                    <p>@Html.DisplayFor(x => x.WorkExp.JobDescription)</p>
-                </div>*@
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Employee Email</label>
+                    <p>@Html.DisplayFor(x => x.WorkExp.EmployeeMail)</p>
+                </div>
+                <div class="col-lg-6">
+                    <label>Employee Phone</label>
+                    <p>@Html.DisplayFor(x => x.WorkExp.EmployeePhone)</p>
+                </div>
+            </div>
+
+            <div class="row col-lg-12">
+                <label>Job Description</label>
+                <p>@Html.DisplayFor(x => x.WorkExp.JobDescription)</p>
+            </div>*@
         </div>
 
         <hr />
@@ -556,13 +562,7 @@
 
             @{Html.RenderAction("UploadFiles", "Students"); }
         </div>
-        <div style="margin-top:30px">
-            <section class="buttonbox">
-                @Html.ActionLink("Application Details PDF", "DownloadViewAsPDF", "Student", new { users = Html.ViewBag.StApplication, id = "DownloadPDF", @Class = "btn btn-danger" })
-                @Html.ActionLink("Download All Files", "DownloadAsZip", "Student", new { users = Html.ViewBag.StApplication, @Class = "btn btn-warning" })
-                <a href="@Url.Action("DetailsButton", "Application", new { Id = Model.ID })" class="btn btn-primary">Details</a>
-            </section>
-        </div>
+
     </main>
 
     <script>

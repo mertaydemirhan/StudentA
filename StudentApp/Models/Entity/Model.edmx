@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="StudentAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="StudentAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="ID" />
@@ -256,6 +256,9 @@
         <Function Name="Application_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AppID" Type="int" Mode="In" />
         </Function>
+        <Function Name="DeleteApplication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AppID" Type="int" Mode="In" />
+        </Function>
         <Function Name="FindUserBirthDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
           <Parameter Name="UserID" Type="int" Mode="In" />
         </Function>
@@ -333,7 +336,8 @@
             <End Role="WorkExp" EntitySet="WorkExp" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StudentAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -489,8 +493,8 @@
           <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AppId" Type="Int32" Nullable="false" />
           <Property Name="FileName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Application" Relationship="Self.FK_Upload_Applications" FromRole="Upload" ToRole="Applications" />
           <Property Name="FileNote" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_Upload_Applications" FromRole="Upload" ToRole="Applications" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -506,8 +510,8 @@
           <Property Name="ConfirmPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="BirthDate" Type="String" MaxLength="500" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_Users" FromRole="Users" ToRole="Applications" />
           <Property Name="UserImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_Users" FromRole="Users" ToRole="Applications" />
         </EntityType>
         <EntityType Name="WorkExp">
           <Key>
@@ -634,7 +638,10 @@
             <End Role="WorkExp" EntitySet="WorkExps" />
           </AssociationSet>
           <FunctionImport Name="Application_Del">
-          <Parameter Name="AppID" Mode="In" Type="Int32" />
+            <Parameter Name="AppID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteApplication">
+            <Parameter Name="AppID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -792,14 +799,14 @@
           <EntitySetMapping Name="LocalUsers">
             <EntityTypeMapping TypeName="StudentAppModel.LocalUser">
               <MappingFragment StoreEntitySet="LocalUser">
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="No" ColumnName="No" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
                 <ScalarProperty Name="TypeOf" ColumnName="TypeOf" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -829,19 +836,18 @@
           <EntitySetMapping Name="Uploads">
             <EntityTypeMapping TypeName="StudentAppModel.Upload">
               <MappingFragment StoreEntitySet="Upload">
-                <ScalarProperty Name="FileNote" ColumnName="FileNote" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FileType" ColumnName="FileType" />
                 <ScalarProperty Name="FilePath" ColumnName="FilePath" />
                 <ScalarProperty Name="AppId" ColumnName="AppId" />
                 <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileNote" ColumnName="FileNote" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="StudentAppModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -852,6 +858,7 @@
                 <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -872,6 +879,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Application_Del" FunctionName="StudentAppModel.Store.Application_Del" />
+          <FunctionImportMapping FunctionImportName="DeleteApplication" FunctionName="StudentAppModel.Store.DeleteApplication" />
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="StudentAppModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="StudentAppModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="StudentAppModel.Store.sp_dropdiagram" />

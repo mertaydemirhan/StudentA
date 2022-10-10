@@ -20,6 +20,15 @@
             src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script type="text/javascript"
             src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+
+       .disabled {
+            pointer-events: none !important;
+            cursor: not-allowed;
+            background-color: grey;
+            
+        }
+    </style>
 </head>
 <body>
     <div class="register">
@@ -129,7 +138,7 @@
             </label>
         </div>*@
 
-                            <button type="submit" class="btn btn-primary btn-md mr-3"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
+                            <button type="submit" class="btn btn-primary btn-md mr-3" id="registerButton"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
                             @*<a style="color:gray" href="/User/Login">Already have an account?</a>*@
                         </form>
                     </div>
@@ -193,7 +202,31 @@
 
 </body>
 </html>
+<script>
+    $('#registerButton').on('click', function () {
+        if ($('#name').val() != '' && $('#surname').val() != '' && $('#email').val() != '' && $('#password').val() != '' && $('#confirm_password').val() != '' ) {
 
+            swal(
+                'Done !',
+                'Please Wait!',
+                'success'
+            );
+            this.classList.add("disabled");
+            this.innerHTML = "Registering...";
+
+
+
+        }
+        else {
+            event.preventDefault();
+            swal(
+                'Error !',
+                'Please Fill In All Fields !',
+                'error'
+            );
+        }
+    });
+</script>
 @*<script>
         if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
