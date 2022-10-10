@@ -61,7 +61,7 @@
 
                 <div class="col-lg-6">
                     <label>Date of test</label>
-                    @Html.TextBoxFor(m => m.LanguageCert.TestDateIELTS, "{0:yyyy-MM-ddThh:mm:ss}", new { id = "dateofTestIelts", name = "dateofTestIelts", @class = "form-control", type = "datetime-local" })
+                    @Html.TextBoxFor(m => m.LanguageCert.TestDateIELTS, "{0:yyyy-MM-dd}", new { id = "dateofTestIelts", name = "dateofTestIelts", @class = "form-control", type = "date" })
                 </div>
             </div>
 
@@ -109,7 +109,7 @@
 
                 <div class="col-lg-6">
                     <label>Date of test</label>
-                    @Html.TextBoxFor(m => m.LanguageCert.TestDateTOEFL, "{0:yyyy-MM-ddThh:mm:ss}", new { id = "dateofTestToefl", name = "dateofTestToefl", @class = "form-control", type = "datetime-local" })
+                    @Html.TextBoxFor(m => m.LanguageCert.TestDateTOEFL, "{0:yyyy-MM-dd}", new { id = "dateofTestToefl", name = "dateofTestToefl", @class = "form-control", type = "date" })
 
                 </div>
             </div>

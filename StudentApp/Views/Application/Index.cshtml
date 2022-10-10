@@ -140,11 +140,12 @@
         <div class="row">
             <div class="col-lg-6">
                 <label>Passport start date</label>
-                @Html.TextBoxFor(m => m.PassStartDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", @type = "datetime-local" })
+                @*@Html.TextBoxFor(m => m.PassStartDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", @type = "datetime-local" })*@
+                @Html.TextBoxFor(m => m.PassStartDate, "{0:yyyy-MM-dd}", new {@class = "form-control", @type="date"})
             </div>
             <div class="col-lg-6">
                 <label>Passport expiry date</label>
-                @Html.TextBoxFor(m => m.PassExpireDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", @type = "datetime-local" })
+                @Html.TextBoxFor(m => m.PassExpireDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
             </div>
         </div>
 
@@ -165,11 +166,11 @@
         <div class="row">
             <div class="col-lg-6">
                 <label>ID start date</label>
-                @Html.TextBoxFor(m => m.IdStartDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", @type = "datetime-local" })
+                @Html.TextBoxFor(m => m.IdStartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
             </div>
             <div class="col-lg-6">
                 <label>ID expiry date</label>
-                @Html.TextBoxFor(m => m.IdExpireDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", @type = "datetime-local" })
+                @Html.TextBoxFor(m => m.IdExpireDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
             </div>
         </div>
 
