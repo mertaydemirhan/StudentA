@@ -22,7 +22,7 @@
         <div class="languages">
             <div>
                 <label>If yes, which one?</label>
-                @Html.DropDownListFor(xm => xm.LanguageCert.CertType, new SelectList(new List<string> { "Select", "IELTS Academic", "TOEFL IBT", "Other" }), new { @name = "language", @id = "test", @class = "lang-dropdown form-select" })
+                @Html.DropDownListFor(xm => xm.LanguageCert.CertType, new SelectList(new List<string> { "Select", "IELTS Academic", "TOEFL IBT", "Other" }), new { @name = "language", @id = "ChkLanguage", @class = "lang-dropdown form-select" })
 
             </div>
 
@@ -41,7 +41,6 @@
                     </div>
                 </div>
 
-
                 <div class="row">
                     <div class="col-lg-6">
                         <label>Writing</label>
@@ -52,11 +51,6 @@
                         <label>Speaking</label>
                         @Html.DropDownListFor(x => x.LanguageCert.SpeakingIELTS, new SelectList(new List<double> { 0, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0 }), new { name = "SpeakingIelts", id = "SpeakingIelts", @class = "form-select" })
                     </div>
-
-                <div class="col-lg-6">
-                    <label>Date of test</label>
-                    @Html.TextBoxFor(m => m.LanguageCert.TestDateIELTS, "{0:yyyy-MM-dd}", new { id = "dateofTestIelts", name = "dateofTestIelts", @class = "form-control", type = "date" })
-
                 </div>
 
                 <div class="row">
@@ -114,15 +108,9 @@
 
                     </div>
 
-
                     <div class="col-lg-6">
                         <label>Date of test</label>
                         @Html.TextBoxFor(m => m.LanguageCert.TestDateTOEFL, "{0:yyyy-MM-dd}", new { id = "dateofTestToefl", name = "dateofTestToefl", @class = "form-control", type = "date" })
-
-                <div class="col-lg-6">
-                    <label>Date of test</label>
-                    @Html.TextBoxFor(m => m.LanguageCert.TestDateTOEFL, "{0:yyyy-MM-dd}", new { id = "dateofTestToefl", name = "dateofTestToefl", @class = "form-control", type = "date" })
-
 
                     </div>
                 </div>
@@ -147,7 +135,7 @@
 
         if ($('#langBtn').is(':checked')) {
             $('.languages').css('display', 'block');
-            switch ($('#test :selected').text()) {
+            switch ($('#ChkLanguage :selected').text()) {
                 case "IELTS Academic":
                     $('.ielts').css('display', 'block');
                     $('.toefl').css('display', 'none');
@@ -171,16 +159,19 @@
         }
     };
     function pageload() {
-        if ($('#test :selected').text != "Select") {
+        console.log($('#ChkLanguage').val())
+        if ($('#ChkLanguage').val() != "Select") {
             $('#langBtn').prop('checked', true);
-
         }
         else {
-            $('#langBtn').prop('checked', false);
-        }
-        pagerefresh();
+            $('#langBtn').prop('checked', false).removeAttr('checked');
+            $('.languages').css('display', 'none');
+            $('.other').css('display', 'none');
+            $('.ielts').css('display', 'none');
+            $('.toefl').css('display', 'none');
+        }        
     };
-    document.getElementById('test').addEventListener('change', function () {
+    document.getElementById('ChkLanguage').addEventListener('change', function () {
         console.log(this.value);
         var style1 = this.value == "IELTS Academic" ? 'block' : 'none';
         document.getElementById('hidden_div').style.display = style1;
