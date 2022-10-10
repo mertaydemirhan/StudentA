@@ -3,6 +3,15 @@
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
+<style>
+    td a:hover {
+        background-color: #e5e5e5 !important;
+    }
+    td button:hover {
+        background-color: #e5e5e5 !important;
+    }
+
+</style>
 <table class="table" id="UploadTable2">
     <tr>
         <th>
@@ -31,10 +40,10 @@
                 </td>
                 <td><input type="text" contenteditable id="FileNote_@item.Id" class="form-control" placeholder="insert @item.FileType Comment" name="@item.Id" onchange="Labelchanged(@item.Id)" value="@Html.DisplayFor(modelItem => item.FileNote)"></td>
                 <td>
-                    <button id="filedelete" class="btn btn-danger" name="@item.Id" title="@item.FileName">Delete</button>
+                    <button id="filedelete" style="border:1px solid !important;"class="btn btn-light"  name="@item.Id" title="@item.FileName">Delete</button>
                     @*<button id="filedelete" title="@item.FileName" class="btn btn-danger" name="@item.Id">Delete</button>*@
-                    <a href="@Url.Action("FullScreen", "Application", new { Id = item.Id })" class="btn btn-warning"><span class="fa fullscreen"></span>View</a>
-                    <a href="@Url.Action("Download", "Application", new { Id = item.Id })" class="btn btn-success"><span class="fa fa-download"></span> Download</a>
+                    <a href="@Url.Action("FullScreen", "Application", new { Id = item.Id })" style="border:1px solid !important;" class="btn btn-light" ><span class="fa fullscreen"></span>View</a>
+                    <a href="@Url.Action("Download", "Application", new { Id = item.Id })"style="border:1px solid !important;" class="btn btn-light"><span class="fa fa-download"></span> Download</a>
                 </td>
 
             </tr>

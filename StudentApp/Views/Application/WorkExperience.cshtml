@@ -40,7 +40,7 @@
     }
 </style>
 
-<div class="modelContainer_WorkExp">
+<div class="modelContainer_WorkExp">  
     <div class="clickableArea" onclick="toggleModel_WorkExp()"></div>
     <div class="model_WorkExp">
         <div class="row">
@@ -127,9 +127,9 @@
                     @Html.DisplayFor(modelItem => item.EmployeeMail)
                 </td>
                 <td>
-                    <button id="WorkExpDelete" class="btn btn-danger" name="@item.ID" title="@item.CompanyName">Delete</button>
+                    <button id="WorkExpDelete" style="border:1px solid !important;" class="btn btn-light"name="@item.ID" title="@item.CompanyName">Delete</button>
                     @*<a href="#" id="ViewScreen" class="btn btn-warning" onclick="toggleModel(@item.ID)"><span class="fa fullscreen"></span>View</a>*@
-                    <a href="#" id="ViewScreen" class="btn btn-warning" name="@item.ID" onclick="toggleModel_WorkExp(@item.ID)"><span class="fa fullscreen"></span>View</a>
+                    <a href="#" id="ViewScreen" style="border:1px solid !important;" class="btn btn-light" name="@item.ID" onclick="toggleModel_WorkExp(@item.ID)"><span class="fa fullscreen"></span>View</a>
                     @*<a href="#" class="btn btn-success"><span class="fa fa-edit"></span> Edit</a>*@
                 </td>
 

@@ -4021,6 +4021,13 @@
     <Content Include="Content\assets\js\jquery.bootstrap.js" />
     <Content Include="Content\assets\js\jquery.validate.min.js" />
     <Content Include="Content\assets\js\material-bootstrap-wizard.js" />
+    <Content Include="Content\build\css\countrySelect.css" />
+    <Content Include="Content\build\css\countrySelect.min.css" />
+    <Content Include="Content\build\css\demo.css" />
+    <Content Include="Content\build\img\flags%402x.png" />
+    <Content Include="Content\build\img\flags.png" />
+    <Content Include="Content\build\js\countrySelect.js" />
+    <Content Include="Content\build\js\countrySelect.min.js" />
     <Content Include="Content\carousel-18\css\animate.css" />
     <Content Include="Content\carousel-18\css\bootstrap.min.css" />
     <Content Include="Content\carousel-18\css\owl.carousel.min.css" />
@@ -4070,6 +4077,7 @@
     <Content Include="Content\ContactFrom_v1\vendor\select2\select2.min.css" />
     <Content Include="Content\ContactFrom_v1\vendor\select2\select2.min.js" />
     <Content Include="Content\ContactFrom_v1\vendor\tilt\tilt.jquery.min.js" />
+    <Content Include="Content\src\js\countrySelect.js" />
     <Content Include="Content\Templates\app-form-design.html" />
     <Content Include="Content\Application-form\css\style.css" />
     <Content Include="Content\Application-form\favicon.ico" />
@@ -7083,6 +7091,11 @@
     <Content Include="Models\Entity\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\src\scss\countrySelect.scss" />
+    <Content Include="Content\src\scss\_selector.scss" />
+    <Content Include="Content\src\scss\_sprites.scss" />
+    <Content Include="Content\src\scss\_utils.scss" />
+    <Content Include="Content\src\scss\_variables.scss" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
